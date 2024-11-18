@@ -18,8 +18,10 @@ public class Product {
     private double price;
     private int stock;
 
-    public Product(int id, String name, String image, String description, double price, int stock) {
-        this.id = id;
+    // No-args constructor
+    public Product() {}
+
+    public Product(String name, String image, String description, double price, int stock) {
         this.name = name;
         this.image = image;
         this.description = description;
@@ -73,10 +75,6 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    public void deleteProduct(int id){
-
     }
 
 }

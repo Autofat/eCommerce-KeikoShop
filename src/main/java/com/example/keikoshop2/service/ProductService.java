@@ -1,7 +1,7 @@
 package com.example.keikoshop2.service;
 
 import com.example.keikoshop2.exception.ProductNotFoundExeption;
-import com.example.keikoshop2.exception.StudentAlreadyExistsExeption;
+import com.example.keikoshop2.exception.ProductAlreadyExistsExeption;
 import com.example.keikoshop2.model.Product;
 import com.example.keikoshop2.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,21 +21,27 @@ public class ProductService implements IProductService {
 
     @Override
     public Product createProduct(Product product) {
-        if (productAlreadyExists(product.getName())){
-            throw new StudentAlreadyExistsExeption(product.getId() +"-"+ product.getName() + "Already exists");
+        if (productAlreadyExists(product.getName())) {
+            throw new ProductAlreadyExistsExeption(product.getId() + " - " + product.getName() + " Already exists");
         }
         return productRepository.save(product);
     }
 
+    private boolean productAlreadyExists(String name) {
+        return productRepository.findByName(name).isPresent();
+    }
+
+
     @Override
     public Product updateProduct(Product product, int id) {
-        return productRepository.findById(id).map(pr -> {
-            pr.setName(product.getName());
-            pr.setPrice(product.getPrice());
-            pr.setDescription(product.getDescription());
-            pr.setImage(product.getImage());
-            pr.setStock(product.getStock());
-            return productRepository.save(pr);
+        return productRepository.findById(id)
+                .map(pr -> {
+                    pr.setName(product.getName());
+                    pr.setPrice(product.getPrice());
+                    pr.setDescription(product.getDescription());
+                    pr.setImage(product.getImage());
+                    pr.setStock(product.getStock());
+                    return productRepository.save(pr);
         }).orElseThrow(() -> new ProductNotFoundExeption("Product Not Found!"));
     }
 
@@ -51,10 +57,8 @@ public class ProductService implements IProductService {
         if(!productRepository.existsById(id)){
             throw new ProductNotFoundExeption("Product Not Found!");
         }
+        productRepository.deleteById(id);
 
     }
 
-    private boolean productAlreadyExists(String name) {
-        return productRepository.findByName(name).isPresent();
-    }
 }

@@ -1,5 +1,6 @@
 package com.example.keikoshop2.contoller;
 
+import com.example.keikoshop2.exception.ProductNotFoundExeption;
 import com.example.keikoshop2.model.Product;
 import com.example.keikoshop2.service.IProductService;
 import lombok.RequiredArgsConstructor;
