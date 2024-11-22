@@ -1,14 +1,16 @@
-#spring.application.name=KeikoShop2
-
-server:
-  port: 8080
-
 spring:
+  application:
+    name: KeikoShop2
+
+  server:
+    port: 8080
+
   datasource:
     username: root
     password:
     url: jdbc:mysql://127.0.0.1:3306/keikoshop
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     show-sql: true
     hibernate:
@@ -16,6 +18,12 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    cache: false
 
 
 
