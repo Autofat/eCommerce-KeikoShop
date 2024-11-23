@@ -5,12 +5,13 @@ import com.example.keikoshop2.service.IProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 
 @RequestMapping("/products")
@@ -24,21 +25,25 @@ public class ProductController {
     }
 
     @PostMapping("/create")
+    @ResponseBody
     public Product createProduct(@RequestBody Product product) {
         return productService.createProduct(product);
     }
 
     @PutMapping("/edit/{id}")
+    @ResponseBody
     public Product updateProduct(@RequestBody Product product, @PathVariable int id) {
         return productService.updateProduct(product, id);
     }
 
     @DeleteMapping("/delete/{id}")
+    @ResponseBody
     public void deleteProduct(@PathVariable int id) {
         productService.deleteProduct(id);
     }
 
     @GetMapping("/product/{id}")
+    @ResponseBody
     public Product getProductById(@PathVariable int id) {
         return productService.getProductById(id);
     }
