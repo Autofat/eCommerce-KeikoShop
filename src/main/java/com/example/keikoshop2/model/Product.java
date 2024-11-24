@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Product {
@@ -12,10 +14,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank(message = "Product name is required")
     private String name;
     private String image;
     private String description;
+    @Min(value = 0, message = "Price must be greater than or equal to 0")
     private double price;
+    @Min(value = 0, message = "Price must be greater than or equal to 0")
     private int stock;
 
     // No-args constructor

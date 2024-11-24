@@ -26,7 +26,17 @@
         </div>
     </div>
 </nav>
-
+<!-- Alert Messages -->
+<c:if test="${not empty successMessage}">
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-auto max-w-7xl mt-4" role="alert">
+        <span class="block sm:inline">${successMessage}</span>
+    </div>
+</c:if>
+<c:if test="${not empty errorMessage}">
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto max-w-7xl mt-4" role="alert">
+        <span class="block sm:inline">${errorMessage}</span>
+    </div>
+</c:if>
 <!-- Main Content -->
 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
     <!-- Product List -->
@@ -61,8 +71,7 @@
                         <td class="px-6 py-4 whitespace-nowrap">Rp ${product.price}</td>
                         <td class="px-6 py-4 whitespace-nowrap">${product.stock}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="edit/${product.id}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
-                            <a href="delete/${product.id}" class="text-red-600 hover:text-red-900">Delete</a>
+                            <button onclick="openAddModal()" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</button>
                         </td>
                     </tr>
                 </c:forEach>
@@ -77,7 +86,7 @@
     <div class="flex items-center justify-center min-h-screen">
         <div class="bg-white rounded-lg p-8 max-w-md w-full">
             <h3 class="text-lg font-medium mb-4" id="modalTitle">Add New Product</h3>
-            <form id="productForm" action="<%= request.getAttribute("productId") != null ? "/products/edit/" + request.getAttribute("productId") : "/products" %>" method="post" class="space-y-4">
+            <form id="productForm"  enctype="multipart/form-data" action="<%= request.getAttribute("productId") != null ? "/products/edit/" + request.getAttribute("productId") : "/products/create" %>" method="post" class="space-y-4">
                 <input type="hidden" id="productId" name="productId" value="<%= request.getAttribute("productId") != null ? request.getAttribute("productId") : "" %>">
                 <div>
                     <label class="block text-sm font-medium text-gray-700">Product Name</label>

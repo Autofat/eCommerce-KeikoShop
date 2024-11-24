@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -24,10 +25,24 @@ public class ProductController {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.FOUND);
     }
 
+    @GetMapping("/manage-products")
+    public String manageProducts(Model model) {
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
+
+        model.addAttribute("newProduct", new Product());
+        return "product";
+    }
+
     @PostMapping("/create")
-    @ResponseBody
-    public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public String createProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
+        try {
+            productService.createProduct(product);
+            redirectAttributes.addFlashAttribute("successMessage", "Product berhasil ditambahkan");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Gagal menambahkan product");
+        }
+        return "redirect:/products/manage-products";
     }
 
     @PutMapping("/edit/{id}")
@@ -36,10 +51,15 @@ public class ProductController {
         return productService.updateProduct(product, id);
     }
 
-    @DeleteMapping("/delete/{id}")
-    @ResponseBody
-    public void deleteProduct(@PathVariable int id) {
-        productService.deleteProduct(id);
+    @PostMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        try {
+            productService.deleteProduct(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Product berhasil dihapus");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Gagal menghapus product");
+        }
+        return "redirect:/products/manage-products";
     }
 
     @GetMapping("/product/{id}")
@@ -48,11 +68,5 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
-    @GetMapping("/manage-products")
-    public String manageProducts(Model model) {
-        List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
-        return "product";
-    }
 
 }
