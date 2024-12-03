@@ -5,6 +5,8 @@ import com.example.keikoshop2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import jakarta.servlet.http.HttpSession;
+import java.util.Optional;
 
 import java.util.Optional;
 
@@ -16,6 +18,9 @@ public class UserService implements IUserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder; // Untuk enkripsi password
+
+    @Autowired
+    private HttpSession session;
 
     @Override
     public User register(User user) {
@@ -33,12 +38,15 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User login(String username, String password) {
-        Optional<User> userOptional = userRepository.findByUsername(username);
+    public User login(String email, String password) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
 
         if (userOptional.isEmpty() || !passwordEncoder.matches(password, userOptional.get().getPassword())) {
             throw new RuntimeException("Invalid username or password!");
         }
+
+        // Create session
+        session.setAttribute("user", userOptional.get());
 
         return userOptional.get(); // Return user if credentials are valid
     }
