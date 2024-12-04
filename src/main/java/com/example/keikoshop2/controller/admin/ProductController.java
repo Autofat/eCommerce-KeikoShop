@@ -1,10 +1,11 @@
-package com.example.keikoshop2.controller;
+package com.example.keikoshop2.controller.admin;
 
 import com.example.keikoshop2.model.Product;
 import com.example.keikoshop2.service.IProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,8 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-
 @RequestMapping("/products")
+@PreAuthorize("hasRole('admin')")
 public class ProductController {
 
     private final IProductService productService;
@@ -29,9 +30,8 @@ public class ProductController {
     public String manageProducts(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
-
         model.addAttribute("newProduct", new Product());
-        return "Admin/product.html";
+        return "admin/products";
     }
 
     @PostMapping("/create")
@@ -67,6 +67,4 @@ public class ProductController {
     public Product getProductById(@PathVariable int id) {
         return productService.getProductById(id);
     }
-
-
 }

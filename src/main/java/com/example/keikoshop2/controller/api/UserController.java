@@ -1,8 +1,9 @@
-package com.example.keikoshop2.controller;
+package com.example.keikoshop2.controller.api;
 
 import com.example.keikoshop2.model.User;
 import com.example.keikoshop2.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public User login(@RequestParam String username, @RequestParam String password) {
+    public UserDetails login(@RequestParam String username, @RequestParam String password) {
         return userService.login(username, password);
     }
 

@@ -1,4 +1,4 @@
-package com.example.keikoshop2.controller;
+package com.example.keikoshop2.controller.customer;
 
 import com.example.keikoshop2.model.Review;
 import com.example.keikoshop2.service.IReviewService;

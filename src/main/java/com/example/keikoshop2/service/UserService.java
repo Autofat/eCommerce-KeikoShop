@@ -3,11 +3,13 @@ package com.example.keikoshop2.service;
 import com.example.keikoshop2.model.User;
 import com.example.keikoshop2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import jakarta.servlet.http.HttpSession;
-import java.util.Optional;
-
 import java.util.Optional;
 
 @Service
@@ -17,10 +19,10 @@ public class UserService implements IUserService {
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder; // Untuk enkripsi password
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private HttpSession session;
+    private AuthenticationManager authenticationManager;
 
     @Override
     public User register(User user) {
@@ -38,22 +40,29 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User login(String email, String password) {
-        Optional<User> userOptional = userRepository.findByEmail(email);
+    public UserDetails login(String email, String password) {
+        // Use AuthenticationManager to handle authentication
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(email, password)
+        );
 
-        if (userOptional.isEmpty() || !passwordEncoder.matches(password, userOptional.get().getPassword())) {
-            throw new RuntimeException("Invalid username or password!");
-        }
+        // Set the authentication in the security context
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Create session
-        session.setAttribute("user", userOptional.get());
-
-        return userOptional.get(); // Return user if credentials are valid
+        // Return the authenticated user details
+        return (UserDetails) authentication.getPrincipal();
     }
 
     @Override
     public void logout(String username) {
-        // Spring Security handles session logout by default, but you can customize if needed.
-        System.out.println("User " + username + " logged out!");
+        SecurityContextHolder.clearContext();
+    }
+
+    public User findByEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        throw new RuntimeException("User not found with email: " + email);
     }
 }
