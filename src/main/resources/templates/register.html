@@ -29,98 +29,96 @@
   <body class="bg-[#FFFAFA]">
 <!--  error message-->
     <div th:if="${errorMessage}" class="hidden" id="error-message" th:text="${errorMessage}"></div>
-
-    <div class="flex min-h-screen items-center justify-center gap-10">
-      <div>
-        <img
-          src="./WhatsApp Image 2024-12-03 at 22.40.18_059ef3ad.jpg"
-          alt=""
-        />
-      </div>
-      <div class="w-full max-w-sm p-4 bg-white rounded-lg sm:p-6 md:p-8">
-        <form class="space-y-6" action="/signup" method="post">
-          <h5 class="text-4xl font-medium text-gray-900 text-black text-start">
-            Sign Up
-          </h5>
-          <div>
-            <label
-                    for="username"
-                    class="block mb-2 text-sm font-medium text-gray-500"
-            >Username</label
-            >
-            <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-gra"
-                    placeholder="johnkurniawan"
-                    required
-            />
-          </div>
-          <div>
-            <label
-              for="fullname"
-              class="block mb-2 text-sm font-medium text-gray-500"
-              >Full name</label
-            >
-            <input
-              type="text"
-              name="fullname"
-              id="fullname"
-              class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-gra"
-              placeholder="John Kurniawan"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="email"
-              class="block mb-2 text-sm font-medium text-gray-500"
-              >Your email</label
-            >
-            <input
-              type="email"
-              name="email"
-              id="email"
-              class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="name@company.com"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="password"
-              class="block mb-2 text-sm font-medium text-gray-500"
-              >Your password</label
-            >
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              required
-            />
-          </div>
-          <div></div>
-          <button
-            type="submit"
-            class="w-full text-white bg-[#AC690B] hover:bg-[#AC690B] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-          >
-            Register
-          </button>
-          <div
-            class="text-sm font-medium text-gray-500 flex justify-center gap-2"
-          >
-            Have an account?
-            <a href="/login" class="text-[#AC690B] hover:underline">Login</a>
-          </div>
-        </form>
-      </div>
+<!--Promo Banner-->
+    <div class="w-full bg-black">
+      <h1 class="text-white py-2 justify-center text-center mx-3">
+        Christmas Sale For All Items And Free Express Delivery -
+        <span class="font-bold">OFF 50%!</span> Shop now only at, Keiko Shop!
+      </h1>
     </div>
-    <footer
-      class="bg-white rounded-lg shadow m-4 dark:bg-gray-800 w-full p-4 flex justify-center"
-    ></footer>
+    <nav class="bg-[#FFFAFA] w-full z-20 border-b border-gray-300">
+      <div class="flex flex-wrap items-center gap-5">
+        <img src="/images/Logo2.jpg" alt="" class="w-[100px] py-1" />
+        <h1 class="text-4xl font-semibold">Sign Up</h1>
+      </div>
+    </nav>
+
+  <div class="min-h-screen items-center justify-center gap-10 md:flex">
+    <div>
+      <img
+              src="/images/Logo2.jpg"
+              alt="Keikoshop logo"
+      />
+    </div>
+    <div
+            class="w-full max-w-sm p-4 bg-[#FFFAFA] rounded-lg sm:p-6 md:p-8 mx-auto md:mx-10"
+    >
+      <form class="space-y-6" action="#">
+        <h5 class="text-4xl font-medium text-gray-900 text-black text-start">
+          Sign Up
+        </h5>
+        <div>
+          <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-500"
+          >Full name</label
+          >
+          <input
+                  type="text"
+                  name="fullname"
+                  id="fullname"
+                  class="bg-[#FFFAFA] border-b-2 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-gray-300"
+                  placeholder="John Kurniawan"
+                  required
+          />
+        </div>
+        <div>
+          <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-500"
+          >Your email</label
+          >
+          <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="bg-[#FFFAFA] border-b-2 border-gray-300 text-gray-900 text-sm block w-full p-2.5"
+                  placeholder="name@company.com"
+                  required
+          />
+        </div>
+        <div>
+          <label
+                  for="password"
+                  class="block mb-2 text-sm font-medium text-gray-500"
+          >Your password</label
+          >
+          <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="••••••••"
+                  class="bg-[#FFFAFA] border-b-2 border-gray-300 text-gray-900 text-sm block w-full p-2.5"
+                  required
+          />
+        </div>
+        <div></div>
+        <button
+                type="submit"
+                class="w-full text-white bg-[#AC690B] hover:bg-[#AC690B] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        >
+          Sign Up
+        </button>
+        <div
+                class="text-sm font-medium text-gray-500 flex justify-center gap-2"
+        >
+          Have an account?
+          <a href="/login" class="text-[#AC690B] hover:underline">Sign in</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer class="shadow bg-black w-full h-20"></footer>
 
     <!-- JavaScript to show alert if there is an error message -->
     <script>
@@ -131,5 +129,6 @@
         }
       });
     </script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </body>
 </html>
