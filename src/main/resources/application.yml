@@ -7,7 +7,7 @@ spring:
 
   datasource:
     username: root
-    password:
+    password: 
     url: jdbc:mysql://127.0.0.1:3306/keikoshop
     driver-class-name: com.mysql.cj.jdbc.Driver
 
