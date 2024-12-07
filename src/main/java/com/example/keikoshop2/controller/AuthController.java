@@ -26,14 +26,13 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String processSignup(@RequestParam String username,
-                                @RequestParam String fullname,
+    public String processSignup(@RequestParam String fullname,
                                 @RequestParam String email,
                                 @RequestParam String password,
                                 Model model) {
         try {
             User user = new User();
-            user.setUsername(username);
+            user.setUsername(fullname.split(" ")[0]);
             user.setFullName(fullname);
             user.setEmail(email);
             user.setPassword(password);
