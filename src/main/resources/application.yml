@@ -19,16 +19,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
-#  thymeleaf:
-#    prefix: classpath:/templates/
-#    suffix: .html
-#    mode: HTML
-#    cache: false
-
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+    resources: # Static resources
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
 
 

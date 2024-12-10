@@ -1,9 +1,6 @@
 package com.example.keikoshop2.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
@@ -17,14 +14,17 @@ public class Product {
     @NotBlank(message = "Product name is required")
     private String name;
     private String image;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String description;
     @Min(value = 0, message = "Price must be greater than or equal to 0")
     private double price;
-    @Min(value = 0, message = "Price must be greater than or equal to 0")
+    @Min(value = 0, message = "Stock must be greater than or equal to 0")
     private int stock;
 
     // No-args constructor
-    public Product() {}
+    public Product() {
+    }
 
     public Product(String name, String image, String description, double price, int stock) {
         this.name = name;
@@ -33,6 +33,7 @@ public class Product {
         this.price = price;
         this.stock = stock;
     }
+
     //Getter
     public int getId() {
         return id;
@@ -57,7 +58,8 @@ public class Product {
     public int getStock() {
         return stock;
     }
-//  Setter
+
+    //  Setter
     public void setId(int id) {
         this.id = id;
     }

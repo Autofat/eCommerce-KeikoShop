@@ -9,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -35,23 +36,28 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public String createProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
+    public String createProduct(@ModelAttribute Product product, @RequestParam("imageFiles") MultipartFile image, RedirectAttributes redirectAttributes) {
         try {
-            productService.createProduct(product);
-            redirectAttributes.addFlashAttribute("successMessage", "Product berhasil ditambahkan");
+            productService.createProduct(product, image);
+            redirectAttributes.addFlashAttribute("successMessage", "Product successfully added");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Gagal menambahkan product");
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/products/manage-products";
     }
 
     @PutMapping("/edit/{id}")
-    @ResponseBody
-    public Product updateProduct(@RequestBody Product product, @PathVariable int id) {
-        return productService.updateProduct(product, id);
+    public String updateProduct(@PathVariable("id") int id, @ModelAttribute Product product, @RequestParam("imageFiles") MultipartFile image, RedirectAttributes redirectAttributes) {
+        try {
+            productService.updateProduct(product, id, image);
+            redirectAttributes.addFlashAttribute("successMessage", "Product successfully updated");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        }
+        return "redirect:/products/manage-products";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable int id, RedirectAttributes redirectAttributes) {
         try {
             productService.deleteProduct(id);
@@ -62,7 +68,7 @@ public class ProductController {
         return "redirect:/products/manage-products";
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/getProduct/{id}")
     @ResponseBody
     public Product getProductById(@PathVariable int id) {
         return productService.getProductById(id);

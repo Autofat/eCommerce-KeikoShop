@@ -1,15 +1,17 @@
 package com.example.keikoshop2.service;
 
 import com.example.keikoshop2.model.Product;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 public interface IProductService {
-    Product createProduct(Product product);
     List<Product> getAllProducts();
-    Product getProductById(int id);
-    Product updateProduct(Product product, int id);
+    Product createProduct(Product product, MultipartFile image);
+    Product updateProduct(Product product, int id, MultipartFile image);
+
     void deleteProduct(int id);
+    Product getProductById(int id);
 
 
 
