@@ -65,4 +65,5 @@ public class UserService implements IUserService {
         }
         throw new RuntimeException("User not found with email: " + email);
     }
+
 }

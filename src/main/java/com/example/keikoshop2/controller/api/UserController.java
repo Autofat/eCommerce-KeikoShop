@@ -28,4 +28,5 @@ public class UserController {
         userService.logout(username);
         return "User logged out successfully!";
     }
+
 }
