@@ -66,4 +66,14 @@ public class UserService implements IUserService {
         throw new RuntimeException("User not found with email: " + email);
     }
 
+    public User findByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        throw new RuntimeException("User not found with username: " + username);
+    }
+
+
+
 }

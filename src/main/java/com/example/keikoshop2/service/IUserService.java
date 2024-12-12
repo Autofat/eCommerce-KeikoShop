@@ -7,4 +7,7 @@ public interface IUserService{
     User register(User user);
     UserDetails login(String username, String password);
     void logout(String username);
+    User findByEmail(String email);
+    User findByUsername(String username);
+
 }

@@ -13,6 +13,9 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
     />
+    <!--  TAILWIND & FLOWBITE CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <!--    Library JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -20,10 +23,7 @@
     <!--    Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
     <!--    CKEDITOR-->
     <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
@@ -38,7 +38,11 @@
                     <h1 class="text-xl font-bold">KeikoShop</h1>
                 </div>
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a href="/products"
+                    <a href="/home"
+                       class=" border-grey-100 hover:border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 hover-border-b-2 text-sm font-medium">
+                        Home
+                    </a>
+                    <a href="/products/manage-products"
                        class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                         Products
                     </a>
