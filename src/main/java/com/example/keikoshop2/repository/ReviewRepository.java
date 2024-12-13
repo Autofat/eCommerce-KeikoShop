@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
+    boolean existsByproductId(int productId);
+
     // Find all reviews for a specific product
     List<Review> findByProductId(Integer productId);
 

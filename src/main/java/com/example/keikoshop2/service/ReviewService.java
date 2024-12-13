@@ -14,26 +14,31 @@ import java.util.Date;
 public class ReviewService implements IReviewService {
     private final ReviewRepository reviewRepository;
 
+    //cek apakah sudah pernah review
+    public boolean isOrderAlreadyReviewed(int productId) {
+        // Periksa apakah review untuk order ini sudah ada
+        return reviewRepository.existsByproductId(productId);
+    }
+
     @Override
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
     }
 
+    @Override
+    public Review createReview(Review review) {
+        // Otomatis set review date saat create
+        review.setReviewDate(new Date());
 
-@Override
-public Review createReview(Review review) {
-    // Otomatis set review date saat create
-    review.setReviewDate(new Date());
+        // Rating (1-5)
+        if (review.getRating() < 1 || review.getRating() > 5) {
+            throw new RuntimeException("Rating must be between 1 and 5");
+        }
 
-    // Rating (1-5)
-    if (review.getRating() < 1 || review.getRating() > 5) {
-        throw new IllegalArgumentException("Rating must be between 1 and 5");
+        // Comment boleh kosong
+        return reviewRepository.save(review);
     }
 
-    // Comment boleh kosong
-    return reviewRepository.save(review);
-}
-        
     @Override
     public Review getReviewById(int id) {
         return reviewRepository.findById(id)
