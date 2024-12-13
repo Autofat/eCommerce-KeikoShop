@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -47,18 +49,32 @@ public class HomeController {
         return "customer/home";
     }
 
-
     //masih sementara
     @GetMapping("/pesanan-saya")
     public String showPesananSaya(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         User user = userService.findByEmail(email);
+        boolean isAdmin = checkIfUserIsAdmin();
+        model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("user", user);
         return "customer/Pesanansaya";
         
     }
-    
+
+    @GetMapping("/product/detail/{id}")
+    public String showProductDetail(@PathVariable int id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = userService.findByEmail(email);
+        boolean isAdmin = checkIfUserIsAdmin();
+        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("user", user);
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
+        return "customer/detailProduct";
+    }
+
 
 
 }

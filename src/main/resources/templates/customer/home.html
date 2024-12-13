@@ -189,7 +189,7 @@
 <div class="m-10">
     <div class="lg:grid lg:grid-cols-4">
         <div th:each="product : ${products}" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-7">
-            <a th:href="@{'/products/' + ${product.id}}">
+            <a th:href="@{'/product/detail/' + ${product.id}}">
                 <img class="p-8 w-full h-80 object-cover object-center" th:src="@{'/images/product/'+ ${product.image}}" alt="product image"/>
             </a>
             <div class="px-5 pb-5">
