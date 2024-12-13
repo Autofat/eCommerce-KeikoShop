@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+     <!--    Tailwind CSS & Other CDN style-->
+  <link th:href="@{/css/tailwind-output.css}" rel="stylesheet">
+  <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+  />
+  <!-- Add Google Fonts Import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+  />
+  <!--    Library JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!--    Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+  />
+</head>
+<body class="bg-[#FFFAFA] font-[Poppins]">
+    <div class="w-full bg-black">
+        <h1 class="text-white py-2 justify-center text-center mx-3">
+        Christmas Sale For All Items And Free Express Delivery -
+        <span class="font-bold">OFF 50%!</span> Shop now only at, Keiko Shop!
+        </h1>
+    </div>
+
+<!-- Header -->
+     <!-- Header -->
+    <header class="bg-white border-b border-gray-200">
+    <div class="container mx-auto flex items-center justify-between py-4 px-6">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="images/Logo.png" alt="Keiko Shop Logo" class="w-[50%]">
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-lg font-bold text-gray-800">Cart (1)</h1>
+
+      <!-- Profile Icon -->
+        <header>
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+                <i class="fa-solid fa-user"></i>
+                </div>
+                </div>
+            </div>
+        </header>
+
+<!-- Header End -->
+
+<!-- BODY -->
+ <div class="mx-10">
+    <div class="grid grid-cols-2 gap-5 mb-6 mt-6">
+        
+        <!-- address -->
+
+        <div class="max-w-4xl">
+            <div class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]" >
+                <div class="flex h-full items-center justify-center text-start gap-5">
+                        <i class="fa-solid fa-location-dot text-5xl"></i>
+                        <div> 
+                            <h2 class="text-lg font-semibold mb-2">Delivery Address</h2>
+                            <span class="text-red-500">Add a shipping address to get an estimate of the cost and delivery time.</span> 
+                        </div>   
+                </div>
+
+            </div>
+        </div>
+
+        <!-- voucher -->
+        <div class="max-w-4xl">
+            <div class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]" >
+                <div class="flex h-full items-center justify-start gap-7 ">
+                    <i class="fa-solid fa-ticket text-5xl"></i>
+                        <form class="gap-5 w-full justify-center items-center">
+                            <!-- Kolom Label dan Input -->
+                            <label class="font-semibold mb-2" for="voucher-input">Redeem your voucher here!</label>
+                            <div class="flex w-full gap-2">
+                                <input
+                                    id="voucher-input"
+                                    type="text"
+                                    class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-pink-400"
+                                    placeholder="Enter your voucher"
+                                >
+                                                        
+                            <!-- Tombol Submit -->
+                            <div class="w-1/2">
+                                <button class="bg-yellow-600 w-full text-white py-3 rounded hover:bg-yellow-700">
+                                    Submit
+                                </button>
+                            </div>
+                            </div>
+                        </form>                       
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="grid grid-cols-2 gap-5 mb-6 mt-6">
+        <!-- Item  -->
+        <div class="mb-6">
+            <div>
+                <div class="flex flex-col gap-6 bg-[#F2F2F2] p-6 rounded-lg border border-black-200 h-96">
+                    <div class="flex gap-4 justify-start items-center">
+                        <i class="fa-solid fa-shop text-4xl"></i>
+                        <h2 class="text-lg font-semibold"> Tote Bag (1/1) Item</h2>
+                    </div>
+                    <div class="bg-[#FFFFFF] flex p-5 h-96">
+                        <img src="https://down-id.img.susercontent.com/file/id-11134201-7r990-lu4h0otpmrgr5b" alt="Coach Nolita 19 Shoulder Bag in White"
+                        class="w-1/3 object-cover mr-4">
+                        <div>
+                            <div class="flex-1">
+                                <h3 class="font-bold">Coach Indonesia</h3>
+                                <p>Coach Nolita 19 Shoulder Bag in White</p>
+                                <p class="text-red-500">2 items left</p>
+                                <div class="items-center mt-2">
+                                    <button class="px-2 py-1 border border-gray-300 rounded">-</button>
+                                    <input type="text" value="1" class="w-12 text-center mx-2 border border-gray-300 rounded">
+                                    <button class="px-2 py-1 border border-gray-300 rounded">+</button>
+                                </div>
+                            </div>
+                            <p class="text-lg font-bold mt-16">Rp. 1.899.000,00</p>
+                        </div>
+                      
+                </div>                    
+                </div>
+            </div>
+        </div>
+        <div>
+        <!-- Item Close  -->
+
+         <!-- Order SUmmary -->
+         <!-- Order Summary -->
+<div class="border bg-[#F2F2F2] border-black-300 p-4 rounded">
+    <h2 class="text-lg font-semibold mb-5">Your order summary</h2>
+    <!-- Sub-total Section -->
+    <div class="flex justify-between mb-6">
+        <span>Sub-total (1 Product)</span>
+        <span>Rp. 1.899.000</span>
+    </div>
+    <!-- Horizontal Line Below Sub-total -->
+    <hr class="border-black mb-4">
+    
+    <!-- Savings Total Section -->
+    <div class="flex justify-between mb-6">
+        <span>Savings total</span>
+        <span>Rp. 0</span>
+    </div>
+    <div class="justify-between mb-2">
+        <span>Delivery fee</span> <br>
+        <span class="text-red-500">Add a shipping address to see the cost and estimated delivery time</span>
+    </div>
+    <!-- Horizontal Line Above Total -->
+    <hr class="border-black mb-2 mt-4">
+    
+    <!-- Total Section -->
+    <div class="flex justify-between font-bold text-lg mb-7">
+        <span>Total</span>
+        <span>Rp. 1.899.000</span>
+    </div>
+</div>
+<!-- Checkout Button -->
+<button class="w-full bg-yellow-600 text-white py-3 rounded mt-6 hover:bg-yellow-700">Checkout</button>
+
+
+
+    </div>
+</div>
+<!-- BODY END -->
+</body>
+</html>
+
+<!--Wajib-->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>
