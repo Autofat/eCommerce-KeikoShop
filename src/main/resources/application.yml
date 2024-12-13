@@ -8,7 +8,7 @@ spring:
   datasource:
     username: root
     password: 
-    url: jdbc:mysql://127.0.0.1:3306/keikoshop
+    url: jdbc:mysql://127.0.0.1:3307/keikoshop
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
