@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class HomeController {
@@ -44,6 +46,19 @@ public class HomeController {
         model.addAttribute("user", user);
         return "customer/home";
     }
+
+
+    //masih sementara
+    @GetMapping("/pesanan-saya")
+    public String showPesananSaya(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = userService.findByEmail(email);
+        model.addAttribute("user", user);
+        return "customer/Pesanansaya";
+        
+    }
+    
 
 
 }
