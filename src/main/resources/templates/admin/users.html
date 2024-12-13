@@ -47,13 +47,13 @@
                 Home
               </a>
               <a
-                href="/products/manage-products"
+                href="/admin/products/manage-products"
                 class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium"
               >
                 Products
               </a>
               <a
-                href="/users/manage-users"
+                href="/admin/users/manage-users"
                 class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               >
                 Users
@@ -169,7 +169,7 @@
                     Edit
                   </button>
                   <form
-                    th:action="@{'/users/delete/' + ${user.id}}"
+                    th:action="@{'/admin/users/delete/' + ${user.id}}"
                     method="post"
                     style="display: inline"
                   >
@@ -302,7 +302,7 @@
 
         if (action === "edit" && userId) {
           modalTitle.text("Edit user");
-          fetch(`/users/getUsers/${userId}`)
+          fetch(`/admin/users/getUsers/${userId}`)
             .then((response) => response.json())
             .then((user) => {
               $("#userId").val(user.id);
@@ -317,7 +317,7 @@
                 "Kosongkan jika tidak ingin diubah"
               );
 
-              $("#userForm").attr("action", `/users/update/${user.id}`);
+              $("#userForm").attr("action", `/admin/users/update/${user.id}`);
               $("#_method").val("put");
             })
             .catch((error) => {
@@ -326,7 +326,7 @@
             });
         } else {
           modalTitle.text("Add New user");
-          $("#userForm").attr("action", "/users/store");
+          $("#userForm").attr("action", "/admin/users/store");
           $("#_method").val("post");
         }
 

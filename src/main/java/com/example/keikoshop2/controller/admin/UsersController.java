@@ -23,7 +23,7 @@ import java.util.List;
 @Controller
 @PreAuthorize("hasRole('admin')")
 @RequiredArgsConstructor
-@RequestMapping("/users")
+@RequestMapping("/admin/users")
 public class UsersController {
 	private final IUserService userService;
 	private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
@@ -43,7 +43,7 @@ public class UsersController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 		}
-		return "redirect:/users/manage-users";
+		return "redirect:/admin/users/manage-users";
 	}
 
 	@PutMapping("/update/{id}")
@@ -55,7 +55,7 @@ public class UsersController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 		}
-		return "redirect:/users/manage-users";
+		return "redirect:/admin/users/manage-users";
 	}
 
 	@DeleteMapping("/delete/{id}")
@@ -66,7 +66,7 @@ public class UsersController {
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 		}
-		return "redirect:/users/manage-users";
+		return "redirect:/admin/users/manage-users";
 	}
 
 	@GetMapping("/getUsers/{id}")

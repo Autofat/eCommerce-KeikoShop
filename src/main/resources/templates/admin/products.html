@@ -47,13 +47,13 @@
                 Home
               </a>
               <a
-                href="/products/manage-products"
+                href="/admin/products/manage-products"
                 class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               >
                 Products
               </a>
               <a
-                href="/users/manage-users"
+                href="/admin/users/manage-users"
                 class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium"
               >
                 Users
@@ -173,7 +173,7 @@
                     Edit
                   </button>
                   <form
-                    th:action="@{'/products/delete/' + ${product.id}}"
+                    th:action="@{'/admin/products/delete/' + ${product.id}}"
                     method="post"
                     style="display: inline"
                   >
@@ -303,7 +303,7 @@
 
         if (action === "edit" && productId) {
           modalTitle.text("Edit Product");
-          fetch(`/products/getProduct/${productId}`)
+          fetch(`/admin/products/getProduct/${productId}`)
             .then((response) => response.json())
             .then((product) => {
               $("#productId").val(product.id);
@@ -335,7 +335,10 @@
                   });
               }
 
-              $("#productForm").attr("action", `/products/edit/${product.id}`);
+              $("#productForm").attr(
+                "action",
+                `/admin/products/edit/${product.id}`
+              );
               $("#_method").val("put");
             })
             .catch((error) => {
@@ -344,7 +347,7 @@
             });
         } else {
           modalTitle.text("Add New Product");
-          $("#productForm").attr("action", "/products/create");
+          $("#productForm").attr("action", "/admin/products/create");
           $("#_method").val("post");
 
           if (editorInstance) {
