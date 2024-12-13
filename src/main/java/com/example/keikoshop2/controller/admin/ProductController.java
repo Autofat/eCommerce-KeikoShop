@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/products")
+@RequestMapping("/admin/products")
 
 public class ProductController {
 
@@ -48,7 +48,7 @@ public class ProductController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/products/manage-products";
+        return "redirect:/admin/products/manage-products";
     }
 
     @PreAuthorize("hasRole('admin')")
@@ -60,7 +60,7 @@ public class ProductController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
-        return "redirect:/products/manage-products";
+        return "redirect:/admin/products/manage-products";
     }
 
     @PreAuthorize("hasRole('admin')")
@@ -72,7 +72,7 @@ public class ProductController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("errorMessage", "Gagal menghapus product");
         }
-        return "redirect:/products/manage-products";
+        return "redirect:/admin/products/manage-products";
     }
 
     @GetMapping("/getProduct/{id}")
