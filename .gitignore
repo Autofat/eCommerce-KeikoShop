@@ -1,8 +1,15 @@
 HELP.md
+<<<<<<< HEAD
+# target/
+# !.mvn/wrapper/maven-wrapper.jar
+# !**/src/main/**/target/
+# !**/src/test/**/target/
+=======
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+>>>>>>> 866c8f3 (change files, fix connect to db)
 
 ### STS ###
 .apt_generated
@@ -25,9 +32,15 @@ target/
 /dist/
 /nbdist/
 /.nb-gradle/
+<<<<<<< HEAD
+# build/
+# !**/src/main/**/build/
+# !**/src/test/**/build/
+=======
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+>>>>>>> 866c8f3 (change files, fix connect to db)
 
 ### VS Code ###
 .vscode/
@@ -4038,4 +4051,3 @@ build/
 /node_modules/mini-svg-data-uri/package.json
 /node_modules/mini-svg-data-uri/README.md
 /node_modules/mini-svg-data-uri/shorter-css-color-names.js
-src/main/resources/application.yml

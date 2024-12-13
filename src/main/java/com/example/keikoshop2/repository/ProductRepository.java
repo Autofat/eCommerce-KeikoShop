@@ -1,11 +1,10 @@
 package com.example.keikoshop2.repository;
 
-import java.util.Optional;
-
+import com.example.keikoshop2.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.keikoshop2.model.Product;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     Optional<Product> findByName(String name);
-}   
+}
