@@ -31,6 +31,13 @@ public class Review {
         this.reviewDate = reviewDate;
     }
 
+    public Review(Integer userId, Integer productId, Integer rating, Date reviewDate) {
+        this.userId = userId;
+        this.productId = productId;
+        this.rating = rating;
+        this.reviewDate = reviewDate;
+    }
+
     // Getters
     public Integer getId() {
         return id;

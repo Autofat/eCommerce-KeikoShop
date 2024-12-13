@@ -21,7 +21,7 @@ public class ReviewController {
         return new ResponseEntity<>(reviewService.getAllReviews(), HttpStatus.FOUND);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Review createReview(@RequestBody Review review) {
         return reviewService.createReview(review);
     }

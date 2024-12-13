@@ -1,308 +1,239 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KeikoShop</title>
   <!--    Tailwind CSS & Other CDN style-->
   <link th:href="@{/css/tailwind-output.css}" rel="stylesheet">
-  <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-          integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Add Google Fonts Import -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
   <!--    Library JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   <!--    Font-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 </head>
+
 <body class="bg-[#FFFAFA] font-[Poppins]">
-<!-- NAVBAR -->
-<nav class="bg-white border-gray-200 border-b">
-  <div
-          class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5"
-  >
-    <!-- LOGO -->
-    <a
-            href="/images/Logo.png"
-            class="flex items-center justify-center rtl:space-x-reverse"
-    >
-      <img src="/logo.png" class="h-24" alt="Flowbite Logo" />
-      <h1 class="text-3xl text-[#AC690B] font-semibold">Keikoshop</h1>
-    </a>
-    <!-- NAVIGATION LINKS -->
-    <div
-            class="hidden md:flex md:order-2 md:mr-auto items-center justify-center mx-auto"
-    >
-      <div
-              class="hidden md:flex md:mr-auto items-center justify-center mx-auto"
-      >
-        <div class="mr-9">
-          <i
-                  class="fa-solid fa-cart-shopping text-2xl text-[#AC690B] cursor-pointer hover:text-[#e59018]"
-          ></i>
+  <!-- NAVBAR -->
+  <nav class="bg-white border-gray-200 border-b">
+    <div class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4">
+      <!-- LOGO -->
+      <a href="/images/Logo.png" class="flex items-center justify-center rtl:space-x-reverse">
+        <img src="/logo.png" class="h-24" alt="Flowbite Logo" />
+        <h1 class="text-3xl text-[#AC690B] font-semibold">Keikoshop</h1>
+      </a>
+      <!-- NAVIGATION LINKS -->
+      <div class="hidden md:flex">
+        <div class="hidden md:flex md:mr-auto items-center justify-center mx-auto">
+          <div class="mr-9">
+            <i class="fa-solid fa-cart-shopping text-2xl text-[#AC690B] cursor-pointer hover:text-[#e59018]"></i>
+          </div>
+          <div class="h-10 w-px bg-gray-400"></div>
         </div>
-        <div class="h-10 w-px bg-gray-400"></div>
+		<!-- nanti neo taro disini -->
       </div>
-      <ul class="flex space-x-2 items-center ml-6">
-        <li>
-          <button
-                  href="#"
-                  class="text-[#AC690B] hover:text-white border border-[#AC690B] hover:bg-[#AC690B] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 0"
-                  aria-current="page"
-          >
-            Login
-          </button>
-        </li>
-        <li>
-          <button
-                  href="#"
-                  class="text-white bg-[#AC690B] hover:bg-[#e59018] focus:ring-4 focus:ring-grey-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none"
-                  aria-current="page"
-          >
-            Register
-          </button>
-        </li>
-      </ul>
-    </div>
-    <!-- SEARCH BAR -->
-    <div class="col-start-2 col-span-3 p-5">
-      <div
-              class="relative w-xl md:min-w-xl md:order-1 md:mx-auto hidden md:block"
-      >
-        <div
-                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-        >
-          <svg
-                  class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-          >
-            <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-            />
+      <!-- HAMBURGER MENU -->
+      <div class="flex md:hidden">
+        <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false"
+          class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
           </svg>
-          <span class="sr-only">Search icon</span>
-        </div>
-        <input
-                type="text"
-                id="search-navbar"
-                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Search..."
-        />
+          <span class="sr-only">Search</span>
+        </button>
+        <button data-collapse-toggle="navbar-search" type="button"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          aria-controls="navbar-search" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M1 1h15M1 7h15M1 13h15" />
+          </svg>
+        </button>
       </div>
     </div>
-    <!-- HAMBURGER MENU -->
-    <div class="flex md:order-3">
-      <button
-              type="button"
-              data-collapse-toggle="navbar-search"
-              aria-controls="navbar-search"
-              aria-expanded="false"
-              class="md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
-      >
-        <svg
-                class="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-        >
-          <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-          />
-        </svg>
-        <span class="sr-only">Search</span>
-      </button>
-      <button
-              data-collapse-toggle="navbar-search"
-              type="button"
-              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="navbar-search"
-              aria-expanded="false"
-      >
-        <span class="sr-only">Open main menu</span>
-        <svg
-                class="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
-        >
-          <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-          />
-        </svg>
-      </button>
+  </nav>
+
+  <!-- Body -->
+  <!-- Tabs Navigation -->
+  <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-6">
+    <div class="border-b border-gray-200">
+      <nav class="flex space-x-6 px-4 pt-4 overflow-x-auto">
+        <a href="#" class="text-yellow-500 font-medium border-b-2 border-yellow-500 pb-2">Semua</a>
+        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Belum Bayar</a>
+        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Sedang Dikemas</a>
+        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Dikirim</a>
+        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Selesai</a>
+        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Dibatalkan</a>
+        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Pengembalian Barang</a>
+      </nav>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="p-4">
+      <div class="relative">
+        <input type="text" placeholder="Cari berdasarkan Nama Penjual, No. Pesanan atau Nama Produk"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+        <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
+          </svg>
+        </span>
+      </div>
     </div>
   </div>
-</nav>
+  </div>
 
-<!-- Body -->
-     <!-- Tabs Navigation -->
-     <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-6">
-        <div class="border-b border-gray-200">
-          <nav class="flex space-x-6 px-4 pt-4">
-            <a href="#" class="text-yellow-500 font-medium border-b-2 border-yellow-500 pb-2">Semua</a>
-            <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Belum Bayar</a>
-            <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Sedang Dikemas</a>
-            <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Dikirim</a>
-            <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Selesai</a>
-            <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Dibatalkan</a>
-            <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Pengembalian Barang</a>
-          </nav>
-        </div>
-  
-        <!-- Search Bar -->
-        <div class="p-4">
-          <div class="relative">
-            <input 
-              type="text" 
-              placeholder="Cari berdasarkan Nama Penjual, No. Pesanan atau Nama Produk" 
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-            <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
-              </svg>
-            </span>
+  <!-- Product Details -->
+  <div class="max-w-4xl mx-auto px-4 py-4 bg-white shadow my-3">
+    <div class="flex items-center justify-between">
+      <img src="https://blog.sribu.com/wp-content/uploads/2023/05/contoh-desain-produk-makanan.webp" alt="Product Image"
+        class="w-20 h-20 object-cover rounded border">
+      <div class="ml-4 flex-1">
+        <h2 class="font-semibold text-gray-800">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h2>
+      </div>
+      <div class="text-right">
+        <p class="text-gray-400">Total Pesanan:</p>
+        <p class="text-[#e59018] font-bold">Rp13.800</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="max-w-4xl mx-auto px-4 py-4 bg-white shadow">
+      <div class="flex items-center justify-between">
+
+      </div>
+      <div class="mt-4 flex space-x-2">
+        <button type="button" data-modal-target="review-modal" data-modal-toggle="review-modal"
+          class="bg-[#e59018] text-white px-4 py-2 rounded text-sm">
+          Write a review
+        </button>
+
+        <!-- Review Modal -->
+        <div id="review-modal" tabindex="-1" aria-hidden="true"
+          class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full overflow-y-auto overflow-x-hidden bg-gray-900 bg-opacity-50 md:inset-0 md:h-full">
+          <div class="relative my-8 mx-auto h-full w-[800px] md:h-auto">
+
+            <!-- Modal content -->
+            <div class="relative rounded-lg bg-white shadow">
+              <div class="flex items-start justify-between rounded-t p-5">
+                <h3 class="text-xl font-medium text-gray-900">Write a Review</h3>
+                <button type="button"
+                  class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+                  data-modal-hide="review-modal">
+                  <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+                </button>
+              </div>
+              <form method="post" action="/reviews/add">
+                <div class="p-6">
+
+                  <!-- Review form -->
+                  <div class="mb-6">
+                    <label for="rating" class="mb-2 block text-sm font-medium text-gray-900">
+                      Rating
+                    </label>
+                    <div class="flex items-center space-x-3">
+                      <div class="flex items-center">
+                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="1">★</span>
+                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="2">★</span>
+                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="3">★</span>
+                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="4">★</span>
+                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="5">★</span>
+                      </div>
+                      <input type="hidden" id="rating-input" name="rating" value="0">
+                    </div>
+                  </div>
+
+                  <!-- Add more rating options here -->
+
+                  <div class="mb-6">
+                    <label for="review" class="mb-2 block text-sm font-medium text-gray-900">
+                      Your review
+                    </label>
+                    <textarea id="review" rows="4"
+                      class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-[#e59018] focus:ring-[#e59018]"
+                      placeholder="Write your review here..."></textarea>
+                  </div>
+                  <button type="submit"
+                    class="rounded-lg bg-[#e59018] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#AC690B] focus:outline-none focus:ring-4 focus:ring-primary-300">
+                    Submit Review
+                  </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
+    <!-- Script -->
+    <!--Wajib-->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Get all the star elements
+      const stars = document.querySelectorAll('.star');
+      const ratingInput = document.getElementById('rating-input');
 
-<!-- Product Details -->
-<div class="max-w-4xl mx-auto px-4 py-4 bg-white shadow">
-    <div class="flex items-center justify-between">
-    <img src="https://blog.sribu.com/wp-content/uploads/2023/05/contoh-desain-produk-makanan.webp" alt="Product Image" class="w-20 h-20 object-cover rounded border">
-    <div class="ml-4 flex-1">
-        <h2 class="font-semibold text-gray-800">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h2>
-    </div>
-    <div class="text-right">
-        <p class="text-gray-400">Total Pesanan:</p>
-        <p class="text-[#e59018] font-bold">Rp13.800</p>
-    </div>
-</div>
+      // Add event listener to each star
+      stars.forEach((star, index) => {
+        star.addEventListener('mouseover', () => {
+          // Update the star colors on hover
+          updateStarColors(index + 1);
+        });
 
-    <!-- Footer -->
-    <div class="max-w-4xl mx-auto px-4 py-4 bg-white shadow">
-        <div class="flex items-center justify-between">
+        star.addEventListener('mouseout', () => {
+          // Reset the star colors when mouse is out
+          updateStarColors(ratingInput.value);
+        });
 
-        </div>
-        <div class="mt-4 flex space-x-2">
-            <button
-            type="button"
-            data-modal-target="review-modal"
-            data-modal-toggle="review-modal"
-            class= "bg-[#e59018] text-white px-4 py-2 rounded text-sm"
-    >
-      Write a review
-    </button>
-        
-    <!-- Review Modal -->
-<div
-id="review-modal"
-tabindex="-1"
-aria-hidden="true"
-class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full overflow-y-auto overflow-x-hidden bg-gray-900 bg-opacity-50 md:inset-0 md:h-full">
-<div class="relative my-8 mx-auto h-full w-[800px] md:h-auto">
+        star.addEventListener('click', () => {
+          // Set the rating value
+          ratingInput.value = index + 1;
 
-  <!-- Modal content -->
-  <div class="relative rounded-lg bg-white shadow">
-    <div class="flex items-start justify-between rounded-t p-5">
-      <h3 class="text-xl font-medium text-gray-900">Write a Review</h3>
-      <button
-        type="button"
-        class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
-        data-modal-hide="review-modal">
-        <svg
-          aria-hidden="true"
-          class="h-5 w-5"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill-rule="evenodd"
-            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-            clip-rule="evenodd"></path>
-        </svg>
-        <span class="sr-only">Close modal</span>
-      </button>
-    </div>
-    <div class="p-6">
+          // Update the star colors
+          updateStarColors(index + 1);
+        });
+      });
 
- <!-- Review form -->
- <div class="mb-6">
-  <label for="rating" class="mb-2 block text-sm font-medium text-gray-900">
-    Rating
-  </label>
-  <div class="flex items-center space-x-3">
-    <div class="flex items-center">
-      <span class="star text-[#ccc] text-4xl cursor-pointer">★</span>
-      <span class="star text-[#ccc] text-4xl cursor-pointer">★</span>
-      <span class="star text-[#ccc] text-4xl cursor-pointer">★</span>
-      <span class="star text-[#ccc] text-4xl cursor-pointer">★</span>
-      <span class="star text-[#ccc] text-4xl cursor-pointer">★</span>
-    </div>
-  </div>
-</div>
+      // Function to update the star colors
+      function updateStarColors(rating) {
+        stars.forEach((star, index) => {
+          star.style.color = index < rating ? '#FACC15' : '#ccc';
+        });
+      }
 
-      <!-- Add more rating options here -->
-    
-    <div class="mb-6">
-      <label for="review" class="mb-2 block text-sm font-medium text-gray-900">
-        Your review
-      </label>
-      <textarea
-        id="review"
-        rows="4"
-        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-[#e59018] focus:ring-[#e59018]"
-        placeholder="Write your review here..."
-      ></textarea>
-    </div>
-    <button
-      type="submit"
-      class="rounded-lg bg-[#e59018] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#AC690B] focus:outline-none focus:ring-4 focus:ring-primary-300">
-      Submit Review
-    </button>
-  </form>
-</div>
-</div>
-</div>
-      </div>
-    </div>
+      // Add event listener to the submit button
+      document.querySelector('.submit-review').addEventListener('click', () => {
+        // Get the rating value from the input
+        const rating = ratingInput.value;
 
-    
-<!--Wajib-->
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
+        // Save the rating to the database
+        saveRatingToDatabase(rating);
+      });
+
+      // Function to save the rating to the database (replace with your actual implementation)
+      function saveRatingToDatabase(rating) {
+        console.log('Saving rating:', rating);
+        // Your database save logic goes here
+      }
+    </script>
 </body>
+
 </html>

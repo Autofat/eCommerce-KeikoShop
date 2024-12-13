@@ -19,24 +19,21 @@ public class ReviewService implements IReviewService {
         return reviewRepository.findAll();
     }
 
-    @Override
-    public Review createReview(Review review) {
-        // Otomatis set review date saat create
-        review.setReviewDate(new Date());
-        
-        // Rating (1-5) 
-        if (review.getRating() < 1 || review.getRating() > 5) {
-            throw new IllegalArgumentException("Rating must be between 1 and 5");
-        }
-        
-        // Comment (tidak boleh kosong)
-        if (review.getComment() == null || review.getComment().trim().isEmpty()) {
-            throw new IllegalArgumentException("Comment cannot be empty");
-        }
-        
-        return reviewRepository.save(review);
+
+@Override
+public Review createReview(Review review) {
+    // Otomatis set review date saat create
+    review.setReviewDate(new Date());
+
+    // Rating (1-5)
+    if (review.getRating() < 1 || review.getRating() > 5) {
+        throw new IllegalArgumentException("Rating must be between 1 and 5");
     }
 
+    // Comment boleh kosong
+    return reviewRepository.save(review);
+}
+        
     @Override
     public Review getReviewById(int id) {
         return reviewRepository.findById(id)
