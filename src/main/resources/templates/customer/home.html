@@ -177,7 +177,7 @@
         </li>
     </ul>
     <div class="py-2">
-        <a href="/products/manage-products" th:if="${isAdmin}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Menu</a>
+        <a href="admin/products/manage-products" th:if="${isAdmin}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Menu</a>
         <form action="/api/users/logout" method="post">
             <input type="hidden" name="username" value="yourUsername">
             <input type="hidden" name="_csrf" value="${_csrf.token}">

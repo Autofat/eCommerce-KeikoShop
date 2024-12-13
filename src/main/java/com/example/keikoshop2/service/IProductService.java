@@ -7,12 +7,13 @@ import java.util.List;
 
 public interface IProductService {
     List<Product> getAllProducts();
+
     Product createProduct(Product product, MultipartFile image);
+
     Product updateProduct(Product product, int id, MultipartFile image);
 
     void deleteProduct(int id);
-    Product getProductById(int id);
 
-    
+    Product getProductById(int id);
 
 }
