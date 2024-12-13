@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <!--    Tailwind CSS & Other CDN style-->
+  <link th:href="@{/css/tailwind-output.css}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Add Google Fonts Import -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!--    Library JS-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!--    Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+</head>
+
+<body class="bg-[#FFFAFA] font-[Poppins]">
+  <!-- Notification Banner -->
+  <div class="bg-[#111111] text-center text-white py-2 mb-0 rounded">
+    <p class="text-sm font-medium">Christmas Sale For All Items And Free Express Delivery - <strong>OFF 50%</strong>!
+      Shop now only at, Keiko Shop!</p>
+  </div>
+  <nav class="bg-white border-gray-200 border-b">
+    <div class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5">
+      <!-- LOGO -->
+      <a href="#" class="flex items-center justify-center rtl:space-x-reverse">
+        <img src="/image/logo.png" class="h-24" alt="Flowbite Logo" />
+        <h1 class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
+          Keikoshop
+        </h1>
+      </a>
+      <!-- NAVIGATION LINKS -->
+      <div class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto">
+        <div class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto">
+          <div class="mr-9">
+            <i class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
+          </div>
+          <div class="h-10 w-px bg-gray-400"></div>
+        </div>
+        <ul class="flex space-x-2 items-center ml-6">
+          <li>
+            <button id="userDropdownHomeToggle"
+              class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 0 flex justify-center items-center"
+              type="button">
+              <span class="me-2">Hi, <span th:text="${user.username}"></span></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <!-- SEARCH BAR -->
+      <div class="col-start-2 col-span-3 p-5">
+        <div class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+            <span class="sr-only">Search icon</span>
+          </div>
+          <input type="text" id="search-navbar"
+            class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Search Wishlist..." />
+        </div>
+      </div>
+      <!-- HAMBURGER MENU -->
+      <div class="flex justify-end lg:order-2">
+        <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false"
+          class="lg:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+          </svg>
+          <span class="sr-only">Search</span>
+        </button>
+        <button data-collapse-toggle="navbar-search" type="button"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          aria-controls="navbar-search" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M1 1h15M1 7h15M1 13h15" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="max-w-7xl mx-auto p-4">
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-[Poppins]font-bold">Wishlist</h1>
+    </header>
+
+
+
+    <!-- Wishlist Items -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <!-- Card Item -->
+      <div class="bg-[#FFFAFA] p-4 rounded-lg shadow-lg border border-b-2">
+        <img src="/image/Coach.webp" alt="Coach Bag" class="w-full h-48 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold">Coach</h2>
+        <p class="text-sm text-black-400">Tas COACH ARIA LEATHER SHOULDER BAG CHALK 100% ORIGINAL</p>
+        <p class="text-lg font-bold mt-3">Rp. 3.700.000</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="flex items-center text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 .587l3.668 7.57L24 9.423l-6 5.848 1.417 8.229L12 18.899 4.583 23.5 6 15.271 0 9.423l8.332-1.266L12 .587z" />
+            </svg>
+            4.9
+          </span>
+          <button class="bg-[#e59018] text-white px-4 py-2 rounded hover:bg-[#AC690B]">Add to cart</button>
+        </div>
+      </div>
+      <div class="bg-[#FFFAFA] p-4 rounded-lg shadow-lg border border-b-2">
+        <img src="/image/goyard.jpeg" alt="Goyard Bag" class="w-full h-48 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold">Goyard</h2>
+        <p class="text-sm text-black-400">GOYARD ANJOU MINI BAG BLACK TAN 100% ORIGINAL</p>
+        <p class="text-lg font-bold mt-5">Rp. 39.220.000</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="flex items-center text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 .587l3.668 7.57L24 9.423l-6 5.848 1.417 8.229L12 18.899 4.583 23.5 6 15.271 0 9.423l8.332-1.266L12 .587z" />
+            </svg>
+            4.9
+          </span>
+          <button class="bg-[#e59018] text-white px-4 py-2 rounded hover:bg-[#AC690B]">Add to cart</button>
+        </div>
+      </div>
+      <div class="bg-[#FFFAFA] p-4 rounded-lg shadow-lg border border-b-2">
+        <img src="/image/kate spade.webp" alt="KateSpade Bag" class="w-full h-48 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold">KateSpade</h2>
+        <p class="text-sm text-black-400">KATE SPADE PLAIN LILLAC HOBO BAG WITH LONG STRAP 100% ORIGINAL</p>
+        <p class="text-lg font-bold mt-2">Rp. 2.500.000</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="flex items-center text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 .587l3.668 7.57L24 9.423l-6 5.848 1.417 8.229L12 18.899 4.583 23.5 6 15.271 0 9.423l8.332-1.266L12 .587z" />
+            </svg>
+            4.8
+          </span>
+          <button class="bg-[#e59018] text-white px-4 py-2 rounded hover:bg-[#AC690B]">Add to cart</button>
+        </div>
+      </div>
+
+      <div class="bg-[#FFFAFA] p-4 rounded-lg shadow-lg border border-b-2">
+        <img src="/image/gucci.webp" alt="Gucci Bag" class="w-full h-48 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold">Gucci</h2>
+        <p class="text-sm text-black-400">GUCCI GG MARMONT NUDE FLAP SHOULDER BAG SMALL 100% ORIGINAL</p>
+        <p class="text-lg font-bold mt-2">Rp. 32.250.000</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="flex items-center text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 .587l3.668 7.57L24 9.423l-6 5.848 1.417 8.229L12 18.899 4.583 23.5 6 15.271 0 9.423l8.332-1.266L12 .587z" />
+            </svg>
+            4.9
+          </span>
+          <button class="bg-[#e59018] text-white px-4 py-2 rounded hover:bg-[#AC690B]">Add to cart</button>
+        </div>
+      </div>
+      <div class="bg-[#FFFAFA] p-4 rounded-lg shadow-lg border border-b-2">
+        <img src="https://via.placeholder.com/150" alt="Coach Bag" class="w-full h-48 object-cover rounded-lg mb-4">
+        <h2 class="text-xl font-semibold">Coach</h2>
+        <p class="text-sm text-black-400">Tas COACH ARIA LEATHER BLACK HOBO BAG WITH LONG STRAP 100% ORIGINAL</p>
+        <p class="text-lg font-bold mt-2">Rp. 3.700.000</p>
+        <div class="flex items-center justify-between mt-4">
+          <span class="flex items-center text-yellow-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 .587l3.668 7.57L24 9.423l-6 5.848 1.417 8.229L12 18.899 4.583 23.5 6 15.271 0 9.423l8.332-1.266L12 .587z" />
+            </svg>
+            4.9
+          </span>
+          <button class="bg-[#e59018] text-white px-4 py-2 rounded hover:bg-[#AC690B]">Add to cart</button>
+        </div>
+      </div>
+
+
+      <!-- Repeat for other cards -->
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</body>
+
+</html>
