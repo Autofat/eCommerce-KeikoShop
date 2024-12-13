@@ -4,6 +4,7 @@ import com.example.keikoshop2.model.Review;
 import java.util.List;
 
 public interface IReviewService {
+    boolean isOrderAlreadyReviewed(int productId);
     Review createReview(Review review);
     List<Review> getAllReviews();
     Review getReviewById(int id);

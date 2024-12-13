@@ -5,11 +5,13 @@ import com.example.keikoshop2.service.IReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/reviews")
 public class ReviewController {
@@ -22,8 +24,25 @@ public class ReviewController {
     }
 
     @PostMapping("/add")
-    public Review createReview(@RequestBody Review review) {
-        return reviewService.createReview(review);
+    public String createReview(@ModelAttribute Review review, RedirectAttributes redirectAttributes) {
+        try {
+            // Periksa apakah pesanan sudah pernah direview
+            boolean alreadyReviewed = reviewService.isOrderAlreadyReviewed(review.getProductId());
+
+            if (alreadyReviewed) {
+                // Jika sudah direview, kembalikan pesan error
+                redirectAttributes.addFlashAttribute("errorMessage",
+                        "Anda sudah menyelesaikan review untuk pesanan ini");
+                return "redirect:/pesanan-saya";
+            }
+
+            // Jika belum direview, lanjutkan proses review
+            reviewService.createReview(review);
+            redirectAttributes.addFlashAttribute("successMessage", "Review berhasil ditambahkan");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        }
+        return "redirect:/pesanan-saya";
     }
 
     @GetMapping("/review/{id}")
