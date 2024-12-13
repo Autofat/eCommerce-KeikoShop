@@ -181,9 +181,9 @@
           <div class="relative my-8 mx-auto h-full w-[800px] md:h-auto">
 
             <!-- Modal content -->
-            <div class="relative rounded-lg bg-white shadow">
-              <div class="flex items-start justify-between rounded-t p-5">
-                <h3 class="text-xl font-medium text-gray-900">Write a Review</h3>
+            <div class="relative rounded-lg bg-white shadow p-6 space-y-4">
+              <div class="flex items-start justify-between rounded-t ">
+                <h3 class="text-xl font-medium text-gray-900 underline">Write a Review</h3>
                 <button type="button"
                   class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
                   data-modal-hide="review-modal">
@@ -196,40 +196,36 @@
                   <span class="sr-only">Close modal</span>
                 </button>
               </div>
-              <form method="post" action="/reviews/add">
-                <div class="p-6">
-
-                  <!-- Review form -->
-                  <div class="mb-6">
-                    <label for="rating" class="mb-2 block text-sm font-medium text-gray-900">
-                      Rating
-                    </label>
-                    <div class="flex items-center space-x-3">
-                      <div class="flex items-center">
-                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="1">★</span>
-                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="2">★</span>
-                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="3">★</span>
-                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="4">★</span>
-                        <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="5">★</span>
-                      </div>
-                      <input type="hidden" id="rating-input" name="rating" value="0">
-                    </div>
+              <h6 class="font-semibold text-gray-800">Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</h6>
+              <form method="post" action="/reviews/add" class="space-y-4">
+                <!-- Review form -->
+                <div>
+                  <label for="rating" class="block text-sm font-medium text-gray-900">
+                    Rating
+                  </label>
+                  <div class="flex items-center">
+                    <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="1">★</span>
+                    <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="2">★</span>
+                    <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="3">★</span>
+                    <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="4">★</span>
+                    <span class="star text-[#ccc] text-4xl cursor-pointer" data-value="5">★</span>
+                    <input type="hidden" id="rating-input" name="rating" value="0">
                   </div>
+                </div>
 
-                  <!-- Add more rating options here -->
-
-                  <div class="mb-6">
-                    <label for="review" class="mb-2 block text-sm font-medium text-gray-900">
-                      Your review
-                    </label>
-                    <textarea id="review" rows="4"
-                      class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-[#e59018] focus:ring-[#e59018]"
-                      placeholder="Write your review here..."></textarea>
-                  </div>
-                  <button type="submit"
-                    class="rounded-lg bg-[#e59018] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#AC690B] focus:outline-none focus:ring-4 focus:ring-primary-300">
-                    Submit Review
-                  </button>
+                <!-- Add more rating options here -->
+                <div>
+                  <label for="review" class="mb-2 block text-sm font-medium text-gray-900">
+                    Your review
+                  </label>
+                  <textarea id="review" rows="4"
+                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-[#e59018] focus:ring-[#e59018]"
+                    placeholder="Write your review here..."></textarea>
+                </div>
+                <button type="submit"
+                  class="rounded-lg bg-[#e59018] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#AC690B] focus:outline-none focus:ring-4 focus:ring-primary-300">
+                  Submit Review
+                </button>
               </form>
             </div>
           </div>
