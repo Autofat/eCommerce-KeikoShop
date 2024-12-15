@@ -7,13 +7,16 @@ import com.example.keikoshop2.service.ICartService;
 import com.example.keikoshop2.service.IProductService;
 import com.example.keikoshop2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/cart")
@@ -53,13 +56,37 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public String addToCart(@RequestParam("productId") int productId, @RequestParam("quantity") int quantity, Model model) {
+    public String addToCart(@RequestParam("productId") int productId, @RequestParam("quantity") int quantity,
+            Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         int userId = userService.findByEmail(email).getId();
         Product product = productService.getProductById(productId);
         cartService.addToCart(userId, product, quantity);
         return "redirect:/cart/my";
+    }
+
+    @PostMapping("/updateQuantity")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> updateQuantity(
+            @RequestBody Map<String, Object> request) {
+        try {
+            int cartId = Integer.parseInt(request.get("cartId").toString());
+            int quantity = Integer.parseInt(request.get("quantity").toString());
+            Cart cart = cartService.getCartItemById(cartId);
+            cartService.updateQuantity(cartId, quantity);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("cart", cart);
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
     }
 
     @PostMapping("/remove")

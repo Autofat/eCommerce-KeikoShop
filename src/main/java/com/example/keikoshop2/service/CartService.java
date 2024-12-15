@@ -37,6 +37,13 @@ public class CartService implements ICartService {
             cart.setTotalPrice(cart.getQuantity() * product.getPrice());
             cartRepository.save(cart);
         } else {
+            if (product.getStock() < quantity) {
+                quantity = product.getStock();
+            }
+            if (quantity <= 0) {
+                return;
+            }
+
             int finalQuantity = Math.min(quantity, product.getStock());
             Cart cart = new Cart();
             cart.setUserId(userId);
@@ -55,7 +62,40 @@ public class CartService implements ICartService {
     }
 
     @Override
+    public Cart getCartItemById(int cartId) {
+        Optional<Cart> cartItem = cartRepository.findById(cartId);
+        return cartItem.orElse(null);
+    }
+
+    @Override
+    public void updateQuantity(int cartId, int quantity) {
+        Optional<Cart> cartItem = cartRepository.findById(cartId);
+        if (cartItem.isPresent()) {
+            Cart cart = cartItem.get();
+            Product product = cart.getProduct();
+            if (quantity > product.getStock() && quantity > 0) {
+                quantity = cart.getQuantity(); // biar ga melebihi stock, ambil stock asli aja
+                                               // dengan menambahkan quantity yang sudah ada
+            }
+            cart.setQuantity(quantity);
+            cart.setTotalPrice(quantity * product.getPrice());
+
+            // product.setStock((product.getStock() + original_quantity) - quantity); gaguna
+            // cuy mungkin nanti dipake di konfirmasi pembayaran
+
+            cartRepository.save(cart);
+        }
+    }
+
+    @Override
     public void removeFromCart(int cartId) {
-        cartRepository.deleteById(cartId);
+        // add stock to product
+        Optional<Cart> cartItem = cartRepository.findById(cartId);
+        if (cartItem.isPresent()) {
+            Cart cart = cartItem.get();
+            Product product = cart.getProduct();
+            product.setStock(product.getStock() + cart.getQuantity());
+            cartRepository.delete(cart); // ga perlu pake deleteById karena udh dapet dari atasnya
+        }
     }
 }
