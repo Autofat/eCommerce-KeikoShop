@@ -4,7 +4,9 @@ package com.example.keikoshop2.service;
 //Exception
 import com.example.keikoshop2.exception.ProductNotFoundExeption;
 import com.example.keikoshop2.exception.ProductAlreadyExistsExeption;
+import com.example.keikoshop2.model.Cart;
 import com.example.keikoshop2.repository.ProductRepository;
+import com.example.keikoshop2.repository.CartRepository;
 
 //Model
 import com.example.keikoshop2.model.Product;
@@ -25,6 +27,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ProductService implements IProductService {
     private final ProductRepository productRepository;
+    private final CartRepository cartRepository;
     private final String uploadDir = "src/main/resources/static/images/product/";
 
     @Override
@@ -113,6 +116,12 @@ public class ProductService implements IProductService {
     public void deleteProduct(int id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundExeption("Product Not Found!"));
+
+        // Delete the associated cart items
+        List<Cart> cartItems = cartRepository.findByProductId(id);
+        for (Cart cartItem : cartItems) {
+            cartRepository.delete(cartItem);
+        }
 
         // Delete the associated image file
         if (product.getImage() != null) {

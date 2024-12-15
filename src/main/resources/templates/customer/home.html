@@ -35,7 +35,7 @@
     <div class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5">
         <!-- LOGO -->
         <a href="#" class="flex items-center justify-center rtl:space-x-reverse">
-            <img src="/images/Logo.png" class="h-24" alt="Flowbite Logo"/>
+            <img src="/images/Logo.png" class="h-24" alt="KeikoShop Logo"/>
             <h1 class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
                 Keikoshop
             </h1>
@@ -44,7 +44,9 @@
         <div class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto">
             <div class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto">
                 <div class="mr-9">
-                    <i class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
+                    <a href="/cart/my">
+                        <i class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
+                    </a>
                 </div>
                 <div class="h-10 w-px bg-gray-400"></div>
             </div>
@@ -160,7 +162,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+            <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
                 <div class="text-center w-4 h-4 mr-2">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
@@ -185,7 +187,7 @@
         </form>
     </div>
 </div>
-<!-- Body [MASIH BELUM WORKS] -->
+<!-- Body -->
 <div class="m-10">
     <div class="lg:grid lg:grid-cols-4">
         <div th:each="product : ${products}" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-7">
@@ -207,7 +209,13 @@
                 </div>
                 <div class="flex items-center justify-between">
                     <span class="text-3xl font-bold text-gray-900" th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></span>
-                    <a href="#" class="text-white bg-[#e59018] hover:bg-[#AC690B] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add to cart</a>
+                    <form action="/cart/add" method="post">
+                        <input type="hidden" name="productId" th:value="${product.id}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="text-white bg-[#e59018] hover:bg-[#AC690B] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            Add to cart
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
