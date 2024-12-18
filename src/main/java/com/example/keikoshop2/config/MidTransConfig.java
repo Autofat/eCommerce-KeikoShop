@@ -8,25 +8,25 @@ import com.midtrans.ConfigBuilder;
 
 @Configuration
 public class MidTransConfig {
-  // @Value("${midtrans.server-key}")
-  // private String serverKey;
+  @Value("${midtrans.server-key}")
+  private String serverKey;
 
-  // @Value("${midtrans.client-key}")
-  // private String clientKey;
+  @Value("${midtrans.client-key}")
+  private String clientKey;
 
-  // @Value("${midtrans.is-production}")
-  // private boolean isProduction;
+  @Value("${midtrans.is-production}")
+  private boolean isProduction;
 
-  // @Bean
-  // public Config midtransConfig() {
-  // return new ConfigBuilder()
-  // .setServerKey(serverKey)
-  // .setClientKey(clientKey)
-  // .setIsProduction(isProduction)
-  // .build();
-  // }
+  @Bean
+  public Config midtransConfig() {
+  return new ConfigBuilder()
+  .setServerKey(serverKey)
+  .setClientKey(clientKey)
+  .setIsProduction(isProduction)
+  .build();
+  }
 
-  // public String getServerKey() {
-  // return serverKey;
-  // }
+  public String getServerKey() {
+  return serverKey;
+  }
 }
