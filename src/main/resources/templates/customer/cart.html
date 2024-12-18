@@ -369,26 +369,24 @@
                         <div
                             class="flex h-full items-center justify-start gap-7">
                             <i class="fa-solid fa-ticket text-5xl"></i>
-                            <form
-                                class="gap-5 w-full justify-center items-center">
-                                <!-- Kolom Label dan Input -->
+                            <!-- Kolom Label dan Input -->
+
+                            <form method="POST" id="voucher-form"
+                                class="w-full">
                                 <label class="font-semibold mb-2"
                                     for="voucher-input">Redeem your voucher
-                                    here!</label>
-                                <div class="flex w-full gap-2">
+                                    <here></here>!</label>
+                                <div class="flex flex-row w-full gap-2">
                                     <input
                                         id="voucher-input"
                                         type="text"
                                         class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-pink-400"
                                         placeholder="Enter your voucher" />
 
-                                    <!-- Tombol Submit -->
-                                    <div class="w-1/2">
-                                        <button
-                                            class="bg-yellow-600 w-full text-white py-3 rounded hover:bg-yellow-700">
-                                            Submit
-                                        </button>
-                                    </div>
+                                    <button
+                                        class="bg-yellow-600 text-white px-6 py-3 rounded hover:bg-yellow-700">
+                                        Submit
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -401,27 +399,28 @@
                         <h2 class="text-lg font-semibold mb-5">Your order
                             summary</h2>
                         <!-- Sub-total Section -->
-                        <div class="flex justify-between mb-6">
-                            <span>Sub-total (<span
-                                    th:text="${cartItems.size()}"></span>
-                                Products)</span>
-                            <span
-                                th:text="'Rp. ' + ${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')}"></span>
-                        </div>
-                        <!-- Horizontal Line Below Sub-total -->
-                        <hr class="border-black mb-4" />
+                        <div class="flex flex-col space-y-2">
+                            <div class="flex justify-between">
+                                <span>Sub-total (<span
+                                        th:text="${cartItems.size()}"></span>
+                                    Products)</span>
+                                <span id="total-price"
+                                    th:text="'Rp. ' + ${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')}"></span>
+                            </div>
 
-                        <!-- Savings Total Section -->
-                        <div class="flex justify-between mb-6">
-                            <span>Savings total</span>
-                            <span>Rp. 0</span>
+                            <div id="discount"
+                                class="flex justify-between hidden">
+                                <p>Discount :</p>
+                                <span id="discount-value"></span>
+                            </div>
+
+                            <div id="savings"
+                                class="flex justify-between hidden">
+                                <span>Savings total</span>
+                                <span id="savings-value"></span>
+                            </div>
                         </div>
-                        <div class="justify-between mb-2">
-                            <span>Delivery fee</span> <br />
-                            <span class="text-red-500">Add a shipping address to
-                                see the cost and estimated delivery
-                                time</span>
-                        </div>
+
                         <!-- Horizontal Line Above Total -->
                         <hr class="border-black mb-2 mt-4" />
 
@@ -429,8 +428,9 @@
                         <div
                             class="flex justify-between font-bold text-lg mb-7">
                             <span>Total</span>
-                            <span
-                                th:text="'Rp. ' + ${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')}"></span>
+                            <span id="total-price-result"
+                                th:text="${'Rp. ' + #numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')}">Rp.
+                                0</span>
                         </div>
                     </div>
                     <!-- Checkout Button -->
@@ -441,6 +441,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Testing -->
 
         <!--Wajib-->
         <script
@@ -458,38 +460,94 @@
         });
         </script>
         <script th:inline="javascript">
-      function updateQuantity(cartId, newQuantity) {
-        if (newQuantity < 1) return;
-        const token = document.querySelector('meta[name="_csrf"]').content;
+            function updateQuantity(cartId, newQuantity) {
+                if (newQuantity < 1) return;
+                const token = document.querySelector('meta[name="_csrf"]').content;
 
-        fetch(`/cart/updateQuantity`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": token,
-          },
-          body: JSON.stringify({
-            cartId: cartId,
-            quantity: newQuantity,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            location.reload();
-          })
-          .catch((error) => console.error("Error:", error));
-      }
+                fetch(`/cart/updateQuantity`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": token,
+                },
+                body: JSON.stringify({
+                    cartId: cartId,
+                    quantity: newQuantity,
+                }),
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    location.reload();
+                })
+                .catch((error) => console.error("Error:", error));
+            }
 
-      // Add input change listener
-      document.querySelectorAll(".quantity-input").forEach((input) => {
-        input.addEventListener("change", (e) => {
-          const productId = e.target.dataset.productId;
-          const newQuantity = parseInt(e.target.value);
-          if (!isNaN(newQuantity)) {
-            updateQuantity(productId, newQuantity);
-          }
-        });
-      });
-    </script>
+            // Add input change listener
+            document.querySelectorAll(".quantity-input").forEach((input) => {
+                input.addEventListener("change", (e) => {
+                const productId = e.target.dataset.productId;
+                const newQuantity = parseInt(e.target.value);
+                if (!isNaN(newQuantity)) {
+                    updateQuantity(productId, newQuantity);
+                }
+                });
+            });
+        </script>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            const initialTotalPrice = /*[[${totalPrice}]]*/ 0;
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const voucherForm = document.querySelector('#voucher-form');
+                const voucherInput = document.querySelector('#voucher-input');
+                
+                voucherForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const voucherCode = voucherInput.value.trim();
+                    
+                    fetch('/cart/redeemVoucher', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `voucherCode=${encodeURIComponent(voucherCode)}`
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.voucher) {
+                            const discount = data.voucher.discount;
+                            alert(`Voucher applied! ${discount}% discount`);
+                            
+                            // Calculate new price with discount
+                            const newTotalPrice = initialTotalPrice * (1 - discount / 100);
+                            
+                            // Update price display with Indonesian format
+                            document.querySelector('#total-price-result').textContent = 
+                                `Rp. ${Math.round(newTotalPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+
+                            // Show discount value
+                            const discountText = document.querySelector('#discount');
+                            const discountValue = document.querySelector('#discount-value');
+                            discountText.classList.remove('hidden');
+                            discountValue.textContent = `${discount}%`;
+
+                            // Show savings value
+                            const savingsText = document.querySelector('#savings');
+                            const savingsValue = document.querySelector('#savings-value');
+                            savingsText.classList.remove('hidden');
+                            savingsValue.textContent = `Rp. ${Math.round(initialTotalPrice - newTotalPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+                        } else {
+                            alert(data.error || 'Invalid voucher code');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Failed to redeem voucher');
+                    });
+                });
+            });
+            /*]]>*/
+        </script>
     </body>
 </html>

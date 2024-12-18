@@ -2,7 +2,11 @@ package com.example.keikoshop2.service;
 
 import com.example.keikoshop2.model.Cart;
 import com.example.keikoshop2.model.Product;
+import com.example.keikoshop2.model.Voucher;
+
 import com.example.keikoshop2.repository.CartRepository;
+import com.example.keikoshop2.repository.VoucherRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +17,13 @@ import java.util.Optional;
 public class CartService implements ICartService {
 
     private final CartRepository cartRepository;
-    private final VoucherService voucherService;
+
+    private final VoucherRepository voucherRepository;
 
     @Autowired
-    public CartService(CartRepository cartRepository, VoucherService voucherService) {
+    public CartService(CartRepository cartRepository, VoucherRepository voucherRepository) {
         this.cartRepository = cartRepository;
-        this.voucherService = voucherService;
+        this.voucherRepository = voucherRepository;
     }
 
     @Override
@@ -102,19 +107,11 @@ public class CartService implements ICartService {
     }
 
     @Override
-    public void redeemVoucher(String voucherCode) {
-        Optional<Voucher> voucher = voucherService.findByCode(voucherCode);
-        if (voucher.isPresent() && voucher.get().isValid()) {
-            Voucher validVoucher = voucher.get();
-            List<Cart> cartItems = cartRepository.findByUserId(validVoucher.getUserId());
-            double discount = validVoucher.getDiscount();
-            for (Cart cart : cartItems) {
-                double discountedPrice = cart.getTotalPrice() * (1 - discount);
-                cart.setTotalPrice(discountedPrice);
-                cartRepository.save(cart);
-            }
-            validVoucher.setRedeemed(true);
-            voucherService.save(validVoucher);
+    public Voucher redeemVoucher(String voucherCode) {
+        Optional<Voucher> voucher = voucherRepository.findByCode(voucherCode);
+        if (voucher.isPresent() && voucher.get().getIsValid()) {
+            return voucher.get();
         }
+        throw new IllegalArgumentException("Invalid voucher code");
     }
 }

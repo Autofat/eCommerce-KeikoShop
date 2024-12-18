@@ -3,6 +3,7 @@ package com.example.keikoshop2.controller.customer;
 import com.example.keikoshop2.model.Cart;
 import com.example.keikoshop2.model.Product;
 import com.example.keikoshop2.model.User;
+import com.example.keikoshop2.model.Voucher;
 import com.example.keikoshop2.service.ICartService;
 import com.example.keikoshop2.service.IProductService;
 import com.example.keikoshop2.service.UserService;
@@ -98,14 +99,12 @@ public class CartController {
     @PostMapping("/redeemVoucher")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> redeemVoucher(@RequestParam("voucherCode") String voucherCode) {
+        Map<String, Object> response = new HashMap<>();
         try {
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String email = authentication.getName();
-            int userId = userService.findByEmail(email).getId();
-            Map<String, Object> response = cartService.redeemVoucher(voucherCode);
+            Voucher voucher = cartService.redeemVoucher(voucherCode);
+            response.put("voucher", voucher);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            Map<String, Object> response = new HashMap<>();
             response.put("success", false);
             response.put("error", e.getMessage());
             return ResponseEntity.badRequest().body(response);

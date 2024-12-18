@@ -2,6 +2,7 @@ package com.example.keikoshop2.service;
 
 import com.example.keikoshop2.model.Cart;
 import com.example.keikoshop2.model.Product;
+import com.example.keikoshop2.model.Voucher;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface ICartService {
 
     void updateQuantity(int cartId, int quantity);
 
-    void redeemVoucher(String voucherCode);
+    Voucher redeemVoucher(String voucherCode);
 }

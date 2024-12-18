@@ -17,18 +17,17 @@ public class Voucher {
   @Column(nullable = false)
   private int discount;
 
-  @Column(nullable = false)
-  private int minOrder;
+  @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
+  private boolean isValid;
 
   // Default Constructor (Wajib untuk JPA)
   public Voucher() {
   }
 
   // Constructor dengan parameter
-  public Voucher(String code, int discount, int minOrder) {
+  public Voucher(String code, int discount) {
     this.code = code;
     this.discount = discount;
-    this.minOrder = minOrder;
   }
 
   // Getter dan Setter
@@ -44,6 +43,10 @@ public class Voucher {
     return code;
   }
 
+  public boolean getIsValid() {
+    return isValid;
+  }
+
   public void setCode(String code) {
     this.code = code;
   }
@@ -54,5 +57,9 @@ public class Voucher {
 
   public void setDiscount(int discount) {
     this.discount = discount;
+  }
+
+  public void setIsValid(boolean isValid) {
+    this.isValid = isValid;
   }
 }
