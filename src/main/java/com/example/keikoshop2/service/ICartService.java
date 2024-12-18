@@ -17,4 +17,6 @@ public interface ICartService {
     Cart getCartItemById(int cartId);
 
     void updateQuantity(int cartId, int quantity);
+
+    void redeemVoucher(String voucherCode);
 }

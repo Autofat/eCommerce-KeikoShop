@@ -13,10 +13,12 @@ import java.util.Optional;
 public class CartService implements ICartService {
 
     private final CartRepository cartRepository;
+    private final VoucherService voucherService;
 
     @Autowired
-    public CartService(CartRepository cartRepository) {
+    public CartService(CartRepository cartRepository, VoucherService voucherService) {
         this.cartRepository = cartRepository;
+        this.voucherService = voucherService;
     }
 
     @Override
@@ -96,6 +98,23 @@ public class CartService implements ICartService {
             Product product = cart.getProduct();
             product.setStock(product.getStock() + cart.getQuantity());
             cartRepository.delete(cart); // ga perlu pake deleteById karena udh dapet dari atasnya
+        }
+    }
+
+    @Override
+    public void redeemVoucher(String voucherCode) {
+        Optional<Voucher> voucher = voucherService.findByCode(voucherCode);
+        if (voucher.isPresent() && voucher.get().isValid()) {
+            Voucher validVoucher = voucher.get();
+            List<Cart> cartItems = cartRepository.findByUserId(validVoucher.getUserId());
+            double discount = validVoucher.getDiscount();
+            for (Cart cart : cartItems) {
+                double discountedPrice = cart.getTotalPrice() * (1 - discount);
+                cart.setTotalPrice(discountedPrice);
+                cartRepository.save(cart);
+            }
+            validVoucher.setRedeemed(true);
+            voucherService.save(validVoucher);
         }
     }
 }

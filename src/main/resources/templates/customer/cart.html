@@ -207,14 +207,15 @@
         <!-- Navbar End -->
 
         <!-- BODY -->
-        <div class="mx-4 md:mx-6 lg:mx-10">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6 mt-6">
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 sm:p-8">
+            <div class="flex flex-col gap-4">
                 <!-- address -->
                 <div class="max-w-4xl">
                     <div
                         class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]">
                         <div
-                            class="flex h-full items-center justify-start text-start gap-5">
+                            class="flex flex-row items-center justify-start text-start gap-5">
                             <i class="fa-solid fa-location-dot text-5xl"></i>
                             <div>
                                 <h2 class="text-lg font-semibold mb-2">Delivery
@@ -224,43 +225,62 @@
                                     delivery time.</span>
                             </div>
                         </div>
+                        <form class="mt-4">
+                            <div class="mb-4">
+                                <label for="address-line1"
+                                    class="block text-sm font-medium text-gray-700">Address
+                                    Line 1</label>
+                                <input type="text" id="address-line1"
+                                    name="address-line1"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
+                                    placeholder="123 Main St" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="address-line2"
+                                    class="block text-sm font-medium text-gray-700">Address
+                                    Line 2</label>
+                                <input type="text" id="address-line2"
+                                    name="address-line2"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
+                                    placeholder="Apartment, suite, etc.">
+                            </div>
+                            <div class="mb-4">
+                                <label for="city"
+                                    class="block text-sm font-medium text-gray-700">City</label>
+                                <input type="text" id="city" name="city"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="state"
+                                    class="block text-sm font-medium text-gray-700">State/Province</label>
+                                <input type="text" id="state" name="state"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="postal-code"
+                                    class="block text-sm font-medium text-gray-700">Postal
+                                    Code</label>
+                                <input type="text" id="postal-code"
+                                    name="postal-code"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
+                                    required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="country"
+                                    class="block text-sm font-medium text-gray-700">Country</label>
+                                <input type="text" id="country" name="country"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
+                                    required>
+                            </div>
+                            <button type="submit"
+                                class="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-700">Save
+                                Address</button>
+                        </form>
                     </div>
                 </div>
-                <!-- voucher -->
-                <div class="max-w-4xl">
-                    <div
-                        class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]">
-                        <div
-                            class="flex h-full items-center justify-start gap-7">
-                            <i class="fa-solid fa-ticket text-5xl"></i>
-                            <form
-                                class="gap-5 w-full justify-center items-center">
-                                <!-- Kolom Label dan Input -->
-                                <label class="font-semibold mb-2"
-                                    for="voucher-input">Redeem your voucher
-                                    here!</label>
-                                <div class="flex w-full gap-2">
-                                    <input
-                                        id="voucher-input"
-                                        type="text"
-                                        class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-pink-400"
-                                        placeholder="Enter your voucher" />
-
-                                    <!-- Tombol Submit -->
-                                    <div class="w-1/2">
-                                        <button
-                                            class="bg-yellow-600 w-full text-white py-3 rounded hover:bg-yellow-700">
-                                            Submit
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--  Items In Cart  -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6 mt-6">
+                <!-- Items Cart -->
                 <div
                     class="flex flex-col gap-6 bg-[#F2F2F2] p-4 md:p-6 rounded-lg border border-black-200 h-fit">
                     <!-- if cartitems is empty -->
@@ -303,8 +323,7 @@
                                     Harga
                                 </h3>
                             </div>
-                            <div
-                                class="flex justify-between items-center">
+                            <div class="flex justify-between items-center">
                                 <div class="mt-auto self-end">
                                     <button
                                         class="px-1 py-1 border border-gray-300 rounded"
@@ -332,8 +351,7 @@
                                         type="hidden"
                                         name="cartId"
                                         th:value="${cartItems.id}" />
-                                    <button
-                                        type="submit"
+                                    <button type="submit"
                                         class="text-red-500 hover:text-red-700">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
@@ -342,7 +360,40 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <!-- voucher -->
+                <div class="max-w-4xl">
+                    <div
+                        class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]">
+                        <div
+                            class="flex h-full items-center justify-start gap-7">
+                            <i class="fa-solid fa-ticket text-5xl"></i>
+                            <form
+                                class="gap-5 w-full justify-center items-center">
+                                <!-- Kolom Label dan Input -->
+                                <label class="font-semibold mb-2"
+                                    for="voucher-input">Redeem your voucher
+                                    here!</label>
+                                <div class="flex w-full gap-2">
+                                    <input
+                                        id="voucher-input"
+                                        type="text"
+                                        class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-pink-400"
+                                        placeholder="Enter your voucher" />
 
+                                    <!-- Tombol Submit -->
+                                    <div class="w-1/2">
+                                        <button
+                                            class="bg-yellow-600 w-full text-white py-3 rounded hover:bg-yellow-700">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <!-- Order Summary -->
                 <div class="grid grid-rows-2">
                     <div
@@ -367,8 +418,7 @@
                         </div>
                         <div class="justify-between mb-2">
                             <span>Delivery fee</span> <br />
-                            <span class="text-red-500">Add a shipping
-                                address to
+                            <span class="text-red-500">Add a shipping address to
                                 see the cost and estimated delivery
                                 time</span>
                         </div>
@@ -408,38 +458,38 @@
         });
         </script>
         <script th:inline="javascript">
-            function updateQuantity(cartId, newQuantity) {
-                if (newQuantity < 1) return;
-                const token = document.querySelector('meta[name="_csrf"]').content;
-        
-                fetch(`/cart/updateQuantity`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': token
-                    },
-                    body: JSON.stringify({
-                        cartId: cartId,
-                        quantity: newQuantity
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                   location.reload();
-                })
-                .catch(error => console.error('Error:', error));
-            }
-        
-            // Add input change listener
-            document.querySelectorAll('.quantity-input').forEach(input => {
-                input.addEventListener('change', (e) => {
-                    const productId = e.target.dataset.productId;
-                    const newQuantity = parseInt(e.target.value);
-                    if (!isNaN(newQuantity)) {
-                        updateQuantity(productId, newQuantity);
-                    }
-                });
-            });
-        </script>
+      function updateQuantity(cartId, newQuantity) {
+        if (newQuantity < 1) return;
+        const token = document.querySelector('meta[name="_csrf"]').content;
+
+        fetch(`/cart/updateQuantity`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": token,
+          },
+          body: JSON.stringify({
+            cartId: cartId,
+            quantity: newQuantity,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            location.reload();
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      // Add input change listener
+      document.querySelectorAll(".quantity-input").forEach((input) => {
+        input.addEventListener("change", (e) => {
+          const productId = e.target.dataset.productId;
+          const newQuantity = parseInt(e.target.value);
+          if (!isNaN(newQuantity)) {
+            updateQuantity(productId, newQuantity);
+          }
+        });
+      });
+    </script>
     </body>
 </html>

@@ -94,4 +94,21 @@ public class CartController {
         cartService.removeFromCart(cartId);
         return "redirect:/cart/my";
     }
+
+    @PostMapping("/redeemVoucher")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> redeemVoucher(@RequestParam("voucherCode") String voucherCode) {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String email = authentication.getName();
+            int userId = userService.findByEmail(email).getId();
+            Map<String, Object> response = cartService.redeemVoucher(voucherCode);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", false);
+            response.put("error", e.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
 }
