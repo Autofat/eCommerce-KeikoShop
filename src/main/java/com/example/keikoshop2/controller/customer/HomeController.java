@@ -1,6 +1,8 @@
 package com.example.keikoshop2.controller.customer;
 
+import com.example.keikoshop2.model.Cart;
 import com.example.keikoshop2.model.Product;
+import com.example.keikoshop2.service.ICartService;
 import com.example.keikoshop2.service.IProductService;
 import com.example.keikoshop2.model.User;
 import com.example.keikoshop2.service.UserService;
@@ -22,11 +24,13 @@ public class HomeController {
 
     private UserService userService;
     private final IProductService productService;
+    private final ICartService cartService;
 
     @Autowired
-    public HomeController(UserService userService, IProductService productService) {
+    public HomeController(UserService userService, IProductService productService, ICartService cartService) {
         this.userService = userService;
         this.productService = productService;
+        this.cartService = cartService;
     }
 
 
@@ -41,7 +45,10 @@ public class HomeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         User user = userService.findByEmail(email);
+        int userId = user.getId();
+        List<Cart> cartItems = cartService.getCartItemsByUserId(userId);
         List<Product> products = productService.getAllProducts();
+        model.addAttribute("cartItems", cartItems);
         boolean isAdmin = checkIfUserIsAdmin();
         model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("products", products);
@@ -67,11 +74,14 @@ public class HomeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         User user = userService.findByEmail(email);
+        int userId = user.getId();
+        List<Cart> cartItems = cartService.getCartItemsByUserId(userId);
         boolean isAdmin = checkIfUserIsAdmin();
         model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("user", user);
         Product product = productService.getProductById(id);
         model.addAttribute("product", product);
+        model.addAttribute("cartItems", cartItems);
         return "customer/detailProduct";
     }
 

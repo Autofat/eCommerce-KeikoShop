@@ -43,9 +43,14 @@
         <!-- NAVIGATION LINKS -->
         <div class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto">
             <div class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto">
-                <div class="mr-9">
+                <div class="mr-9 flex items-center relative">
                     <a href="/cart/my">
                         <i class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
+                        <div
+                                th:if="${cartItems.size() > 0}"
+                                class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">
+                            <h1 th:text="${cartItems.size()}"></h1>
+                        </div>
                     </a>
                 </div>
                 <div class="h-10 w-px bg-gray-400"></div>
