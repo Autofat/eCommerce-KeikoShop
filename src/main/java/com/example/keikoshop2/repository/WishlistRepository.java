@@ -1,6 +1,5 @@
 package com.example.keikoshop2.repository;
 
-
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,16 +10,14 @@ import org.springframework.stereotype.Repository;
 import com.example.keikoshop2.model.Wishlist;
 
 @Repository
-public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
+public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
 
-    // Mengambil semua wishlist berdasarkan userId
-    @Query("SELECT w FROM Wishlist w WHERE w.userId = :userId")
-    List<Wishlist> findByUserId(@Param("userId") Integer userId);
+    // Retrieve all wishlists based on userId
+    List<Wishlist> findByUserId(@Param("userId") int userId);
 
-    // Mengambil wishlist berdasarkan nama item (contoh fitur pencarian)
-    @Query("SELECT w FROM Wishlist w WHERE LOWER(w.name) LIKE LOWER(CONCAT('%', :name, '%'))")
+    // Retrieve wishlists based on item name (example search feature)
     List<Wishlist> findByNameContainingIgnoreCase(@Param("name") String name);
 
-    // Menghapus semua item wishlist berdasarkan userId
-    void deleteByUserId(Integer userId);
+    // Delete all wishlist items based on userId
+    void deleteByUserId(@Param("userId") int userId);
 }

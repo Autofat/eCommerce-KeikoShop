@@ -1,9 +1,8 @@
 package com.example.keikoshop2.controller.customer;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.keikoshop2.model.Wishlist;
@@ -42,11 +41,11 @@ public class WishlistController {
     // Update item wishlist
     @PostMapping("/update/{id}")
     public String updateWishlist(
-        @PathVariable Long id, 
-        @RequestBody Wishlist updatedWishlist, 
-        RedirectAttributes redirectAttributes
+            @PathVariable int id,
+            @RequestBody Wishlist updatedWishlist,
+            RedirectAttributes redirectAttributes
     ) {
-        wishlistService.updateWishlist(int id, updatedWishlist);
+        wishlistService.updateWishlist(id, updatedWishlist);
         redirectAttributes.addFlashAttribute("successMessage", "Wishlist item updated successfully!");
         return "redirect:/wishlist";
     }
