@@ -1,12 +1,13 @@
 package com.example.keikoshop2.service;
 
-import java.util.List;
 import com.example.keikoshop2.model.Wishlist;
+import java.util.List;
 
-public interface  IWishlistService {
-    Wishlist store(Wishlist wishlist);
-    List<Wishlist> getAllWishlist();
+public interface IWishlistService {
+    void store(Wishlist wishlist);
+    List<Wishlist> getWishlistsByUserId(int userId);
     void deleteWishlist(int id);
-    void updateWishlist(int id, Wishlist updateWishlist);
-    List<Wishlist> getAllWishlists();
+    void updateWishlist(int id, Wishlist updatedWishlist);
+    boolean existsByUserIdAndProductId(int userId, int productId);
+    Integer findWishlistIdByUserIdAndProductId(int userId, int productId);
 }

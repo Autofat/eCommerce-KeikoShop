@@ -2,9 +2,11 @@ package com.example.keikoshop2.controller.customer;
 
 import com.example.keikoshop2.model.Cart;
 import com.example.keikoshop2.model.Product;
+import com.example.keikoshop2.model.Wishlist;
 import com.example.keikoshop2.service.ICartService;
 import com.example.keikoshop2.service.IProductService;
 import com.example.keikoshop2.model.User;
+import com.example.keikoshop2.service.IWishlistService;
 import com.example.keikoshop2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 
 import java.util.List;
 
@@ -25,12 +28,14 @@ public class HomeController {
     private UserService userService;
     private final IProductService productService;
     private final ICartService cartService;
+    private final IWishlistService wishlistService;
 
     @Autowired
-    public HomeController(UserService userService, IProductService productService, ICartService cartService) {
+    public HomeController(UserService userService, IProductService productService, ICartService cartService, IWishlistService wishlistService) {
         this.userService = userService;
         this.productService = productService;
         this.cartService = cartService;
+        this.wishlistService = wishlistService;
     }
 
 
@@ -77,11 +82,16 @@ public class HomeController {
         int userId = user.getId();
         List<Cart> cartItems = cartService.getCartItemsByUserId(userId);
         boolean isAdmin = checkIfUserIsAdmin();
+        boolean isInWishlist = wishlistService.existsByUserIdAndProductId(userId, id);
+        Integer wishlistId = wishlistService.findWishlistIdByUserIdAndProductId(userId, id);
+
         model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("user", user);
         Product product = productService.getProductById(id);
         model.addAttribute("product", product);
         model.addAttribute("cartItems", cartItems);
+        model.addAttribute("isInWishlist", isInWishlist);
+        model.addAttribute("wishlistId", wishlistId);
         return "customer/detailProduct";
     }
 

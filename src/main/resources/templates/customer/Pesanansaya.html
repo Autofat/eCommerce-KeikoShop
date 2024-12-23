@@ -80,14 +80,18 @@
     </div>
   </nav>
   <!-- Dropdown menu -->
-  <div id="userDropdownHome"
-    class="absolute hidden right-20 top-24 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2 z-10">
+  <div id="userDropdownHome" class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-      <div class="font-medium truncate text-black" th:text="${user.email}">name@flowbite.com</div>
+      <div class="font-medium truncate text-black"
+           th:text="${user.email}">
+        Keikoshop@email.com
+      </div>
     </div>
-    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownInformationButton">
+    <ul
+            class="py-2 text-sm text-gray-700"
+            aria-labelledby="dropdownInformationButton">
       <li>
-        <a href="#" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+        <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
           <div class="text-center w-4 h-4 mr-2">
             <i class="fa-solid fa-heart"></i>
           </div>
@@ -95,7 +99,7 @@
         </a>
       </li>
       <li>
-        <a href="#" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+        <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
           <div class="text-center w-4 h-4 mr-2">
             <i class="fa-solid fa-cart-shopping"></i>
           </div>
@@ -112,12 +116,19 @@
       </li>
     </ul>
     <div class="py-2">
-      <a href="/products/manage-products" th:if="${isAdmin}"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Menu</a>
+      <a
+              href="/admin/products/manage-products"
+              th:if="${isAdmin}"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
+        Menu</a>
       <form action="/api/users/logout" method="post">
-        <input type="hidden" name="username" value="yourUsername">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">Sign out</button>
+        <input type="hidden" name="username" value="yourUsername"/>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+        <button
+                type="submit"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+          Sign out
+        </button>
       </form>
     </div>
   </div>
