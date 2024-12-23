@@ -28,12 +28,13 @@ public class CartService implements ICartService {
 
     @Override
     public List<Cart> getCartItemsByUserId(int userId) {
-        return cartRepository.findByUserId(userId);
+        return cartRepository.findByUserIdAndIsDeletedFalse(userId);
     }
 
     @Override
     public void addToCart(int userId, Product product, int quantity) {
-        Optional<Cart> existingCartItem = cartRepository.findByUserIdAndProductId(userId, product.getId());
+        Optional<Cart> existingCartItem = cartRepository.findByUserIdAndProductIdAndIsDeletedFalse(userId,
+                product.getId());
         if (existingCartItem.isPresent()) {
             Cart cart = existingCartItem.get();
             int newQuantity = cart.getQuantity() + quantity;
@@ -62,7 +63,7 @@ public class CartService implements ICartService {
     }
 
     public double getTotalPriceByUserId(int userId) {
-        List<Cart> cartItems = cartRepository.findByUserId(userId);
+        List<Cart> cartItems = cartRepository.findByUserIdAndIsDeletedFalse(userId);
         return cartItems.stream()
                 .mapToDouble(Cart::getTotalPrice)
                 .sum();
@@ -113,5 +114,10 @@ public class CartService implements ICartService {
             return voucher.get();
         }
         throw new IllegalArgumentException("Invalid voucher code");
+    }
+
+    @Override
+    public List<Cart> getCartItemsByCartIds(List<Integer> cartIds) {
+        return cartRepository.findAllById(cartIds);
     }
 }

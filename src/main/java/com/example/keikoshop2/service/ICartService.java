@@ -20,4 +20,6 @@ public interface ICartService {
     void updateQuantity(int cartId, int quantity);
 
     Voucher redeemVoucher(String voucherCode);
+
+    List<Cart> getCartItemsByCartIds(List<Integer> cartIds);
 }

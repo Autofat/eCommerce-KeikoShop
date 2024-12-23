@@ -2,8 +2,10 @@ package com.example.keikoshop2.controller.customer;
 
 import com.example.keikoshop2.model.Cart;
 import com.example.keikoshop2.model.Product;
+import com.example.keikoshop2.model.Transactions;
 import com.example.keikoshop2.service.ICartService;
 import com.example.keikoshop2.service.IProductService;
+import com.example.keikoshop2.service.IPaymentService;
 import com.example.keikoshop2.model.User;
 import com.example.keikoshop2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class HomeController {
@@ -25,14 +28,18 @@ public class HomeController {
     private UserService userService;
     private final IProductService productService;
     private final ICartService cartService;
+    private final IPaymentService paymentService;
+    private final ObjectMapper objectMapper;
 
     @Autowired
-    public HomeController(UserService userService, IProductService productService, ICartService cartService) {
+    public HomeController(UserService userService, IProductService productService, ICartService cartService,
+            IPaymentService paymentService, ObjectMapper objectMapper) {
         this.userService = userService;
         this.productService = productService;
         this.cartService = cartService;
+        this.paymentService = paymentService;
+        this.objectMapper = objectMapper;
     }
-
 
     private boolean checkIfUserIsAdmin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -56,17 +63,19 @@ public class HomeController {
         return "customer/home";
     }
 
-    //masih sementara
+    // masih sementara
     @GetMapping("/pesanan-saya")
     public String showPesananSaya(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         User user = userService.findByEmail(email);
         boolean isAdmin = checkIfUserIsAdmin();
+        List<Transactions> transactions = paymentService.getTransactionsByUserId(user.getId());
+        model.addAttribute("transactions", transactions);
         model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("user", user);
         return "customer/Pesanansaya";
-        
+
     }
 
     @GetMapping("/product/detail/{id}")
@@ -84,7 +93,5 @@ public class HomeController {
         model.addAttribute("cartItems", cartItems);
         return "customer/detailProduct";
     }
-
-
 
 }

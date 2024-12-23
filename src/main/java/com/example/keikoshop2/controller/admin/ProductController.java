@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 @Controller
+@PreAuthorize("hasRole('admin')")
 @RequiredArgsConstructor
 @RequestMapping("/admin/products")
 
@@ -30,7 +31,6 @@ public class ProductController {
         return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.FOUND);
     }
 
-    @PreAuthorize("hasRole('admin')")
     @GetMapping("/manage-products")
     public String manageProducts(Model model) {
         List<Product> products = productService.getAllProducts();
@@ -39,9 +39,9 @@ public class ProductController {
         return "admin/products";
     }
 
-    @PreAuthorize("hasRole('admin')")
     @PostMapping("/create")
-    public String createProduct(@ModelAttribute Product product, @RequestParam("imageFiles") MultipartFile image, RedirectAttributes redirectAttributes) {
+    public String createProduct(@ModelAttribute Product product, @RequestParam("imageFiles") MultipartFile image,
+            RedirectAttributes redirectAttributes) {
         try {
             productService.createProduct(product, image);
             redirectAttributes.addFlashAttribute("successMessage", "Product successfully added");
@@ -51,9 +51,9 @@ public class ProductController {
         return "redirect:/admin/products/manage-products";
     }
 
-    @PreAuthorize("hasRole('admin')")
     @PutMapping("/edit/{id}")
-    public String updateProduct(@PathVariable("id") int id, @ModelAttribute Product product, @RequestParam("imageFiles") MultipartFile image, RedirectAttributes redirectAttributes) {
+    public String updateProduct(@PathVariable("id") int id, @ModelAttribute Product product,
+            @RequestParam("imageFiles") MultipartFile image, RedirectAttributes redirectAttributes) {
         try {
             productService.updateProduct(product, id, image);
             redirectAttributes.addFlashAttribute("successMessage", "Product successfully updated");
@@ -63,7 +63,6 @@ public class ProductController {
         return "redirect:/admin/products/manage-products";
     }
 
-    @PreAuthorize("hasRole('admin')")
     @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable int id, RedirectAttributes redirectAttributes) {
         try {

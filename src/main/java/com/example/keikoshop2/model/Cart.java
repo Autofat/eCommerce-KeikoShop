@@ -15,6 +15,9 @@ public class Cart {
     private int quantity;
     private double totalPrice;
 
+    @Column
+    private boolean isDeleted = false;
+
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
@@ -64,6 +67,23 @@ public class Cart {
 
     private double calculateTotalPrice() {
         return this.quantity * (this.product != null ? this.product.getPrice() : 0);
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+        this.totalPrice = calculateTotalPrice();
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 
 }

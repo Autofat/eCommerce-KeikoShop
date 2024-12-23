@@ -4,7 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
+
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Review {
@@ -19,8 +22,21 @@ public class Review {
     private String comment;
     private Date reviewDate;
 
+    @Transient
+    private List<Review> reviews;
+
+    // getter, setter
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     // No-args constructor
-    public Review() {}
+    public Review() {
+    }
 
     // Constructor with parameters
     public Review(Integer userId, Integer productId, Integer rating, String comment, Date reviewDate) {

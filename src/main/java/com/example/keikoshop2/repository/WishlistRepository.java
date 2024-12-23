@@ -10,14 +10,14 @@ import org.springframework.stereotype.Repository;
 import com.example.keikoshop2.model.Wishlist;
 
 @Repository
-public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
+public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
 
-    // Retrieve all wishlists based on userId
-    List<Wishlist> findByUserId(@Param("userId") int userId);
+    // // Retrieve all wishlists based on userId
+    // List<Wishlist> findByUserId(@Param("userId") int userId);
 
-    // Retrieve wishlists based on item name (example search feature)
-    List<Wishlist> findByNameContainingIgnoreCase(@Param("name") String name);
+    // // Retrieve wishlists based on item name (example search feature)
+    // List<Wishlist> findByNameContainingIgnoreCase(@Param("name") String name);
 
-    // Delete all wishlist items based on userId
-    void deleteByUserId(@Param("userId") int userId);
+    // // Delete all wishlist items based on userId
+    // void deleteByUserId(@Param("userId") int userId);
 }

@@ -1,7 +1,9 @@
 package com.example.keikoshop2.controller.customer;
 
+import com.example.keikoshop2.dto.ReviewRequest;
 import com.example.keikoshop2.model.Review;
 import com.example.keikoshop2.service.IReviewService;
+import com.example.keikoshop2.service.IPaymentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import java.util.List;
 public class ReviewController {
 
     private final IReviewService reviewService;
+    private final IPaymentService transactionService;
 
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews() {
@@ -43,6 +46,32 @@ public class ReviewController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/pesanan-saya";
+    }
+
+    @PostMapping("/add/{orderId}")
+    @ResponseBody
+    public ResponseEntity<?> createReviews(@RequestBody Review reviewRequest, @PathVariable String orderId) {
+        try {
+            // check if transaction already reviewed
+            boolean alreadyReviewed = transactionService.isOrderAlreadyReviewed(orderId);
+
+            if (alreadyReviewed) {
+                return ResponseEntity.badRequest().body("Order already reviewed");
+            }
+
+            // Create all reviews
+            for (Review review : reviewRequest.getReviews()) {
+                reviewService.createReview(review);
+            }
+
+            // set transaction as isRating
+            transactionService.setIsRating(orderId);
+
+            return ResponseEntity.ok().body("Reviews added successfully");
+
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/review/{id}")

@@ -1,5 +1,7 @@
 package com.example.keikoshop2.model;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,6 +27,9 @@ public class User {
 
     @Column(name = "role", nullable = false)
     private String role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Transactions> transactions;
 
     // Default Constructor (Wajib untuk JPA)
     public User() {
