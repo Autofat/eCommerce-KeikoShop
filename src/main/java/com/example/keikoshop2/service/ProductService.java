@@ -35,8 +35,6 @@ public class ProductService implements IProductService {
         return productRepository.findAll();
     }
 
-
-
     @Override
     public Product createProduct(Product product, MultipartFile image) {
         if (productAlreadyExists(product.getName())) {
