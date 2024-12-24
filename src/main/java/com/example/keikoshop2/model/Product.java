@@ -22,6 +22,9 @@ public class Product {
     @Min(value = 0, message = "Stock must be greater than or equal to 0")
     private int stock;
 
+    @Transient
+    private Double averageRating;
+
     // No-args constructor
     public Product() {
     }
@@ -82,6 +85,14 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
     }
 
 }

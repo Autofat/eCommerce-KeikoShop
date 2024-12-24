@@ -19,4 +19,8 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     // Calculate average rating for a product
     @Query("SELECT AVG(r.rating) FROM Review r WHERE r.productId = :productId")
     Double getAverageRatingByProductId(@Param("productId") Integer productId);
+
+    // Find the username of the user who wrote a review
+    @Query("SELECT u.username FROM User u WHERE u.id = :userId")
+    String getUsernameByUserId(@Param("userId") Integer userId);
 }

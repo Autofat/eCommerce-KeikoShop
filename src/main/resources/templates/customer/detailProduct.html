@@ -143,7 +143,8 @@
     </div>
 </nav>
 <!-- Dropdown menu -->
-<div id="userDropdownHome" class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
+<div id="userDropdownHome"
+     class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
         <div class="font-medium truncate text-black"
              th:text="${user.email}">
@@ -211,7 +212,8 @@
                     Product Name
                 </h1>
                 <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
-                    <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl" th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">
+                    <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl"
+                       th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">
                         Harga
                     </p>
                     <!-- stock -->
@@ -221,63 +223,21 @@
                     <div class="flex items-center gap-2 mt-2 sm:mt-0">
                         <!--             BINTANG REVIEW           -->
                         <div class="flex items-center gap-1">
-                            <svg
-                                    class="w-4 h-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-                            <svg
-                                    class="w-4 h-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-                            <svg
-                                    class="w-4 h-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-                            <svg class="w-4 h-4 text-yellow-300"
-                                 aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg"
-                                 width="24"
-                                 height="24"
-                                 fill="currentColor"
-                                 viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-                            <svg
-                                    class="w-4 h-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
+                            <div th:each="star : ${#numbers.sequence(1, averageRating > 0 ? #numbers.formatDecimal(averageRating, 0, 'NONE', 0, 'NONE') : 1)}">
+                                <svg
+                                        class="w-4 h-4 text-yellow-300"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24">
+                                    <path
+                                            d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
+                                </svg>
+                            </div>
                         </div>
-                        <p
-                                class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400">
+                        <p class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400" th:text="'( ' + ${averageRating} + ' )'">
                             (4.6)
                         </p>
                         <a href="#"
@@ -287,9 +247,7 @@
                     </div>
                 </div>
                 <!--       ADD FAV & ADD TO CART         -->
-                <div
-                        class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8 space-y-2 sm:space-y-0">
-
+                <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8 space-y-2 sm:space-y-0">
                     <form class="flex flex-row gap-4 items-center"
                           method="POST" action="/cart/add">
                         <input type="hidden" name="productId"
@@ -386,7 +344,7 @@
         <!-- Reviews (4.65 Out of 5) -->
         <div class="my-6 gap-8 flex-col sm:items-start md:my-8">
             <div class="shrink-0 space-y-4">
-                <p class="text-2xl font-semibold leading-none text-gray-900">
+                <p class="text-2xl font-semibold leading-none text-gray-900" th:text="${averageRating} + ' out of 5'">
                     4.65 out of 5
                 </p>
                 <div class="mt-6 min-w-0 flex-1 space-y-3 sm:mt-0">
@@ -470,16 +428,16 @@
                                     class="h-1.5 rounded-full bg-yellow-300"
                                     style="width: 15%"></div>
                         </div>
-                        <a
-                                href="#"
-                                class="w-8 shrink-0 text-right text-sm font-medium leading-none text-primary-700 hover:underline dark:text-primary-500 sm:w-auto sm:text-left">53
-                            <span
-                                    class="hidden sm:inline">reviews</span></a>
+                        <a href="#"
+                           class="w-8 shrink-0 text-right text-sm font-medium leading-none text-primary-700 hover:underline dark:text-primary-500 sm:w-auto sm:text-left">53
+                            <span class="hidden sm:inline">
+                                reviews
+                            </span>
+                        </a>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <p
-                                class="w-2 shrink-0 text-start text-sm font-medium leading-none text-gray-900">
+                        <p class="w-2 shrink-0 text-start text-sm font-medium leading-none text-gray-900">
                             2
                         </p>
                         <svg
@@ -490,17 +448,18 @@
                                 height="24"
                                 fill="currentColor"
                                 viewBox="0 0 24 24">
-                            <path
-                                    d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
+                            <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
                         </svg>
-                        <div
-                                class="h-1.5 w-80 rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div
-                                    class="h-1.5 rounded-full bg-yellow-300"
-                                    style="width: 5%"></div>
+                        <div class="h-1.5 w-80 rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="h-1.5 rounded-full bg-yellow-300"
+                                 style="width: 5%"></div>
                         </div>
-                        <a href="#" class="w-8 shrink-0 text-right text-sm font-medium leading-none text-primary-700 hover:underline dark:text-primary-500 sm:w-auto sm:text-left">32
-                            <span class="hidden sm:inline">reviews</span></a>
+                        <a href="#"
+                           class="w-8 shrink-0 text-right text-sm font-medium leading-none text-primary-700 hover:underline dark:text-primary-500 sm:w-auto sm:text-left">32
+                            <span class="hidden sm:inline">
+                                reviews
+                            </span>
+                        </a>
                     </div>
 
                     <div class="flex items-center gap-2">
@@ -534,263 +493,44 @@
 
             <!-- Tulisan Review nya -->
             <div class="mt-16 divide-y divide-gray-200 dark:divide-gray-700">
-                <div class="gap-3 pb-6 sm:flex sm:items-start">
-                    <div class="shrink-0 space-y-2 sm:w-48 md:w-72">
-                        <!-- Bintang -->
-                        <div class="flex items-center gap-0.5">
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
+                <div th:each="review : ${reviews}" class="py-6">
+                    <div class="gap-3 pb-6 sm:flex sm:items-start">
+                        <div class="shrink-0 space-y-2 sm:w-48 md:w-72">
+                            <!-- Bintang -->
+                            <div class="flex items-center gap-0.5">
+                                <div th:each="star:${review.stars}">
+                                    <svg
+                                            class="h-4 w-4 text-yellow-300"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                        <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
+                                    </svg>
+                                </div>
 
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
 
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
+                            </div>
+                            <div class="space-y-0.5">
+                                <p class="text-base font-semibold text-gray-900" th:text="${review.username}">
+                                    Rapi Ganteng
+                                </p>
+                                <p class="text-sm font-normal text-gray-500 dark:text-gray-400"
+                                   th:text="${#dates.format(review.reviewDate, 'dd, MMMM yyyy')}">
+                                    Tanggal Review
+                                </p>
+                            </div>
                         </div>
-                        <div class="space-y-0.5">
-                            <p class="text-base font-semibold text-gray-900">
-                                Rapi Ganteng
-                            </p>
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                November 18 2023
+
+                        <div class="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400"
+                               th:text="${review.comment}">
                             </p>
                         </div>
-                    </div>
-
-                    <div class="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
-                        <p class="text-base font-normal text-gray-500 dark:text-gray-400">
-                            Barang nya keren banget, ga nyangka belum
-                            pesen udah nyampe
-                            cepet banget. Admin nya juga ramah banget.
-                            Tokonya trusted dan
-                            murah banget. Terima kasih semoga awet
-                        </p>
                     </div>
                 </div>
-                <div class="gap-3 py-6 sm:flex sm:items-start">
-                    <div class="shrink-0 space-y-2 sm:w-48 md:w-72">
-                        <div class="flex items-center gap-0.5">
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-                        </div>
-
-                        <div class="space-y-0.5">
-                            <p
-                                    class="text-base font-semibold text-gray-900">
-                                Niko Presiden
-                            </p>
-                            <p
-                                    class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                November 18 2023
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
-                        <p
-                                class="text-base font-normal text-gray-500 dark:text-gray-400">
-                            👍👍👍👍👍
-                        </p>
-                    </div>
-                </div>
-                <div class="gap-3 py-6 sm:flex sm:items-start">
-                    <div class="shrink-0 space-y-2 sm:w-48 md:w-72">
-                        <div class="flex items-center gap-0.5">
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-
-                            <svg
-                                    class="h-4 w-4 text-yellow-300"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                            </svg>
-                        </div>
-
-                        <div class="space-y-0.5">
-                            <p
-                                    class="text-base font-semibold text-gray-900">Fahmi
-                                Nakal</p>
-                            <p
-                                    class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                November 18 2023
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
-                        <p
-                                class="text-base font-normal text-gray-500 dark:text-gray-400">
-                            Barang nya keren banget, ga nyangka belum
-                            pesen udah nyampe
-                            cepet banget. Admin nya juga ramah banget.
-                            Tokonya trusted dan
-                            murah banget. Terima kasih semoga awet
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Button more -->
-            <div class="mt-6 text-center">
-                <button
-                        type="button"
-                        class="mb-2 me-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100">
-                    View more reviews
-                </button>
             </div>
         </div>
     </div>

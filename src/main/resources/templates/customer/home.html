@@ -222,7 +222,7 @@
                         </svg>
                         <!-- Repeat the SVG for the number of stars -->
                     </div>
-                    <span class="bg-[#e59018] text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3">5.0</span>
+                        <span class="bg-[#e59018] text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3" th:text="${product.averageRating}">0.0</span>
                 </div>
                 <div class="flex items-center justify-between">
                     <span class="text-3xl font-bold text-gray-900" th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></span>
