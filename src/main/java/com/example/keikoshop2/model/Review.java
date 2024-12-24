@@ -8,6 +8,8 @@ import jakarta.persistence.Transient;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Entity
 public class Review {
@@ -24,6 +26,7 @@ public class Review {
 
     @Transient
     private List<Review> reviews;
+    private String username;
 
     // getter, setter
     public List<Review> getReviews() {
@@ -53,6 +56,7 @@ public class Review {
         this.rating = rating;
         this.reviewDate = reviewDate;
     }
+
 
     // Getters
     public Integer getId() {
@@ -102,5 +106,17 @@ public class Review {
 
     public void setReviewDate(Date reviewDate) {
         this.reviewDate = reviewDate;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Integer> getStars() {
+        return IntStream.range(0, rating).boxed().collect(Collectors.toList());
     }
 }

@@ -30,6 +30,8 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({ "product", "hibernateLazyInitializer", "handler" })
     private List<Cart> carts = new ArrayList<>();
+    @Transient
+    private Double averageRating;
 
     // No-args constructor
     public Product() {
@@ -100,4 +102,12 @@ public class Product {
     public void setCarts(List<Cart> carts) {
         this.carts = carts;
     }
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
+    }
+
 }

@@ -6,6 +6,7 @@ import com.example.keikoshop2.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
@@ -48,27 +49,34 @@ public class ReviewService implements IReviewService {
     @Override
     public List<Review> getReviewsByProductId(int productId) {
         List<Review> reviews = reviewRepository.findByProductId(productId);
-        if (reviews.isEmpty()) {
-            throw new ReviewNotFoundException("No Reviews Found For Product Id: " + productId);
-        }
-        return reviews;
+        return reviews.isEmpty() ? new ArrayList<>() : reviews;
+//        if (reviews.isEmpty()) {
+//            throw new ReviewNotFoundException("No Reviews Found For Product Id: " + productId);
+//        }
+//        return reviews;
     }
 
     @Override
     public List<Review> getReviewsByUserId(int userId) {
         List<Review> reviews = reviewRepository.findByUserId(userId);
-        if (reviews.isEmpty()) {
-            throw new ReviewNotFoundException("No Reviews Found For User Id: " + userId);
-        }
-        return reviews;
+        return reviews.isEmpty() ? new ArrayList<>() : reviews;
+//        if (reviews.isEmpty()) {
+//            throw new ReviewNotFoundException("No Reviews Found For User Id: " + userId);
+//        }
+//        return reviews;
     }
 
     @Override
     public Double getAverageRatingForProduct(int productId) {
         Double averageRating = reviewRepository.getAverageRatingByProductId(productId);
-        if (averageRating == null) {
-            throw new ReviewNotFoundException("No Ratings Found For Product Id: " + productId);
-        }
-        return averageRating;
+        return averageRating != null ? averageRating : 0.0;
+//        if (averageRating == null) {
+//            throw new ReviewNotFoundException("No Ratings Found For Product Id: " + productId);
+//        }
+//        return averageRating;
+    }
+
+    public String getUsernameByUserId(int userId) {
+        return reviewRepository.getUsernameByUserId(userId);
     }
 }
