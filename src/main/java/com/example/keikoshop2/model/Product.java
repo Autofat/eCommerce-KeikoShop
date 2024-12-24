@@ -1,5 +1,10 @@
 package com.example.keikoshop2.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +27,10 @@ public class Product {
     @Min(value = 0, message = "Stock must be greater than or equal to 0")
     private int stock;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({ "product", "hibernateLazyInitializer", "handler" })
+    private List<Cart> carts = new ArrayList<>();
+
     // No-args constructor
     public Product() {
     }
@@ -34,7 +43,7 @@ public class Product {
         this.stock = stock;
     }
 
-    //Getter
+    // Getter
     public int getId() {
         return id;
     }
@@ -59,7 +68,7 @@ public class Product {
         return stock;
     }
 
-    //  Setter
+    // Setter
     public void setId(int id) {
         this.id = id;
     }
@@ -84,4 +93,11 @@ public class Product {
         this.stock = stock;
     }
 
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
+    }
 }

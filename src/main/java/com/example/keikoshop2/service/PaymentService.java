@@ -13,6 +13,7 @@ import com.example.keikoshop2.model.Transactions;
 import com.example.keikoshop2.repository.ProductRepository;
 import com.example.keikoshop2.repository.TransactionRepository;
 import com.example.keikoshop2.repository.CartRepository;
+import com.example.keikoshop2.repository.ProductRepository;
 
 //Library
 import lombok.RequiredArgsConstructor;
@@ -35,9 +36,13 @@ import java.util.Optional;
 public class PaymentService implements IPaymentService {
 
   @Autowired
+  private final ProductRepository productRepository;
   private final TransactionRepository transactionRepository;
+
   private final CartRepository cartRepository;
+
   private final String uploadDir = "src/main/resources/static/images/transaction/paymentProof/";
+
   private final IProductService productService;
   private final ICartService cartService;
 
@@ -55,6 +60,7 @@ public class PaymentService implements IPaymentService {
             .map(cart -> productService.getProductById(cart.getProduct().getId()))
             .collect(Collectors.toList());
         transaction.setProducts(products);
+        transaction.setCartList(cartItems);
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -73,6 +79,7 @@ public class PaymentService implements IPaymentService {
             .map(cart -> productService.getProductById(cart.getProduct().getId()))
             .collect(Collectors.toList());
         transaction.setProducts(products);
+        transaction.setCartList(cartItems);
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -108,8 +115,23 @@ public class PaymentService implements IPaymentService {
 
   @Override
   public Transactions getTransactionsByOrderId(String orderId) {
-    Optional<Transactions> transaction = transactionRepository.findByOrderId(orderId);
-    return transaction.orElseThrow(() -> new ProductNotFoundExeption(orderId + " Not found"));
+    Optional<Transactions> transactionOptional = transactionRepository.findByOrderId(orderId);
+    if (transactionOptional.isPresent()) {
+      Transactions transaction = transactionOptional.get();
+      try {
+        List<Integer> cartIds = objectMapper.readValue(transaction.getCart_ids(), List.class);
+        List<Cart> cartItems = cartService.getCartItemsByCartIds(cartIds);
+        List<Product> products = cartItems.stream()
+            .map(cart -> productService.getProductById(cart.getProduct().getId()))
+            .collect(Collectors.toList());
+        transaction.setProducts(products);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return transaction;
+    } else {
+      throw new ProductNotFoundExeption(orderId + " Not found");
+    }
   }
 
   @Override
@@ -132,6 +154,12 @@ public class PaymentService implements IPaymentService {
       Transactions transaction = getTransactionsByOrderId(orderId);
       if (transaction.isConfirmed() || transaction.isCancelled()) {
         throw new IllegalArgumentException("Transaction already confirmed or cancelled");
+      }
+
+      for (Cart cart : getCartByTransactionOrderId(orderId)) {
+        Product product = cart.getProduct();
+        product.setStock(product.getStock() - cart.getQuantity());
+        productRepository.save(product);
       }
       transaction.setConfirmed(true);
       transactionRepository.save(transaction);

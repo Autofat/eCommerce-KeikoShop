@@ -202,15 +202,20 @@
         <!-- If Confirmed -->
        <!-- Replace the existing Write Review button with this -->
        <button th:if="${transaction.isConfirmed && !transaction.isRating}" 
-       type="button" 
-       data-modal-target="review-modal" 
-       data-modal-toggle="review-modal"
-       th:data-order-id="${transaction.orderId}"
-       onclick="openReviewModal(this.getAttribute('data-order-id'))"
-       class="bg-[#e59018] text-white px-4 py-2 rounded text-sm">
- Write a review
-</button>
-      
+              type="button" 
+              data-modal-target="review-modal" 
+              data-modal-toggle="review-modal"
+              th:data-order-id="${transaction.orderId}"
+              onclick="openReviewModal(this.getAttribute('data-order-id'))"
+              class="bg-[#e59018] text-white px-4 py-2 rounded text-sm">
+        Write a review
+        </button>
+
+        <!-- If Paid -->
+        <button th:if="${transaction.isPaid && !transaction.isCancelled && !transaction.isConfirmed}" type="button"
+        class="bg-blue-500 text-white px-4 py-2 rounded text-sm hover:cursor-default" disabled>
+        Waiting Confirmation
+        </button>
               <!-- If Hasn't Paid -->
         <div th:if="${!transaction.isPaid && !transaction.isCancelled}" class="flex flex-row justify-between w-full">
           <a th:href="@{/payment/{orderId}/cancel(orderId=${transaction.orderId})}"

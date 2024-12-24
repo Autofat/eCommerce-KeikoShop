@@ -148,12 +148,13 @@
                   class="px-6 py-4 whitespace-nowrap"
                   th:text="${transaction.orderId}"></td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <th:block th:if="${not #lists.isEmpty(transaction.products)}">
-                    <span th:each="product, iterStat : ${transaction.products}">
-                      <span th:text="${product.name}"></span>
-                      <span th:if="${!iterStat.last}">, </span>
+                  <div class="flex flex-col"
+                    th:if="${not #lists.isEmpty(transaction.products)}">
+                    <span th:each="cart : ${transaction.carts}">
+                      <span th:text="${cart.product.name}"></span>
+                      <span th:text="${'x'+cart.quantity}"></span>
                     </span>
-                  </th:block>
+                  </div>
                   <span th:if="${#lists.isEmpty(transaction.products)}">No
                     products</span>
                 </td>
