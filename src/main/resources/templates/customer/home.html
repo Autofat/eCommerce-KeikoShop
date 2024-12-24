@@ -39,7 +39,7 @@
       >
         <!-- LOGO -->
         <a
-          href="#"
+          href="/home"
           class="flex items-center justify-center rtl:space-x-reverse"
         >
           <img src="/images/Logo.png" class="h-24" alt="KeikoShop Logo" />
@@ -88,8 +88,7 @@
           <div
             class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block"
           >
-            <div
-              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
             >
               <svg
                 class="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -108,12 +107,15 @@
               </svg>
               <span class="sr-only">Search icon</span>
             </div>
-            <input
-              type="text"
-              id="search-navbar"
-              class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Search..."
-            />
+              <form action="/search" method="get">
+                  <input
+                          type="text"
+                          id="search-navbar"
+                          name="query"
+                          class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                          placeholder="Cari Barang Mu Disini ..."
+                  />
+              </form>
           </div>
         </div>
         <!-- HAMBURGER MENU -->
@@ -256,115 +258,7 @@
                     </form>
                 </div>
             </div>
-            <span>Wishlist</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/cart/my"
-            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
-          >
-            <div class="text-center w-4 h-4 mr-2">
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <span>Keranjang Belanja</span>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/pesanan-saya"
-            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
-          >
-            <div class="text-center w-4 h-4 mr-2">
-              <i class="fa-solid fa-receipt"></i>
-            </div>
-            <span>Pesanan Saya</span>
-          </a>
-        </li>
-      </ul>
-      <div class="py-2">
-        <a
-          href="/admin/products/manage-products"
-          th:if="${isAdmin}"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-          >Admin Menu</a
-        >
-        <form action="/api/users/logout" method="post">
-          <input type="hidden" name="username" value="yourUsername" />
-          <input type="hidden" name="_csrf" value="${_csrf.token}" />
-          <button
-            type="submit"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
-          >
-            Sign out
-          </button>
-        </form>
-      </div>
-    </div>
-    <!-- Body -->
-    <div class="m-10">
-      <div class="lg:grid lg:grid-cols-4">
-        <div
-          th:each="product : ${products}"
-          class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-7"
-        >
-          <a th:href="@{'/product/detail/' + ${product.id}}">
-            <img
-              class="p-8 w-full h-80 object-cover object-center"
-              th:src="@{'/images/product/'+ ${product.image}}"
-              alt="product image"
-            />
-          </a>
-          <div class="px-5 pb-5">
-            <a th:href="@{'/product/detail/' + ${product.id}}">
-              <h5
-                class="text-xl font-semibold tracking-tight text-gray-900"
-                th:text="${product.name}"
-              ></h5>
-            </a>
-            <div class="flex items-center mt-2.5 mb-5">
-              <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                <svg
-                  class="w-4 h-4 text-yellow-300"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor"
-                  viewBox="0 0 22 20"
-                >
-                  <path
-                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                  />
-                </svg>
-                <!-- Repeat the SVG for the number of stars -->
-              </div>
-              <span
-                class="bg-[#e59018] text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3"
-                >5.0</span
-              >
-            </div>
-            <div class="flex items-center justify-between">
-              <span
-                class="text-3xl font-bold text-gray-900"
-                th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"
-              ></span>
-              <form action="/cart/add" method="post">
-                <input
-                  type="hidden"
-                  name="productId"
-                  th:value="${product.id}"
-                />
-                <input type="hidden" name="quantity" value="1" />
-                <button
-                  type="submit"
-                  class="text-white bg-[#e59018] hover:bg-[#AC690B] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                >
-                  Add to cart
-                </button>
-              </form>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>

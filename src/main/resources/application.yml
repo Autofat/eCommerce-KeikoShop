@@ -7,7 +7,7 @@ spring:
 
   datasource:
     username: root
-    password: 
+    password:
     url: jdbc:mysql://127.0.0.1:3306/keikoshop
     driver-class-name: com.mysql.cj.jdbc.Driver
 
@@ -17,16 +17,14 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
-  thymeleaf: # Thymeleaf
+  thymeleaf:
     cache: false
     mode: HTML
     encoding: UTF-8
     prefix: file:src/main/resources/templates/
-    resources: # Static resources
+    resources:
       static-locations: file:src/main/resources/static/
       cache:
         period: 0
-
-

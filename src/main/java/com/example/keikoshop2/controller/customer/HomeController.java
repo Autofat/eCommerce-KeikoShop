@@ -109,9 +109,32 @@ public class HomeController {
         model.addAttribute("cartItems", cartItems);
         model.addAttribute("isInWishlist", isInWishlist);
         model.addAttribute("wishlistId", wishlistId);
-        model.addAttribute("reviews", reviews);
+        model.addAttribute("reviews", reviews.isEmpty() ? null : reviews);
         model.addAttribute("averageRating", averageRating != null ? averageRating : 0.0);
         return "customer/detailProduct";
+    }
+
+    @GetMapping("/search")
+    public String searchProducts(@RequestParam("query") String query, Model model) {
+        List<Product> products = productService.searchProducts(query);
+        products.forEach(product -> {
+            Double averageRating = reviewService.getAverageRatingForProduct(product.getId());
+            product.setAverageRating(averageRating);
+        });
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = userService.findByEmail(email);
+        int userId = user.getId();
+        List<Cart> cartItems = cartService.getCartItemsByUserId(userId);
+
+        model.addAttribute("products", products);
+        model.addAttribute("cartItems", cartItems);
+        boolean isAdmin = checkIfUserIsAdmin();
+        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("products", products);
+        model.addAttribute("user", user);
+
+        return "customer/home";
     }
 
 }

@@ -31,6 +31,11 @@ public class ProductService implements IProductService {
     private final String uploadDir = "src/main/resources/static/images/product/";
 
     @Override
+    public List<Product> searchProducts(String query) {
+        return productRepository.findByNameContainingIgnoreCase(query);
+    }
+
+    @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
