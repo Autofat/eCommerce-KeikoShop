@@ -79,16 +79,14 @@
     </div>
   </nav>
   <!-- Dropdown menu -->
-  <div id="userDropdownHome" class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
+  <div id="userDropdownHome"
+    class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-      <div class="font-medium truncate text-black"
-           th:text="${user.email}">
+      <div class="font-medium truncate text-black" th:text="${user.email}">
         Keikoshop@email.com
       </div>
     </div>
-    <ul
-            class="py-2 text-sm text-gray-700"
-            aria-labelledby="dropdownInformationButton">
+    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownInformationButton">
       <li>
         <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
           <div class="text-center w-4 h-4 mr-2">
@@ -115,17 +113,13 @@
       </li>
     </ul>
     <div class="py-2">
-      <a
-              href="/admin/products/manage-products"
-              th:if="${isAdmin}"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
+      <a href="/admin/products/manage-products" th:if="${isAdmin}"
+        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
         Menu</a>
       <form action="/api/users/logout" method="post">
-        <input type="hidden" name="username" value="yourUsername"/>
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button
-                type="submit"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+        <input type="hidden" name="username" value="yourUsername" />
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
           Sign out
         </button>
       </form>
@@ -135,41 +129,37 @@
   <!-- Tabs Navigation -->
 
   <!-- AlertMessage -->
-  <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-6">  
-      <!-- Success Message -->
-      <div th:if="${successMessage != null}"
+  <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-6">
+    <!-- Success Message -->
+    <div th:if="${successMessage != null}"
       class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-auto max-w-7xl mb-2"
       role="alert">
       <span th:text="${successMessage}" class="block sm:inline"></span>
-      </div>
+    </div>
 
-      <!-- Error Message -->
-      <div
-      th:if="${errorMessage != null}"
+    <!-- Error Message -->
+    <div th:if="${errorMessage != null}"
       class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-auto max-w-7xl mb-2"
-      role="alert"
-      >
+      role="alert">
       <span th:text="${errorMessage}" class="block sm:inline"></span>
-      </div>  
+    </div>
   </div>
 
   <!-- Header -->
   <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-2 px-4 md:px-0">
     <div class="border-b border-gray-200">
       <nav class="flex space-x-6 px-4 pt-4 overflow-x-auto">
-        <a href="#" class="text-yellow-500 font-medium border-b-2 border-yellow-500 pb-2">Semua</a>
-        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Belum Bayar</a>
-        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Sedang Dikemas</a>
-        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Dikirim</a>
-        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Selesai</a>
-        <a href="#" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Dibatalkan</a>
+        <a href="/reviews/all" class="text-yellow-500 font-medium border-b-2 border-yellow-500 pb-2">Semua</a>
+        <a href="/reviews/unpaid" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Belum Bayar</a>
+        <a href="/reviews/completed" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Selesai</a>
+        <a href="/reviews/cancelled" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Dibatalkan</a>
       </nav>
     </div>
 
     <!-- Search Bar -->
     <div class="p-4">
       <div class="relative">
-        <input type="text" placeholder="Cari berdasarkan Nama Penjual, No. Pesanan atau Nama Produk"
+        <input type="text" placeholder="Cari berdasarkan No. Pesanan atau Nama Produk"
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
         <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
@@ -180,7 +170,8 @@
   </div>
 
   <!-- Product Details -->
-  <div th:each="transaction : ${transactions}" class="flex flex-col space-y-4 justify-center mt-3 max-w-4xl mx-auto px-4 md:px-0">
+  <div th:each="transaction : ${transactions}"
+    class="flex flex-col space-y-4 justify-center mt-3 max-w-4xl mx-auto px-4 md:px-0">
     <div class="w-full mx-auto px-4 py-4 bg-white rounded-lg shadow-lg">
       <div class="flex items-center justify-between">
         <img th:src="@{'/images/product/'+ ${transaction.products[0].image}}" alt="Product Image"
@@ -195,33 +186,31 @@
         </div>
         <div class="text-right">
           <p class="text-gray-400">Total Pesanan:</p>
-          <p class="text-[#e59018] font-bold" th:text="${'Rp. ' + #numbers.formatDecimal(transaction.totalPrice, 0, 'COMMA', 0, 'POINT')}"></p>
+          <p class="text-[#e59018] font-bold"
+            th:text="${'Rp. ' + #numbers.formatDecimal(transaction.totalPrice, 0, 'COMMA', 0, 'POINT')}"></p>
         </div>
       </div>
       <div class="mt-4 flex space-x-2">
         <!-- If Confirmed -->
-       <!-- Replace the existing Write Review button with this -->
-       <button th:if="${transaction.isConfirmed && !transaction.isRating}" 
-              type="button" 
-              data-modal-target="review-modal" 
-              data-modal-toggle="review-modal"
-              th:data-order-id="${transaction.orderId}"
-              onclick="openReviewModal(this.getAttribute('data-order-id'))"
-              class="bg-[#e59018] text-white px-4 py-2 rounded text-sm">
-        Write a review
+        <!-- Replace the existing Write Review button with this -->
+        <button th:if="${transaction.isConfirmed && !transaction.isRating}" type="button"
+          data-modal-target="review-modal" data-modal-toggle="review-modal" th:data-order-id="${transaction.orderId}"
+          onclick="openReviewModal(this.getAttribute('data-order-id'))"
+          class="bg-[#e59018] text-white px-4 py-2 rounded text-sm">
+          Write a review
         </button>
 
         <!-- If Paid -->
         <button th:if="${transaction.isPaid && !transaction.isCancelled && !transaction.isConfirmed}" type="button"
-        class="bg-blue-500 text-white px-4 py-2 rounded text-sm hover:cursor-default" disabled>
-        Waiting Confirmation
+          class="bg-blue-500 text-white px-4 py-2 rounded text-sm hover:cursor-default" disabled>
+          Waiting Confirmation
         </button>
-              <!-- If Hasn't Paid -->
+        <!-- If Hasn't Paid -->
         <div th:if="${!transaction.isPaid && !transaction.isCancelled}" class="flex flex-row justify-between w-full">
           <a th:href="@{/payment/{orderId}/cancel(orderId=${transaction.orderId})}"
             class="bg-red-500 text-white px-4 py-2 rounded text-sm">Cancel</a>
           <a th:href="@{/payment/{orderId}(orderId=${transaction.orderId})}"
-          class="bg-[#e59018] text-white px-4 py-2 rounded text-sm">Pay Now</a>
+            class="bg-[#e59018] text-white px-4 py-2 rounded text-sm">Pay Now</a>
         </div>
 
         <!-- If Cancelled -->
@@ -230,35 +219,42 @@
           Cancelled
         </button>
       </div>
-      
-       <!-- Review Modal -->
-       <div id="review-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full overflow-y-auto overflow-x-hidden bg-gray-900 bg-opacity-50 md:inset-0 md:h-full">
+
+      <!-- Review Modal -->
+      <div id="review-modal" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden h-full w-full overflow-y-auto overflow-x-hidden bg-gray-900 bg-opacity-50 md:inset-0 md:h-full">
         <input type="hidden" id="userId" th:value="${user.id}">
         <div class="relative my-8 mx-auto h-full w-[800px] md:h-auto">
           <div class="relative rounded-lg bg-white shadow p-6 space-y-4">
             <!-- Modal header -->
             <div class="flex items-start justify-between rounded-t">
               <h3 class="text-xl font-medium text-gray-900 underline">Write Reviews</h3>
-              <button type="button" class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900" data-modal-hide="review-modal">
-                <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              <button type="button"
+                class="ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+                data-modal-hide="review-modal">
+                <svg aria-hidden="true" class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
                 </svg>
               </button>
             </div>
-      
+
             <!-- Products container -->
             <div id="products-review-container" class="space-y-6">
               <!-- Product review cards will be inserted here -->
             </div>
-      
-            <button type="button" id="submit-all-reviews" class="w-full rounded-lg bg-[#e59018] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#AC690B] focus:outline-none focus:ring-4 focus:ring-primary-300">
+
+            <button type="button" id="submit-all-reviews"
+              class="w-full rounded-lg bg-[#e59018] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#AC690B] focus:outline-none focus:ring-4 focus:ring-primary-300">
               Submit All Reviews
             </button>
           </div>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 
   <template id="product-review-template">
     <div class="product-review-card border rounded-lg p-4">
@@ -276,152 +272,154 @@
       </div>
       <div class="review-container">
         <label class="mb-2 block text-sm font-medium text-gray-900">Your review</label>
-        <textarea class="review-text block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-[#e59018] focus:ring-[#e59018]" rows="4" placeholder="Write your review here..."></textarea>
+        <textarea
+          class="review-text block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-[#e59018] focus:ring-[#e59018]"
+          rows="4" placeholder="Write your review here..."></textarea>
       </div>
       <input type="hidden" class="product-id" value="">
     </div>
   </template>
- 
 
 
-   
-    <!-- Script -->
-    <!--Wajib-->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <script>
-      // Add this JavaScript
-      async function openReviewModal(orderId) {
-        const modal = document.getElementById('review-modal');
-        modal.dataset.orderId = orderId; // Store orderId in modal
-        
-        try {
-          const response = await fetch(`/api/transactions/${orderId}/products`);
-          const products = await response.json();
 
-          console.log(products);
-          
-          const container = document.getElementById('products-review-container');
-          container.innerHTML = '';
-          const template = document.getElementById('product-review-template');
-      
-          products.forEach(product => {
-            const clone = template.content.cloneNode(true);
-            const card = clone.querySelector('.product-review-card');
-            
-            card.querySelector('.product-name').textContent = product.name;
-            card.querySelector('.product-id').value = product.id;
-            
-            initializeStarRating(card.querySelector('.star-container'));
-            container.appendChild(card);
-          });
-        } catch (error) {
-          console.error('Error loading products:', error);
-        }
+
+  <!-- Script -->
+  <!--Wajib-->
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  <script>
+    // Add this JavaScript
+    async function openReviewModal(orderId) {
+      const modal = document.getElementById('review-modal');
+      modal.dataset.orderId = orderId; // Store orderId in modal
+
+      try {
+        const response = await fetch(`/api/transactions/${orderId}/products`);
+        const products = await response.json();
+
+        console.log(products);
+
+        const container = document.getElementById('products-review-container');
+        container.innerHTML = '';
+        const template = document.getElementById('product-review-template');
+
+        products.forEach(product => {
+          const clone = template.content.cloneNode(true);
+          const card = clone.querySelector('.product-review-card');
+
+          card.querySelector('.product-name').textContent = product.name;
+          card.querySelector('.product-id').value = product.id;
+
+          initializeStarRating(card.querySelector('.star-container'));
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Error loading products:', error);
       }
-      
-      function initializeStarRating(container) {
-        const stars = container.querySelectorAll('.star');
-        const ratingInput = container.querySelector('.rating-input');
-      
-        stars.forEach(star => {
-          star.addEventListener('click', () => {
-            const value = star.dataset.value;
-            ratingInput.value = value;
-            stars.forEach(s => {
-              s.style.color = s.dataset.value <= value ? '#e59018' : '#ccc';
-            });
+    }
+
+    function initializeStarRating(container) {
+      const stars = container.querySelectorAll('.star');
+      const ratingInput = container.querySelector('.rating-input');
+
+      stars.forEach(star => {
+        star.addEventListener('click', () => {
+          const value = star.dataset.value;
+          ratingInput.value = value;
+          stars.forEach(s => {
+            s.style.color = s.dataset.value <= value ? '#e59018' : '#ccc';
           });
         });
-      }
-      
-      document.getElementById('submit-all-reviews').addEventListener('click', async () => {
-        const modal = document.getElementById('review-modal');
-        const orderId = modal.dataset.orderId;
-        const userId = document.getElementById('userId').value;
-        const cards = document.querySelectorAll('.product-review-card');
-        const reviews = [];
-      
-        cards.forEach(card => {
-          reviews.push({
-            productId: parseInt(card.querySelector('.product-id').value),
-            rating: parseInt(card.querySelector('.rating-input').value),
-            comment: card.querySelector('.review-text').value,
-            userId: parseInt(userId)
-          });
-        });
+      });
+    }
 
-        const requestBody = {
-          reviews: reviews  // Wrap array in reviews property
-        };
+    document.getElementById('submit-all-reviews').addEventListener('click', async () => {
+      const modal = document.getElementById('review-modal');
+      const orderId = modal.dataset.orderId;
+      const userId = document.getElementById('userId').value;
+      const cards = document.querySelectorAll('.product-review-card');
+      const reviews = [];
+
+      cards.forEach(card => {
+        reviews.push({
+          productId: parseInt(card.querySelector('.product-id').value),
+          rating: parseInt(card.querySelector('.rating-input').value),
+          comment: card.querySelector('.review-text').value,
+          userId: parseInt(userId)
+        });
+      });
+
+      const requestBody = {
+        reviews: reviews  // Wrap array in reviews property
+      };
 
       console.log(requestBody);
-      
-        try {
-          const response = await fetch(`/reviews/add/${orderId}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
-          });
-      
-          if (response.ok) {
-            window.location.reload();
-          }
-        } catch (error) {
-          console.error('Error submitting reviews:', error);
+
+      try {
+        const response = await fetch(`/reviews/add/${orderId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody)
+        });
+
+        if (response.ok) {
+          window.location.reload();
         }
-      });
-      </script>
-    <script>
-      // Get all the star elements
-      const stars = document.querySelectorAll('.star');
-      const ratingInput = document.getElementById('rating-input');
-
-      // Add event listener to each star
-      stars.forEach((star, index) => {
-        star.addEventListener('mouseover', () => {
-          // Update the star colors on hover
-          updateStarColors(index + 1);
-        });
-
-        star.addEventListener('mouseout', () => {
-          // Reset the star colors when mouse is out
-          updateStarColors(ratingInput.value);
-        });
-
-        star.addEventListener('click', () => {
-          // Set the rating value
-          ratingInput.value = index + 1;
-
-          // Update the star colors
-          updateStarColors(index + 1);
-        });
-      });
-
-      // Function to update the star colors
-      function updateStarColors(rating) {
-        stars.forEach((star, index) => {
-          star.style.color = index < rating ? '#FACC15' : '#ccc';
-        });
+      } catch (error) {
+        console.error('Error submitting reviews:', error);
       }
+    });
+  </script>
+  <script>
+    // Get all the star elements
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('rating-input');
 
-      // Add event listener to the submit button
-      document.querySelector('.submit-review').addEventListener('click', () => {
-        // Get the rating value from the input
-        const rating = ratingInput.value;
+    // Add event listener to each star
+    stars.forEach((star, index) => {
+      star.addEventListener('mouseover', () => {
+        // Update the star colors on hover
+        updateStarColors(index + 1);
       });
-    </script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const dropdownToggle = document.getElementById('userDropdownHomeToggle');
-        const dropdown = document.getElementById('userDropdownHome');
-        dropdownToggle.addEventListener('click', function () {
-          dropdown.classList.toggle('hidden');
-        });
+      star.addEventListener('mouseout', () => {
+        // Reset the star colors when mouse is out
+        updateStarColors(ratingInput.value);
       });
-    </script>
+
+      star.addEventListener('click', () => {
+        // Set the rating value
+        ratingInput.value = index + 1;
+
+        // Update the star colors
+        updateStarColors(index + 1);
+      });
+    });
+
+    // Function to update the star colors
+    function updateStarColors(rating) {
+      stars.forEach((star, index) => {
+        star.style.color = index < rating ? '#FACC15' : '#ccc';
+      });
+    }
+
+    // Add event listener to the submit button
+    document.querySelector('.submit-review').addEventListener('click', () => {
+      // Get the rating value from the input
+      const rating = ratingInput.value;
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const dropdownToggle = document.getElementById('userDropdownHomeToggle');
+      const dropdown = document.getElementById('userDropdownHome');
+      dropdownToggle.addEventListener('click', function () {
+        dropdown.classList.toggle('hidden');
+      });
+    });
+  </script>
 
 </body>
 
