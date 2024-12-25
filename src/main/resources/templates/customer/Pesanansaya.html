@@ -59,28 +59,39 @@
     </div>
     <!-- HAMBURGER MENU -->
     <div class="flex justify-end lg:order-2">
-      <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false"
-        class="lg:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1">
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-        </svg>
-        <span class="sr-only">Search</span>
-      </button>
-      <button data-collapse-toggle="navbar-search" type="button"
-        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        aria-controls="navbar-search" aria-expanded="false">
+      <button
+              id="userDropdownHomeToggleMobile"
+              type="button"
+              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+      >
         <span class="sr-only">Open main menu</span>
-        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M1 1h15M1 7h15M1 13h15" />
+        <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+        >
+          <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 1h15M1 7h15M1 13h15"
+          />
         </svg>
       </button>
     </div>
   </nav>
+<<<<<<< HEAD
   <!-- Dropdown menu -->
   <div id="userDropdownHome"
     class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
+=======
+  <!-- Dropdown menu Desktop -->
+  <div id="userDropdownHome"
+       class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
+>>>>>>> 2dd2ed0d0ab429879900c9aaf11f4e7f378503af
     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
       <div class="font-medium truncate text-black" th:text="${user.email}">
         Keikoshop@email.com
@@ -120,6 +131,61 @@
         <input type="hidden" name="username" value="yourUsername" />
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+          Sign out
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- Dropdown menu Mobile -->
+  <div id="userDropdownHomeMobile"
+       class="absolute hidden right-10 top-36 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
+  >
+    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+      <div class="font-medium truncate text-black" th:text="${user.email}">
+        Keikoshop@email.com
+      </div>
+    </div>
+    <ul
+            class="py-2 text-sm text-gray-700"
+            aria-labelledby="dropdownInformationButton"
+    >
+      <li>
+        <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <div class="text-center w-4 h-4 mr-2">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <span>Wishlist</span>
+        </a>
+      </li>
+      <li>
+        <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <div class="text-center w-4 h-4 mr-2">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <span>Keranjang Belanja</span>
+        </a>
+      </li>
+      <li>
+        <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <div class="text-center w-4 h-4 mr-2">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+          <span>Pesanan Saya</span>
+        </a>
+      </li>
+    </ul>
+    <div class="py-2">
+      <a
+              href="/admin/products/manage-products"
+              th:if="${isAdmin}"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
+        Menu</a>
+      <form action="/api/users/logout" method="post">
+        <input type="hidden" name="username" value="yourUsername"/>
+        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+        <button
+                type="submit"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
           Sign out
         </button>
       </form>
@@ -383,6 +449,7 @@
         updateStarColors(index + 1);
       });
 
+<<<<<<< HEAD
       star.addEventListener('mouseout', () => {
         // Reset the star colors when mouse is out
         updateStarColors(ratingInput.value);
@@ -417,6 +484,21 @@
       const dropdown = document.getElementById('userDropdownHome');
       dropdownToggle.addEventListener('click', function () {
         dropdown.classList.toggle('hidden');
+=======
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dropdownToggle = document.getElementById("userDropdownHomeToggle");
+      const dropdownToggleMobile = document.getElementById("userDropdownHomeToggleMobile");
+      const dropdown = document.getElementById("userDropdownHome");
+      const dropdownMobile = document.getElementById("userDropdownHomeMobile");
+
+      dropdownToggle.addEventListener("click", function () {
+        dropdown.classList.toggle("hidden");
+      });
+
+      dropdownToggleMobile.addEventListener("click", function () {
+        dropdownMobile.classList.toggle("hidden");
+>>>>>>> 2dd2ed0d0ab429879900c9aaf11f4e7f378503af
       });
     });
   </script>
