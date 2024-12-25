@@ -84,7 +84,7 @@
           </ul>
         </div>
         <!-- SEARCH BAR -->
-        <div class="col-start-2 col-span-3 p-5">
+        <div class="col-start-2 col-span-3 p-5 ">
           <div
             class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block"
           >
@@ -121,35 +121,9 @@
         <!-- HAMBURGER MENU -->
         <div class="flex justify-end lg:order-2">
           <button
-            type="button"
-            data-collapse-toggle="navbar-search"
-            aria-controls="navbar-search"
-            aria-expanded="false"
-            class="lg:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 me-1"
-          >
-            <svg
-              class="w-5 h-5"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
-            <span class="sr-only">Search</span>
-          </button>
-          <button
-            data-collapse-toggle="navbar-search"
-            type="button"
-            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-            aria-controls="navbar-search"
-            aria-expanded="false"
+                id="userDropdownHomeToggleMobile"
+                type="button"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
           >
             <span class="sr-only">Open main menu</span>
             <svg
@@ -171,63 +145,150 @@
         </div>
       </div>
     </nav>
-    <!-- Dropdown menu -->
-    <div
-      id="userDropdownHome"
-      class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2"
-    >
-      <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-        <div class="font-medium truncate text-black" th:text="${user.email}">
-          Keikoshop@email.com
+    <!-- Dropdown menu Desktop -->
+    <div id="userDropdownHome"
+         class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
+        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div class="font-medium truncate text-black"
+                 th:text="${user.email}">
+                Keikoshop@email.com
+            </div>
         </div>
-      </div>
-      <ul
-        class="py-2 text-sm text-gray-700"
-        aria-labelledby="dropdownInformationButton"
-      >
-        <li>
-            <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <span>Wishlist</span>
-            </a>
-        </li>
-        <li>
-            <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-                <span>Keranjang Belanja</span>
-            </a>
-        </li>
-        <li>
-            <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-receipt"></i>
-                </div>
-                <span>Pesanan Saya</span>
-            </a>
-        </li>
-    </ul>
-    <div class="py-2">
-        <a
-                href="/admin/products/manage-products"
-                th:if="${isAdmin}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-            Menu</a>
-        <form action="/api/users/logout" method="post">
-            <input type="hidden" name="username" value="yourUsername"/>
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button
-                    type="submit"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
-                Sign out
-            </button>
+        <ul
+                class="py-2 text-sm text-gray-700"
+                aria-labelledby="dropdownInformationButton">
+            <li>
+                <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+                    <div class="text-center w-4 h-4 mr-2">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <span>Wishlist</span>
+                </a>
+            </li>
+            <li>
+                <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+                    <div class="text-center w-4 h-4 mr-2">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <span>Keranjang Belanja</span>
+                </a>
+            </li>
+            <li>
+                <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+                    <div class="text-center w-4 h-4 mr-2">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <span>Pesanan Saya</span>
+                </a>
+            </li>
+        </ul>
+        <div class="py-2">
+            <a
+                    href="/admin/products/manage-products"
+                    th:if="${isAdmin}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
+                Menu</a>
+            <form action="/api/users/logout" method="post">
+                <input type="hidden" name="username" value="yourUsername"/>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <button
+                        type="submit"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+                    Sign out
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Dropdown menu Mobile -->
+    <div id="userDropdownHomeMobile"
+            class="absolute hidden right-10 top-20 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
+    >
+        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div class="font-medium truncate text-black" th:text="${user.email}">
+                Keikoshop@email.com
+            </div>
+        </div>
+        <ul
+                class="py-2 text-sm text-gray-700"
+                aria-labelledby="dropdownInformationButton"
+        >
+            <li>
+                <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+                    <div class="text-center w-4 h-4 mr-2">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <span>Wishlist</span>
+                </a>
+            </li>
+            <li>
+                <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+                    <div class="text-center w-4 h-4 mr-2">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <span>Keranjang Belanja</span>
+                </a>
+            </li>
+            <li>
+                <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+                    <div class="text-center w-4 h-4 mr-2">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <span>Pesanan Saya</span>
+                </a>
+            </li>
+        </ul>
+        <div class="py-2">
+            <a
+                    href="/admin/products/manage-products"
+                    th:if="${isAdmin}"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
+                Menu</a>
+            <form action="/api/users/logout" method="post">
+                <input type="hidden" name="username" value="yourUsername"/>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                <button
+                        type="submit"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+                    Sign out
+                </button>
+            </form>
+        </div>
+    </div>
+<!-- Body -->
+<!--  Search Bar  -->
+<div class="flex items-center justify-center max-w-xl md:hidden">
+    <div class="relative mt-5">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+            </svg>
+            <span class="sr-only">Search icon</span>
+        </div>
+        <form action="/search" method="get">
+            <input
+                type="text"
+                id="search-navbar"
+                name="query"
+                class="block w-full p-3 pl-12 text-lg text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Cari Barang Mu Disini ..."
+            />
         </form>
     </div>
 </div>
-<!-- Body -->
+
+<!--Items-->
 <div class="m-10">
     <div class="lg:grid lg:grid-cols-4">
         <div th:each="product : ${products}" class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-7">
@@ -260,19 +321,25 @@
             </div>
         </div>
     </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const dropdownToggle = document.getElementById(
-          "userDropdownHomeToggle"
-        );
-        const dropdown = document.getElementById("userDropdownHome");
-        dropdownToggle.addEventListener("click", function () {
-          dropdown.classList.toggle("hidden");
+        document.addEventListener("DOMContentLoaded", function () {
+            const dropdownToggle = document.getElementById("userDropdownHomeToggle");
+            const dropdownToggleMobile = document.getElementById("userDropdownHomeToggleMobile");
+            const dropdown = document.getElementById("userDropdownHome");
+            const dropdownMobile = document.getElementById("userDropdownHomeMobile");
+
+            dropdownToggle.addEventListener("click", function () {
+                dropdown.classList.toggle("hidden");
+            });
+
+            dropdownToggleMobile.addEventListener("click", function () {
+                dropdownMobile.classList.toggle("hidden");
+            });
         });
-      });
     </script>
   </body>
 </html>
