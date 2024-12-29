@@ -29,69 +29,77 @@
 <body class="bg-[#FFFAFA] font-[Poppins]">
   <!-- NAVBAR -->
   <nav class="bg-white border-gray-200 border-b">
-    <div class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4">
+    <div
+      class="min-w-screen-xl px-10 flex-wrap items-center justify-between mx-auto p-4 flex flex-row">
       <!-- LOGO -->
-      <a href="/home" class="flex items-center justify-center rtl:space-x-reverse">
+      <a
+        href="/home"
+        class="flex items-center justify-center rtl:space-x-reverse">
         <img src="/images/Logo.png" class="h-24" alt="KeikoShop Logo" />
         <h1 class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
           Keikoshop
         </h1>
       </a>
       <!-- NAVIGATION LINKS -->
-      <div class="hidden lg:flex items-center justify-center">
-        <div class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto">
-          <div class="mr-9">
-            <i class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
+      <div
+        class="hidden lg:flex items-center justify-center ml-auto">
+        <div
+          class="hidden lg:flex  items-center justify-center mx-auto">
+          <div class="mr-9 flex items-center relative">
+            <a href="/cart/my">
+              <i
+                class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
+              <div
+                th:if="${cartItems.size() > 0}"
+                class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">
+                <h1 th:text="${cartItems.size()}"></h1>
+              </div>
+            </a>
           </div>
           <div class="h-10 w-px bg-gray-400"></div>
         </div>
         <ul class="flex space-x-2 items-center ml-6">
           <li>
-            <button id="userDropdownHomeToggle"
-              class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 0 flex justify-center items-center"
+            <button
+              id="userDropdownHomeToggle"
+              class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-2 flex justify-center items-center"
               type="button">
-              <span class="me-2">Hi, <span th:text="${user.username}"></span></span>
+              <span class="me-2">Hi, <span
+                  th:text="${user.username}"></span></span>
             </button>
           </li>
         </ul>
       </div>
-
-    </div>
-    <!-- HAMBURGER MENU -->
-    <div class="flex justify-end lg:order-2">
-      <button
-              id="userDropdownHomeToggleMobile"
-              type="button"
-              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
-      >
-        <span class="sr-only">Open main menu</span>
-        <svg
-                class="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 17 14"
+      <!-- HAMBURGER MENU -->
+      <div class="flex justify-end lg:order-2">
+        <button
+                id="userDropdownHomeToggleMobile"
+                type="button"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
         >
-          <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 1h15M1 7h15M1 13h15"
-          />
-        </svg>
-      </button>
+          <span class="sr-only">Open main menu</span>
+          <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 17 14"
+          >
+            <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M1 1h15M1 7h15M1 13h15"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </nav>
-<<<<<<< HEAD
-  <!-- Dropdown menu -->
-  <div id="userDropdownHome"
-    class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
-=======
   <!-- Dropdown menu Desktop -->
   <div id="userDropdownHome"
-       class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
->>>>>>> 2dd2ed0d0ab429879900c9aaf11f4e7f378503af
+    class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2 z-50">
     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
       <div class="font-medium truncate text-black" th:text="${user.email}">
         Keikoshop@email.com
@@ -138,17 +146,13 @@
   </div>
   <!-- Dropdown menu Mobile -->
   <div id="userDropdownHomeMobile"
-       class="absolute hidden right-10 top-36 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
-  >
+    class="absolute hidden right-10 top-36 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50">
     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
       <div class="font-medium truncate text-black" th:text="${user.email}">
         Keikoshop@email.com
       </div>
     </div>
-    <ul
-            class="py-2 text-sm text-gray-700"
-            aria-labelledby="dropdownInformationButton"
-    >
+    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownInformationButton">
       <li>
         <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
           <div class="text-center w-4 h-4 mr-2">
@@ -175,17 +179,13 @@
       </li>
     </ul>
     <div class="py-2">
-      <a
-              href="/admin/products/manage-products"
-              th:if="${isAdmin}"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
+      <a href="/admin/products/manage-products" th:if="${isAdmin}"
+        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
         Menu</a>
       <form action="/api/users/logout" method="post">
-        <input type="hidden" name="username" value="yourUsername"/>
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button
-                type="submit"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+        <input type="hidden" name="username" value="yourUsername" />
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+        <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
           Sign out
         </button>
       </form>
@@ -212,26 +212,71 @@
   </div>
 
   <!-- Header -->
-  <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-2 px-4 md:px-0">
+  <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-2 px-4 md:px-0 z-0">
     <div class="border-b border-gray-200">
-      <nav class="flex space-x-6 px-4 pt-4 overflow-x-auto">
-        <a href="/reviews/all" class="text-yellow-500 font-medium border-b-2 border-yellow-500 pb-2">Semua</a>
-        <a href="/reviews/unpaid" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Belum Bayar</a>
-        <a href="/reviews/completed" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Selesai</a>
-        <a href="/reviews/cancelled" class="text-gray-500 hover:text-yellow-500 font-medium pb-2">Dibatalkan</a>
+      <nav class="flex space-x-6 px-4 pt-4 overflow-x-auto relative" id="filterNav">
+        <!-- Animated indicator -->
+        <div class="absolute bottom-0 transition-all duration-300 h-0.5 bg-yellow-500" id="indicator"></div>
+
+        <a th:href="@{/pesanan-saya(query=${query})}" class="font-medium pb-2"
+          th:classappend="${filter == null} ? 'text-yellow-500' : 'text-gray-500 hover:text-yellow-500'"
+          data-filter="all">
+          Semua
+        </a>
+
+        <a th:href="@{/pesanan-saya(filter='unpaid', query=${query})}" class="font-medium pb-2"
+          th:classappend="${filter == 'unpaid'} ? 'text-yellow-500' : 'text-gray-500 hover:text-yellow-500'"
+          data-filter="unpaid">
+          Belum Bayar
+        </a>
+        <a th:href="@{/pesanan-saya(filter='wait_confirm', query=${query})}" class="font-medium pb-2"
+          th:classappend="${filter == 'wait_confirm'} ? 'text-yellow-500' : 'text-gray-500 hover:text-yellow-500'"
+          data-filter="wait_confirm">
+          Menunggu Konfirmasi
+        </a>
+
+        <a th:href="@{/pesanan-saya(filter='confirmed', query=${query})}" class="font-medium pb-2"
+          th:classappend="${filter == 'confirmed'} ? 'text-yellow-500' : 'text-gray-500 hover:text-yellow-500'"
+          data-filter="confirmed">
+          Selesai
+        </a>
+
+        <a th:href="@{/pesanan-saya(filter='cancelled', query=${query})}" class="font-medium pb-2"
+          th:classappend="${filter == 'cancelled'} ? 'text-yellow-500' : 'text-gray-500 hover:text-yellow-500'"
+          data-filter="cancelled">
+          Dibatalkan
+        </a>
       </nav>
     </div>
-
     <!-- Search Bar -->
     <div class="p-4">
-      <div class="relative">
-        <input type="text" placeholder="Cari berdasarkan No. Pesanan atau Nama Produk"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
-        <span class="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
+      <form action="/pesanan-saya" method="get" class="relative">
+        <input type="text" name="query" th:value="${query}" placeholder="Cari berdasarkan No. Pesanan atau Nama Produk"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 pr-10">
+
+        <!-- X button - only shows when there's a query -->
+        <a th:if="${query != null and !query.empty}" href="/pesanan-saya"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd"
+              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+              clip-rule="evenodd" />
           </svg>
-        </span>
-      </div>
+        </a>
+      </form>
+    </div>
+  </div>
+
+  <!-- Container untuk Product List dan Empty State -->
+  <div class="flex flex-col space-y-4 justify-center mt-3 max-w-4xl mx-auto px-4 md:px-0">
+    <!-- Empty State Message -->
+    <div th:if="${transactions.empty}" class="bg-white rounded-lg shadow-lg p-8 text-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+      </svg>
+      <h3 class="text-xl font-medium text-gray-900 mb-2">Pesanan tidak ditemukan</h3>
+      <p class="text-gray-500">Belum ada pesanan yang sesuai dengan filter yang dipilih</p>
     </div>
   </div>
 
@@ -449,7 +494,6 @@
         updateStarColors(index + 1);
       });
 
-<<<<<<< HEAD
       star.addEventListener('mouseout', () => {
         // Reset the star colors when mouse is out
         updateStarColors(ratingInput.value);
@@ -478,13 +522,7 @@
     });
   </script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const dropdownToggle = document.getElementById('userDropdownHomeToggle');
-      const dropdown = document.getElementById('userDropdownHome');
-      dropdownToggle.addEventListener('click', function () {
-        dropdown.classList.toggle('hidden');
-=======
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const dropdownToggle = document.getElementById("userDropdownHomeToggle");
@@ -498,7 +536,44 @@
 
       dropdownToggleMobile.addEventListener("click", function () {
         dropdownMobile.classList.toggle("hidden");
->>>>>>> 2dd2ed0d0ab429879900c9aaf11f4e7f378503af
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const nav = document.getElementById('filterNav');
+      const indicator = document.getElementById('indicator');
+      const links = nav.querySelectorAll('a');
+
+      // Function to update indicator position and text colors
+      function updateIndicator(activeElem) {
+        // Update indicator position
+        indicator.style.width = `${activeElem.offsetWidth}px`;
+        indicator.style.left = `${activeElem.offsetLeft}px`;
+
+        // Update text colors
+        links.forEach(link => {
+          // Reset all links to default color
+          link.classList.remove('text-yellow-500');
+          link.classList.add('text-gray-500');
+        });
+
+        // Set active link to yellow
+        activeElem.classList.remove('text-gray-500');
+        activeElem.classList.add('text-yellow-500');
+      }
+
+      // Set initial position and color
+      const currentFilter = new URLSearchParams(window.location.search).get('filter') || 'all';
+      const activeLink = document.querySelector(`[data-filter="${currentFilter}"]`) || links[0];
+      updateIndicator(activeLink);
+
+      // Update indicator position and colors when clicking links
+      links.forEach(link => {
+        link.addEventListener('click', function (e) {
+          updateIndicator(this);
+        });
       });
     });
   </script>

@@ -1,5 +1,6 @@
 package com.example.keikoshop2.controller.customer;
 
+import com.example.keikoshop2.model.Cart;
 import com.example.keikoshop2.model.Review;
 import com.example.keikoshop2.model.Transactions;
 import com.example.keikoshop2.service.IReviewService;
@@ -33,6 +34,12 @@ public class ReviewController {
     private final PaymentService paymentService;
     @Autowired
     private final UserService userService;
+
+    private boolean checkIfUserIsAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_admin"));
+    }
 
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews() {
@@ -112,7 +119,7 @@ public class ReviewController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
         List<Transactions> transactions = paymentService.getTransactionsByUserId(user.getId());
-        
+
         model.addAttribute("transactions", transactions);
         model.addAttribute("user", user);
         return "reviews";
@@ -123,10 +130,10 @@ public class ReviewController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
         List<Transactions> transactions = paymentService.getTransactionsByUserId(user.getId())
-            .stream()
-            .filter(transaction -> !transaction.IsPaid())
-            .collect(Collectors.toList());
-        
+                .stream()
+                .filter(transaction -> !transaction.IsPaid())
+                .collect(Collectors.toList());
+
         model.addAttribute("transactions", transactions);
         model.addAttribute("user", user);
         return "reviews";
@@ -137,9 +144,9 @@ public class ReviewController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
         List<Transactions> transactions = paymentService.getTransactionsByUserId(user.getId())
-            .stream()
-            .filter(transaction -> transaction.IsPaid() && transaction.isConfirmed())
-            .collect(Collectors.toList());
+                .stream()
+                .filter(transaction -> transaction.IsPaid() && transaction.isConfirmed())
+                .collect(Collectors.toList());
 
         model.addAttribute("transactions", transactions);
         model.addAttribute("user", user);
@@ -151,12 +158,38 @@ public class ReviewController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByEmail(auth.getName());
         List<Transactions> transactions = paymentService.getTransactionsByUserId(user.getId())
-            .stream()
-            .filter(transaction -> transaction.isCancelled())
-            .collect(Collectors.toList());
+                .stream()
+                .filter(transaction -> transaction.isCancelled())
+                .collect(Collectors.toList());
 
         model.addAttribute("transactions", transactions);
         model.addAttribute("user", user);
         return "reviews";
     }
+
+    @GetMapping("/search")
+    public String searchPesanan(@RequestParam("query") String query, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = userService.findByEmail(email);
+        boolean isAdmin = checkIfUserIsAdmin();
+
+        // Lakukan pencarian berdasarkan nomor pesanan atau nama produk
+        // Ambil semua transaksi pengguna
+        List<Transactions> transactions = paymentService.getTransactionsByUserId(user.getId());
+
+        // Filter transaksi berdasarkan nomor pesanan atau nama produk
+        List<Transactions> filteredTransactions = transactions.stream()
+                .filter(transaction -> transaction.getOrderId().contains(query) ||
+                        transaction.getProducts().stream()
+                                .anyMatch(product -> product.getName().toLowerCase().contains(query.toLowerCase())))
+                .collect(Collectors.toList());
+
+        model.addAttribute("transactions", filteredTransactions);
+        model.addAttribute("isAdmin", isAdmin);
+        model.addAttribute("user", user);
+        model.addAttribute("query", query);
+        return "customer/Pesanansaya";
+    }
+
 }

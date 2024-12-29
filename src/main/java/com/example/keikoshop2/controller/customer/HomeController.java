@@ -30,7 +30,8 @@ public class HomeController {
 
     @Autowired
     public HomeController(UserService userService, IProductService productService, ICartService cartService,
-                          IPaymentService paymentService, IWishlistService wishlistService, ReviewService reviewService, ObjectMapper objectMapper) {
+            IPaymentService paymentService, IWishlistService wishlistService, ReviewService reviewService,
+            ObjectMapper objectMapper) {
         this.userService = userService;
         this.productService = productService;
         this.cartService = cartService;
@@ -68,15 +69,48 @@ public class HomeController {
 
     // masih sementara
     @GetMapping("/pesanan-saya")
-    public String showPesananSaya(Model model) {
+    public String showPesananSaya(Model model,
+            @RequestParam(value = "query", required = false, defaultValue = "") String query,
+            @RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         User user = userService.findByEmail(email);
         boolean isAdmin = checkIfUserIsAdmin();
+        List<Cart> cartItems = cartService.getCartItemsByUserId(user.getId());
         List<Transactions> transactions = paymentService.getTransactionsByUserId(user.getId());
+
+        if (query != null && !query.isEmpty()) {
+            transactions = transactions.stream()
+                    .filter(transaction -> transaction.getOrderId().contains(query) ||
+                            transaction.getProducts().stream()
+                                    .anyMatch(product -> product.getName().toLowerCase().contains(query.toLowerCase())))
+                    .collect(Collectors.toList());
+        }
+
+        if (filter != null && !filter.isEmpty()) {
+            transactions = transactions.stream()
+                    .filter(transaction -> {
+                        switch (filter.toLowerCase()) {
+                            case "cancelled":
+                                return transaction.isCancelled();
+                            case "confirmed":
+                                return transaction.isConfirmed();
+                            case "unpaid":
+                                return !transaction.IsPaid();
+                            case "wait_confirm":
+                                return !transaction.isConfirmed() && !transaction.isCancelled();
+                            default:
+                                return true;
+                        }
+                    })
+                    .collect(Collectors.toList());
+        }
+
+        model.addAttribute("cartItems", cartItems);
         model.addAttribute("transactions", transactions);
         model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("user", user);
+        model.addAttribute("query", query);
         return "customer/Pesanansaya";
 
     }
