@@ -11,16 +11,17 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
       integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
+      referrerpolicy="no-referrer"
+    />
     <!-- Add Google Fonts Import -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
     <!--    Library JS-->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!--    CSRF Token-->
     <meta name="_csrf" th:content="${_csrf?.token}" />
@@ -29,7 +30,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet" />
+      rel="stylesheet"
+    />
   </head>
   <body class="bg-[#FFFAFA] font-[Poppins]">
     <div class="w-full bg-black">
@@ -41,11 +43,13 @@
     <!-- Navbar -->
     <nav class="bg-white border-gray-200 border-b">
       <div
-        class="min-w-screen-xl px-10 flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5">
+        class="min-w-screen-xl px-10 flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5"
+      >
         <!-- LOGO -->
         <a
           href="/home"
-          class="flex items-center justify-center rtl:space-x-reverse">
+          class="flex items-center justify-center rtl:space-x-reverse"
+        >
           <img src="/images/Logo.png" class="h-24" alt="KeikoShop Logo" />
           <h1 class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
             Keikoshop
@@ -53,16 +57,20 @@
         </a>
         <!-- NAVIGATION LINKS -->
         <div
-          class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto">
+          class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto"
+        >
           <div
-            class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto">
+            class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto"
+          >
             <div class="mr-9 flex items-center relative">
               <a href="/cart/my">
                 <i
-                  class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
+                  class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"
+                ></i>
                 <div
                   th:if="${cartItems.size() > 0}"
-                  class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">
+                  class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2"
+                >
                   <h1 th:text="${cartItems.size()}"></h1>
                 </div>
               </a>
@@ -74,9 +82,11 @@
               <button
                 id="userDropdownHomeToggle"
                 class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-2 flex justify-center items-center"
-                type="button">
-                <span class="me-2">Hi, <span
-                    th:text="${user.username}"></span></span>
+                type="button"
+              >
+                <span class="me-2"
+                  >Hi, <span th:text="${user.username}"></span
+                ></span>
               </button>
             </li>
           </ul>
@@ -84,10 +94,12 @@
         <!-- Middle Bar -->
         <div class="col-start-2 col-span-3 p-5">
           <div
-            class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block">
+            class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block"
+          >
             <h1
               class="text-center text-2xl font-bold"
-              th:text="${cartItems.size() == 0 ? 'Cart' : 'Cart (' + cartItems.size() + ')'}">
+              th:text="${cartItems.size() == 0 ? 'Cart' : 'Cart (' + cartItems.size() + ')'}"
+            >
               Cart
             </h1>
           </div>
@@ -95,24 +107,24 @@
         <!-- HAMBURGER MENU -->
         <div class="flex justify-end lg:order-2">
           <button
-                  id="userDropdownHomeToggleMobile"
-                  type="button"
-                  class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+            id="userDropdownHomeToggleMobile"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
           >
             <span class="sr-only">Open main menu</span>
             <svg
-                    class="w-5 h-5"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 17 14"
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
             >
               <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M1 1h15M1 7h15M1 13h15"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>
           </button>
@@ -120,21 +132,24 @@
       </div>
     </nav>
     <!-- Dropdown menu Desktop -->
-    <div id="userDropdownHome"
-      class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
+    <div
+      id="userDropdownHome"
+      class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2"
+    >
       <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-        <div class="font-medium truncate text-black"
-          th:text="${user.email}">
+        <div class="font-medium truncate text-black" th:text="${user.email}">
           Keikoshop@email.com
         </div>
       </div>
       <ul
         class="py-2 text-sm text-gray-700"
-        aria-labelledby="dropdownInformationButton">
+        aria-labelledby="dropdownInformationButton"
+      >
         <li>
           <a
             href="/wishlist/my"
-            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
             <div class="text-center w-4 h-4 mr-2">
               <i class="fa-solid fa-heart"></i>
             </div>
@@ -144,7 +159,8 @@
         <li>
           <a
             href="/cart/my"
-            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
             <div class="text-center w-4 h-4 mr-2">
               <i class="fa-solid fa-cart-shopping"></i>
             </div>
@@ -152,7 +168,10 @@
           </a>
         </li>
         <li>
-          <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <a
+            href="/pesanan-saya"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
             <div class="text-center w-4 h-4 mr-2">
               <i class="fa-solid fa-receipt"></i>
             </div>
@@ -160,7 +179,10 @@
           </a>
         </li>
         <li>
-          <a href="/faq" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <a
+            href="/faq"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
             <div class="text-center w-4 h-4 mr-2">
               <i class="fa-solid fa-circle-question"></i>
             </div>
@@ -172,22 +194,25 @@
         <a
           href="/admin/products/manage-products"
           th:if="${isAdmin}"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-          Menu</a>
-        <form action="/api/users/logout" method="post">
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Admin Menu</a
+        >
+        <form action="/logout" method="post">
           <input type="hidden" name="username" value="yourUsername" />
           <input type="hidden" name="_csrf" value="${_csrf.token}" />
           <button
             type="submit"
-            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+          >
             Sign out
           </button>
         </form>
       </div>
     </div>
     <!-- Dropdown menu Mobile -->
-    <div id="userDropdownHomeMobile"
-         class="absolute hidden right-0 top-24 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
+    <div
+      id="userDropdownHomeMobile"
+      class="absolute hidden right-0 top-24 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
     >
       <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
         <div class="font-medium truncate text-black" th:text="${user.email}">
@@ -195,11 +220,14 @@
         </div>
       </div>
       <ul
-              class="py-2 text-sm text-gray-700"
-              aria-labelledby="dropdownInformationButton"
+        class="py-2 text-sm text-gray-700"
+        aria-labelledby="dropdownInformationButton"
       >
         <li>
-          <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <a
+            href="/wishlist/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
             <div class="text-center w-4 h-4 mr-2">
               <i class="fa-solid fa-heart"></i>
             </div>
@@ -207,7 +235,10 @@
           </a>
         </li>
         <li>
-          <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <a
+            href="/cart/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
             <div class="text-center w-4 h-4 mr-2">
               <i class="fa-solid fa-cart-shopping"></i>
             </div>
@@ -215,7 +246,10 @@
           </a>
         </li>
         <li>
-          <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <a
+            href="/pesanan-saya"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
             <div class="text-center w-4 h-4 mr-2">
               <i class="fa-solid fa-receipt"></i>
             </div>
@@ -223,7 +257,10 @@
           </a>
         </li>
         <li>
-          <a href="/faq" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
+          <a
+            href="/faq"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
             <div class="text-center w-4 h-4 mr-2">
               <i class="fa-solid fa-circle-question"></i>
             </div>
@@ -233,16 +270,18 @@
       </ul>
       <div class="py-2">
         <a
-                href="/admin/products/manage-products"
-                th:if="${isAdmin}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-          Menu</a>
-        <form action="/api/users/logout" method="post">
-          <input type="hidden" name="username" value="yourUsername"/>
-          <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+          href="/admin/products/manage-products"
+          th:if="${isAdmin}"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Admin Menu</a
+        >
+        <form action="/logout" method="post">
+          <input type="hidden" name="username" value="yourUsername" />
+          <input type="hidden" name="_csrf" value="${_csrf.token}" />
           <button
-                  type="submit"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
+            type="submit"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+          >
             Sign out
           </button>
         </form>
@@ -255,41 +294,49 @@
       <div class="flex flex-col gap-4">
         <!-- Items Cart -->
         <div
-          class="flex flex-col gap-6 bg-[#F2F2F2] p-4 md:p-6 rounded-lg border border-black-200 h-fit">
+          class="flex flex-col gap-6 bg-[#F2F2F2] p-4 md:p-6 rounded-lg border border-black-200 h-fit"
+        >
           <!-- if cartitems is empty -->
           <div
             th:if="${cartItems.size() == 0}"
-            class="flex flex-col items-center justify-center">
+            class="flex flex-col items-center justify-center"
+          >
             <h2 class="text-lg font-semibold mb-2">Your cart is empty</h2>
             <a
               href="/home"
-              class="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-700">
+              class="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-700"
+            >
               Continue Shopping
             </a>
           </div>
           <div
             class="bg-[#FFFFFF] flex flex-row p-3 w-full rounded-xl gap-4"
-            th:each="cartItems : ${cartItems}">
+            th:each="cartItems : ${cartItems}"
+          >
             <div class="max-w-48 border rounded-lg">
               <img
                 class="w-full h-full object-cover object-center rounded-lg"
                 th:src="@{'/images/product/' + ${cartItems.product.image}}"
-                alt="Product Image" />
+                alt="Product Image"
+              />
             </div>
             <div class="flex flex-col justify-between space-y-2 w-full">
               <div class="flex flex-col sm:flex-row justify-between w-full">
                 <div>
                   <h3
                     class="text-xl lg:text-2xl font-bold"
-                    th:text="${cartItems.product.name}"></h3>
+                    th:text="${cartItems.product.name}"
+                  ></h3>
                   <p
                     class="text-red-500"
-                    th:text="${cartItems.product.stock} + ' items left'"></p>
+                    th:text="${cartItems.product.stock} + ' items left'"
+                  ></p>
                 </div>
                 <h3
                   th:id="'price-' + ${cartItems.id}"
                   class="text-lg font-bold text-nowrap"
-                  th:text="'Rp. ' + ${#numbers.formatDecimal(cartItems.totalPrice, 0, 'COMMA', 0, 'POINT')}">
+                  th:text="'Rp. ' + ${#numbers.formatDecimal(cartItems.totalPrice, 0, 'COMMA', 0, 'POINT')}"
+                >
                   Harga
                 </h3>
               </div>
@@ -297,7 +344,8 @@
                 <div class="mt-auto self-end">
                   <button
                     class="px-1 py-1 border border-gray-300 rounded"
-                    th:onclick="|updateQuantity(${cartItems.id}, ${cartItems.quantity - 1})|">
+                    th:onclick="|updateQuantity(${cartItems.id}, ${cartItems.quantity - 1})|"
+                  >
                     -
                   </button>
                   <input
@@ -305,10 +353,12 @@
                     type="text"
                     th:value="${cartItems.quantity}"
                     th:data-product-id="${cartItems.id}"
-                    class="px-1 py-1 w-10 text-center border rounded-lg border-gray-300 mx-2 quantity-input" />
+                    class="px-1 py-1 w-10 text-center border rounded-lg border-gray-300 mx-2 quantity-input"
+                  />
                   <button
                     class="px-1 py-1 border border-gray-300 rounded"
-                    th:onclick="|updateQuantity(${cartItems.id}, ${cartItems.quantity + 1})|">
+                    th:onclick="|updateQuantity(${cartItems.id}, ${cartItems.quantity + 1})|"
+                  >
                     +
                   </button>
                 </div>
@@ -316,11 +366,13 @@
                 <form
                   th:action="@{/cart/remove}"
                   method="POST"
-                  class="inline-block">
+                  class="inline-block"
+                >
                   <input
                     type="hidden"
                     name="cartId"
-                    th:value="${cartItems.id}" />
+                    th:value="${cartItems.id}"
+                  />
                   <button type="submit" class="text-red-500 hover:text-red-700">
                     <i class="fa-solid fa-trash"></i>
                   </button>
@@ -335,87 +387,105 @@
           <!-- address -->
           <div class="max-w-4xl">
             <div
-              class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]">
+              class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]"
+            >
               <div
-                class="flex flex-row items-center justify-start text-start gap-5">
+                class="flex flex-row items-center justify-start text-start gap-5"
+              >
                 <i class="fa-solid fa-location-dot text-5xl"></i>
                 <div>
                   <h2 class="text-lg font-semibold mb-2">Delivery Address</h2>
-                  <span class="text-red-500">Add a shipping address to get an
-                    estimate of the cost and
-                    delivery time.</span>
+                  <span class="text-red-500"
+                    >Add a shipping address to get an estimate of the cost and
+                    delivery time.</span
+                  >
                 </div>
               </div>
               <div class="mt-4">
                 <div class="mb-4">
                   <label
                     for="address_line_1"
-                    class="block text-sm font-medium text-gray-700">Address Line
-                    1</label>
+                    class="block text-sm font-medium text-gray-700"
+                    >Address Line 1</label
+                  >
                   <input
                     type="text"
                     id="address_line_1"
                     name="address_line_1"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
                     placeholder="123 Main St"
-                    required />
+                    required
+                  />
                 </div>
                 <div class="mb-4">
                   <label
                     for="address_line_2"
-                    class="block text-sm font-medium text-gray-700">Address Line
-                    2</label>
+                    class="block text-sm font-medium text-gray-700"
+                    >Address Line 2</label
+                  >
                   <input
                     type="text"
                     id="address_line_2"
                     name="address_line_2"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
-                    placeholder="Apartment, suite, etc." />
+                    placeholder="Apartment, suite, etc."
+                  />
                 </div>
                 <div class="mb-4">
                   <label
                     for="city"
-                    class="block text-sm font-medium text-gray-700">City</label>
+                    class="block text-sm font-medium text-gray-700"
+                    >City</label
+                  >
                   <input
                     type="text"
                     id="city"
                     name="city"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
-                    required />
+                    required
+                  />
                 </div>
                 <div class="mb-4">
                   <label
                     for="province"
-                    class="block text-sm font-medium text-gray-700">State/Province</label>
+                    class="block text-sm font-medium text-gray-700"
+                    >State/Province</label
+                  >
                   <input
                     type="text"
                     id="province"
                     name="province"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
-                    required />
+                    required
+                  />
                 </div>
                 <div class="mb-4">
                   <label
                     for="postal_code"
-                    class="block text-sm font-medium text-gray-700">Postal
-                    Code</label>
+                    class="block text-sm font-medium text-gray-700"
+                    >Postal Code</label
+                  >
                   <input
                     type="text"
                     id="postal_code"
                     name="postal_code"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
-                    required />
+                    required
+                  />
                 </div>
                 <div class="mb-4">
                   <label
                     for="country"
-                    class="block text-sm font-medium text-gray-700">Country</label>
+                    class="block text-sm font-medium text-gray-700"
+                    >Country</label
+                  >
                   <input
                     type="text"
                     id="country"
                     name="country"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
-                    required />
+                    required
+                  />
                 </div>
               </div>
             </div>
@@ -423,30 +493,34 @@
           <!-- voucher -->
           <div class="max-w-4xl">
             <div
-              class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]">
+              class="h-full border border-black-300 p-4 rounded bg-[#F2F2F2]"
+            >
               <div
-                class="flex flex-col h-full items-start justify-center gap-7">
+                class="flex flex-col h-full items-start justify-center gap-7"
+              >
                 <div class="flex flex-row items-center gap-5">
                   <i class="fa-solid fa-ticket text-5xl"></i>
-                  <label class="font-semibold" for="voucher-input">Redeem
-                    your voucher
+                  <label class="font-semibold" for="voucher-input"
+                    >Redeem your voucher
                     <here></here>
-                    !</label>
+                    !</label
+                  >
                 </div>
                 <!-- Kolom Label dan Input -->
-                <form method="POST" id="voucher-form"
-                  class="w-full">
+                <form method="POST" id="voucher-form" class="w-full">
                   <div class="flex flex-row w-full gap-2">
                     <input
                       id="voucher-input"
                       type="text"
                       class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-pink-400"
-                      placeholder="Enter your voucher" />
+                      placeholder="Enter your voucher"
+                    />
 
                     <button
                       id="voucher-submit"
                       type="button"
-                      class="bg-yellow-600 text-white px-6 py-3 rounded hover:bg-yellow-700">
+                      class="bg-yellow-600 text-white px-6 py-3 rounded hover:bg-yellow-700"
+                    >
                       Submit
                     </button>
                   </div>
@@ -457,16 +531,20 @@
           <!-- Order Summary -->
           <div class="max-w-4xl">
             <div
-              class="border bg-[#F2F2F2] border-black-300 p-4 rounded w-auto">
+              class="border bg-[#F2F2F2] border-black-300 p-4 rounded w-auto"
+            >
               <h2 class="text-lg font-semibold mb-5">Your order summary</h2>
               <!-- Sub-total Section -->
               <div class="flex flex-col space-y-2">
                 <div class="flex justify-between">
-                  <span>Sub-total (<span th:text="${cartItems.size()}"></span>
-                    Products)</span>
+                  <span
+                    >Sub-total (<span th:text="${cartItems.size()}"></span>
+                    Products)</span
+                  >
                   <span
                     id="total-price"
-                    th:text="'Rp. ' + ${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')}"></span>
+                    th:text="'Rp. ' + ${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')}"
+                  ></span>
                 </div>
 
                 <div id="discount" class="flex justify-between hidden">
@@ -488,8 +566,9 @@
                 <span>Total</span>
                 <span
                   id="total-price-result"
-                  th:text="${'Rp. ' + #numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')}">Rp.
-                  0</span>
+                  th:text="${'Rp. ' + #numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT')}"
+                  >Rp. 0</span
+                >
               </div>
             </div>
           </div>
@@ -497,13 +576,18 @@
           <input type="hidden" id="voucher-code" name="voucherCode" />
 
           <!-- Checkout Button -->
-          <button th:if="${cartItems.size() == 0}" disabled
-            class="w-full bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700">
+          <button
+            th:if="${cartItems.size() == 0}"
+            disabled
+            class="w-full bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700"
+          >
             Checkout
           </button>
 
-          <button th:if="${cartItems.size() > 0}"
-            class="w-full bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700">
+          <button
+            th:if="${cartItems.size() > 0}"
+            class="w-full bg-yellow-600 text-white py-2 rounded hover:bg-yellow-700"
+          >
             Checkout
           </button>
         </div>
@@ -513,14 +597,19 @@
     <!-- Testing -->
 
     <!--Wajib-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const dropdownToggle = document.getElementById("userDropdownHomeToggle");
-        const dropdownToggleMobile = document.getElementById("userDropdownHomeToggleMobile");
+        const dropdownToggle = document.getElementById(
+          "userDropdownHomeToggle"
+        );
+        const dropdownToggleMobile = document.getElementById(
+          "userDropdownHomeToggleMobile"
+        );
         const dropdown = document.getElementById("userDropdownHome");
-        const dropdownMobile = document.getElementById("userDropdownHomeMobile");
+        const dropdownMobile = document.getElementById(
+          "userDropdownHomeMobile"
+        );
 
         dropdownToggle.addEventListener("click", function () {
           dropdown.classList.toggle("hidden");

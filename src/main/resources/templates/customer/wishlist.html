@@ -1,308 +1,378 @@
 <!DOCTYPE html>
 <html lang="id" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KeikoShop</title>
     <!--    Tailwind CSS & Other CDN style-->
-    <link th:href="@{/css/tailwind-output.css}" rel="stylesheet">
+    <link th:href="@{/css/tailwind-output.css}" rel="stylesheet" />
     <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <!-- Add Google Fonts Import -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
     />
     <!--    Library JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!--    Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-</head>
-
-<body class="bg-[#FFFAFA] font-[Poppins]">
-<div class="w-full bg-black">
-    <h1 class="text-white py-2 justify-center text-center mx-3">
+  <body class="bg-[#FFFAFA] font-[Poppins]">
+    <div class="w-full bg-black">
+      <h1 class="text-white py-2 justify-center text-center mx-3">
         Christmas Sale For All Items And Free Express Delivery -
-        <span class="font-bold">OFF 50%!</span> Shop now only at, Keiko
-        Shop!
-    </h1>
-</div>
-<!-- Navbar -->
-<nav class="bg-white border-gray-200 border-b">
-    <div
-            class="min-w-screen-xl px-10 flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5">
+        <span class="font-bold">OFF 50%!</span> Shop now only at, Keiko Shop!
+      </h1>
+    </div>
+    <!-- Navbar -->
+    <nav class="bg-white border-gray-200 border-b">
+      <div
+        class="min-w-screen-xl px-10 flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5"
+      >
         <!-- LOGO -->
         <a
-                href="/home"
-                class="flex items-center justify-center rtl:space-x-reverse">
-            <img src="/images/Logo.png" class="h-24"
-                 alt="KeikoShop Logo"/>
-            <h1
-                    class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
-                Keikoshop
-            </h1>
+          href="/home"
+          class="flex items-center justify-center rtl:space-x-reverse"
+        >
+          <img src="/images/Logo.png" class="h-24" alt="KeikoShop Logo" />
+          <h1 class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
+            Keikoshop
+          </h1>
         </a>
         <!-- NAVIGATION LINKS -->
         <div
-                class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto">
-            <div
-                    class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto">
-                <div class="mr-9 flex items-center relative">
-                    <a href="/cart/my">
-                        <i
-                                class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
-                        <div
-                                th:if="${cartItems.size() > 0}"
-                                class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">
-                            <h1 th:text="${cartItems.size()}"></h1>
-                        </div>
-                    </a>
+          class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto"
+        >
+          <div
+            class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto"
+          >
+            <div class="mr-9 flex items-center relative">
+              <a href="/cart/my">
+                <i
+                  class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"
+                ></i>
+                <div
+                  th:if="${cartItems.size() > 0}"
+                  class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2"
+                >
+                  <h1 th:text="${cartItems.size()}"></h1>
                 </div>
-                <div class="h-10 w-px bg-gray-400"></div>
+              </a>
             </div>
-            <ul class="flex space-x-2 items-center ml-6">
-                <li>
-                    <button
-                            id="userDropdownHomeToggle"
-                            class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-2 flex justify-center items-center"
-                            type="button">
-                                <span class="me-2">Hi, <span
-                                        th:text="${user.username}"></span></span>
-                    </button>
-                </li>
-            </ul>
+            <div class="h-10 w-px bg-gray-400"></div>
+          </div>
+          <ul class="flex space-x-2 items-center ml-6">
+            <li>
+              <button
+                id="userDropdownHomeToggle"
+                class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 my-2 flex justify-center items-center"
+                type="button"
+              >
+                <span class="me-2"
+                  >Hi, <span th:text="${user.username}"></span
+                ></span>
+              </button>
+            </li>
+          </ul>
         </div>
         <!-- Middle Bar -->
         <div class="col-start-2 col-span-3 p-5">
-            <div class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block">
-                <h1 class="text-3xl text-[#AC690B] font-semibold text-center">
-                    Wishlist
-                </h1>
-            </div>
+          <div
+            class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block"
+          >
+            <h1 class="text-3xl text-[#AC690B] font-semibold text-center">
+              Wishlist
+            </h1>
+          </div>
         </div>
         <!-- HAMBURGER MENU -->
         <div class="flex justify-end lg:order-2">
-            <button
-                    id="userDropdownHomeToggleMobile"
-                    type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+          <button
+            id="userDropdownHomeToggleMobile"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
             >
-                <span class="sr-only">Open main menu</span>
-                <svg
-                        class="w-5 h-5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 17 14"
-                >
-                    <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15"
-                    />
-                </svg>
-            </button>
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
         </div>
-    </div>
-</nav>
-<!-- Dropdown menu Desktop -->
-<div id="userDropdownHome"
-     class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
-    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-        <div class="font-medium truncate text-black"
-             th:text="${user.email}">
-            Keikoshop@email.com
-        </div>
-    </div>
-    <ul
-            class="py-2 text-sm text-gray-700"
-            aria-labelledby="dropdownInformationButton">
-        <li>
-            <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <span>Wishlist</span>
-            </a>
-        </li>
-        <li>
-            <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-                <span>Keranjang Belanja</span>
-            </a>
-        </li>
-        <li>
-            <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-              <div class="text-center w-4 h-4 mr-2">
-                <i class="fa-solid fa-receipt"></i>
-              </div>
-              <span>Pesanan Saya</span>
-            </a>
-          </li>
-          <li>
-            <a href="/faq" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-              <div class="text-center w-4 h-4 mr-2">
-                <i class="fa-solid fa-circle-question"></i>
-              </div>
-              <span>FAQ</span>
-            </a>
-          </li>
-        </ul>
-    <div class="py-2">
-        <a
-                href="/admin/products/manage-products"
-                th:if="${isAdmin}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-            Menu</a>
-        <form action="/api/users/logout" method="post">
-            <input type="hidden" name="username" value="yourUsername"/>
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button
-                    type="submit"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
-                Sign out
-            </button>
-        </form>
-    </div>
-</div>
-<!-- Dropdown menu Mobile -->
-<div id="userDropdownHomeMobile"
-     class="absolute hidden right-10 top-36 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
->
-    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-        <div class="font-medium truncate text-black" th:text="${user.email}">
-            Keikoshop@email.com
-        </div>
-    </div>
-    <ul
-            class="py-2 text-sm text-gray-700"
-            aria-labelledby="dropdownInformationButton"
+      </div>
+    </nav>
+    <!-- Dropdown menu Desktop -->
+    <div
+      id="userDropdownHome"
+      class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2"
     >
-        <li>
-            <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <span>Wishlist</span>
-            </a>
-        </li>
-        <li>
-            <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </div>
-                <span>Keranjang Belanja</span>
-            </a>
-        </li>
-        <li>
-            <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-              <div class="text-center w-4 h-4 mr-2">
-                <i class="fa-solid fa-receipt"></i>
-              </div>
-              <span>Pesanan Saya</span>
-            </a>
-          </li>
-          <li>
-            <a href="/faq" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-              <div class="text-center w-4 h-4 mr-2">
-                <i class="fa-solid fa-circle-question"></i>
-              </div>
-              <span>FAQ</span>
-            </a>
-          </li>
-        </ul>
-    <div class="py-2">
-        <a
-                href="/admin/products/manage-products"
-                th:if="${isAdmin}"
-                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-            Menu</a>
-        <form action="/api/users/logout" method="post">
-            <input type="hidden" name="username" value="yourUsername"/>
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button
-                    type="submit"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
-                Sign out
-            </button>
-        </form>
-    </div>
-</div>
-<!-- Navbar End -->
-<!-- Body -->
-<div class="m-10">
-    <div class="md:grid md:grid-cols-4">
-        <div th:each="product : ${products}"
-             class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-7">
-            <a th:href="@{'/product/detail/' + ${product.id}}">
-                <img class="p-8 w-full h-80 object-cover object-center"
-                     th:src="@{'/images/product/'+ ${product.image}}" alt="product image"/>
-            </a>
-            <div class="px-5 pb-5">
-                <a th:href="@{'/product/' + ${product.id}}">
-                    <h5 class="text-xl font-semibold tracking-tight text-gray-900" th:text="${product.name}"></h5>
-                </a>
-                <div class="flex items-center mt-2.5 mb-5">
-                    <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                             fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <!-- Repeat the SVG for the number of stars -->
-                    </div>
-                    <span class="bg-[#e59018] text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3">5.0</span>
-                </div>
-                <div class="flex items-center justify-between">
-                        <span class="text-3xl font-bold text-gray-900"
-                              th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"></span>
-                    <form action="/cart/add" method="post">
-                        <input type="hidden" name="productId" th:value="${product.id}">
-                        <input type="hidden" name="quantity" value="1">
-                        <button type="submit"
-                                class="text-white bg-[#e59018] hover:bg-[#AC690B] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                            Add to cart
-                        </button>
-                    </form>
-                </div>
-            </div>
+      <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+        <div class="font-medium truncate text-black" th:text="${user.email}">
+          Keikoshop@email.com
         </div>
+      </div>
+      <ul
+        class="py-2 text-sm text-gray-700"
+        aria-labelledby="dropdownInformationButton"
+      >
+        <li>
+          <a
+            href="/wishlist/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/cart/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <span>Keranjang Belanja</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/pesanan-saya"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <span>Pesanan Saya</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/faq"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <span>FAQ</span>
+          </a>
+        </li>
+      </ul>
+      <div class="py-2">
+        <a
+          href="/admin/products/manage-products"
+          th:if="${isAdmin}"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Admin Menu</a
+        >
+        <form action="/logout" method="POST">
+          <input type="hidden" name="username" value="yourUsername" />
+          <input type="hidden" name="_csrf" value="${_csrf.token}" />
+          <button
+            type="submit"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+          >
+            Sign out
+          </button>
+        </form>
+      </div>
     </div>
-</div>
+    <!-- Dropdown menu Mobile -->
+    <div
+      id="userDropdownHomeMobile"
+      class="absolute hidden right-10 top-36 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
+    >
+      <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+        <div class="font-medium truncate text-black" th:text="${user.email}">
+          Keikoshop@email.com
+        </div>
+      </div>
+      <ul
+        class="py-2 text-sm text-gray-700"
+        aria-labelledby="dropdownInformationButton"
+      >
+        <li>
+          <a
+            href="/wishlist/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/cart/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <span>Keranjang Belanja</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/pesanan-saya"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <span>Pesanan Saya</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/faq"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <span>FAQ</span>
+          </a>
+        </li>
+      </ul>
+      <div class="py-2">
+        <a
+          href="/admin/products/manage-products"
+          th:if="${isAdmin}"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Admin Menu</a
+        >
+        <form action="/logout" method="POST">
+          <input type="hidden" name="username" value="yourUsername" />
+          <input type="hidden" name="_csrf" value="${_csrf.token}" />
+          <button
+            type="submit"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+          >
+            Sign out
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Body -->
+    <div class="m-10">
+      <div class="md:grid md:grid-cols-4">
+        <div
+          th:each="product : ${products}"
+          class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow mb-7"
+        >
+          <a th:href="@{'/product/detail/' + ${product.id}}">
+            <img
+              class="p-8 w-full h-80 object-cover object-center"
+              th:src="@{'/images/product/'+ ${product.image}}"
+              alt="product image"
+            />
+          </a>
+          <div class="px-5 pb-5">
+            <a th:href="@{'/product/' + ${product.id}}">
+              <h5
+                class="text-xl font-semibold tracking-tight text-gray-900"
+                th:text="${product.name}"
+              ></h5>
+            </a>
+            <div class="flex items-center mt-2.5 mb-5">
+              <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                <svg
+                  class="w-4 h-4 text-yellow-300"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 22 20"
+                >
+                  <path
+                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                  />
+                </svg>
+                <!-- Repeat the SVG for the number of stars -->
+              </div>
+              <span
+                class="bg-[#e59018] text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded ms-3"
+                >5.0</span
+              >
+            </div>
+            <div class="flex items-center justify-between">
+              <span
+                class="text-3xl font-bold text-gray-900"
+                th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"
+              ></span>
+              <form action="/cart/add" method="post">
+                <input
+                  type="hidden"
+                  name="productId"
+                  th:value="${product.id}"
+                />
+                <input type="hidden" name="quantity" value="1" />
+                <button
+                  type="submit"
+                  class="text-white bg-[#e59018] hover:bg-[#AC690B] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Add to cart
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const dropdownToggle = document.getElementById("userDropdownHomeToggle");
-        const dropdownToggleMobile = document.getElementById("userDropdownHomeToggleMobile");
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropdownToggle = document.getElementById(
+          "userDropdownHomeToggle"
+        );
+        const dropdownToggleMobile = document.getElementById(
+          "userDropdownHomeToggleMobile"
+        );
         const dropdown = document.getElementById("userDropdownHome");
-        const dropdownMobile = document.getElementById("userDropdownHomeMobile");
+        const dropdownMobile = document.getElementById(
+          "userDropdownHomeMobile"
+        );
 
         dropdownToggle.addEventListener("click", function () {
-            dropdown.classList.toggle("hidden");
+          dropdown.classList.toggle("hidden");
         });
 
         dropdownToggleMobile.addEventListener("click", function () {
-            dropdownMobile.classList.toggle("hidden");
+          dropdownMobile.classList.toggle("hidden");
         });
-    });
-</script>
-</body>
-
+      });
+    </script>
+  </body>
 </html>

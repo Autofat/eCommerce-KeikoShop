@@ -1,10 +1,11 @@
 package com.example.keikoshop2.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
+@Entity
 public class Notifikasi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +32,7 @@ public class Notifikasi {
         return isRead;
     }
 
-    public void serRead(boolean isRead) {
+    public void setRead(boolean isRead) {
         this.isRead = isRead;
     }
 

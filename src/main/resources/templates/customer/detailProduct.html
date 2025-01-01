@@ -1,475 +1,586 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>KeikoShop</title>
     <!--    Tailwind CSS & Other CDN style-->
-    <link th:href="@{/css/tailwind-output.css}" rel="stylesheet">
+    <link th:href="@{/css/tailwind-output.css}" rel="stylesheet" />
     <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-            integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"/>
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!-- Add Google Fonts Import -->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"/>
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!--    Library JS-->
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!--    Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"/>
-</head>
-<body class="bg-[#FFFAFA] font-[Poppins]">
-<!-- NAVBAR -->
-<nav class="bg-white border-gray-200 border-b">
-    <div
-            class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5">
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#FFFAFA] font-[Poppins]">
+    <!-- NAVBAR -->
+    <nav class="bg-white border-gray-200 border-b">
+      <div
+        class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5"
+      >
         <!-- LOGO -->
-        <a href="/home"
-           class="flex items-center justify-center rtl:space-x-reverse">
-            <img src="/images/Logo.png" class="h-24"
-                 alt="Flowbite Logo"/>
-            <h1
-                    class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
-                Keikoshop
-            </h1>
+        <a
+          href="/home"
+          class="flex items-center justify-center rtl:space-x-reverse"
+        >
+          <img src="/images/Logo.png" class="h-24" alt="Flowbite Logo" />
+          <h1 class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
+            Keikoshop
+          </h1>
         </a>
         <!-- NAVIGATION LINKS -->
-        <div class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto">
-            <div class="mr-9 flex items-center relative">
-                <a href="/cart/my">
-                    <i class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
-                    <div
-                            th:if="${cartItems.size() > 0}"
-                            class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">
-                        <h1 th:text="${cartItems.size()}"></h1>
-                    </div>
-                </a>
-            </div>
-            <ul class="flex space-x-2 items-center ml-6">
-                <li>
-                    <button id="userDropdownHomeToggle"
-                            class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 0 flex justify-center items-center"
-                            type="button">
-                                <span class="me-2">Hi, <span
-                                        th:text="${user.username}"></span></span>
-                    </button>
-                </li>
-            </ul>
+        <div
+          class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto"
+        >
+          <div class="mr-9 flex items-center relative">
+            <a href="/cart/my">
+              <i
+                class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"
+              ></i>
+              <div
+                th:if="${cartItems.size() > 0}"
+                class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2"
+              >
+                <h1 th:text="${cartItems.size()}"></h1>
+              </div>
+            </a>
+          </div>
+          <ul class="flex space-x-2 items-center ml-6">
+            <li>
+              <button
+                id="userDropdownHomeToggle"
+                class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 0 flex justify-center items-center"
+                type="button"
+              >
+                <span class="me-2"
+                  >Hi, <span th:text="${user.username}"></span
+                ></span>
+              </button>
+            </li>
+          </ul>
         </div>
         <!-- SEARCH BAR -->
         <div class="col-start-2 col-span-3 p-5">
+          <div
+            class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block"
+          >
             <div
-                    class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block">
-                <div
-                        class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg
-                            class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 20 20">
-                        <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                    <span class="sr-only">Search icon</span>
-                </div>
-                <input
-                        type="text"
-                        id="search-navbar"
-                        class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Search..."/>
+              class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+              <span class="sr-only">Search icon</span>
             </div>
+            <input
+              type="text"
+              id="search-navbar"
+              class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Search..."
+            />
+          </div>
         </div>
         <!-- HAMBURGER MENU -->
         <div class="flex justify-end lg:order-2">
-            <button
-                    id="userDropdownHomeToggleMobile"
-                    type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 "
+          <button
+            id="userDropdownHomeToggleMobile"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
             >
-                <span class="sr-only">Open main menu</span>
-                <svg
-                        class="w-5 h-5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 17 14"
-                >
-                    <path
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M1 1h15M1 7h15M1 13h15"
-                    />
-                </svg>
-            </button>
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
     <!-- Dropdown menu -->
-    <div id="userDropdownHome"
-         class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
-        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-            <div class="font-medium truncate text-black"
-                 th:text="${user.email}">
-                Keikoshop@email.com
+    <div
+      id="userDropdownHome"
+      class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2"
+    >
+      <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+        <div class="font-medium truncate text-black" th:text="${user.email}">
+          Keikoshop@email.com
+        </div>
+      </div>
+      <ul
+        class="py-2 text-sm text-gray-700"
+        aria-labelledby="dropdownInformationButton"
+      >
+        <li>
+          <a
+            href="/wishlist/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-heart"></i>
             </div>
-        </div>
-        <ul
-                class="py-2 text-sm text-gray-700"
-                aria-labelledby="dropdownInformationButton">
-            <li>
-                <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                    <div class="text-center w-4 h-4 mr-2">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <span>Wishlist</span>
-                </a>
-            </li>
-            <li>
-                <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                    <div class="text-center w-4 h-4 mr-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </div>
-                    <span>Keranjang Belanja</span>
-                </a>
-            </li>
-            <li>
-                <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                  <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-receipt"></i>
-                  </div>
-                  <span>Pesanan Saya</span>
-                </a>
-              </li>
-              <li>
-                <a href="/faq" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                  <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-circle-question"></i>
-                  </div>
-                  <span>FAQ</span>
-                </a>
-              </li>
-            </ul>
-        <div class="py-2">
-            <a
-                    href="/admin/products/manage-products"
-                    th:if="${isAdmin}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-                Menu</a>
-            <form action="/api/users/logout" method="post">
-                <input type="hidden" name="username" value="yourUsername"/>
-                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <button
-                        type="submit"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
-                    Sign out
-                </button>
-            </form>
-        </div>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/cart/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <span>Keranjang Belanja</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/pesanan-saya"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <span>Pesanan Saya</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/faq"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <span>FAQ</span>
+          </a>
+        </li>
+      </ul>
+      <div class="py-2">
+        <a
+          href="/admin/products/manage-products"
+          th:if="${isAdmin}"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Admin Menu</a
+        >
+        <form action="/logout" method="POST">
+          <input type="hidden" name="username" value="yourUsername" />
+          <input type="hidden" name="_csrf" value="${_csrf.token}" />
+          <button
+            type="submit"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+          >
+            Sign out
+          </button>
+        </form>
+      </div>
     </div>
     <!-- Dropdown menu Mobile -->
-    <div id="userDropdownHomeMobile"
-            class="absolute hidden right-10 top-20 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
+    <div
+      id="userDropdownHomeMobile"
+      class="absolute hidden right-10 top-20 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
     >
-        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-            <div class="font-medium truncate text-black" th:text="${user.email}">
-                Keikoshop@email.com
-            </div>
+      <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+        <div class="font-medium truncate text-black" th:text="${user.email}">
+          Keikoshop@email.com
         </div>
-        <ul
-                class="py-2 text-sm text-gray-700"
-                aria-labelledby="dropdownInformationButton"
+      </div>
+      <ul
+        class="py-2 text-sm text-gray-700"
+        aria-labelledby="dropdownInformationButton"
+      >
+        <li>
+          <a
+            href="/wishlist/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/cart/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <span>Keranjang Belanja</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/pesanan-saya"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <span>Pesanan Saya</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/faq"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <span>FAQ</span>
+          </a>
+        </li>
+      </ul>
+      <div class="py-2">
+        <a
+          href="/admin/products/manage-products"
+          th:if="${isAdmin}"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Admin Menu</a
         >
-            <li>
-                <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                    <div class="text-center w-4 h-4 mr-2">
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                    <span>Wishlist</span>
-                </a>
-            </li>
-            <li>
-                <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                    <div class="text-center w-4 h-4 mr-2">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </div>
-                    <span>Keranjang Belanja</span>
-                </a>
-            </li>
-            <li>
-                <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                  <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-receipt"></i>
-                  </div>
-                  <span>Pesanan Saya</span>
-                </a>
-              </li>
-              <li>
-                <a href="/faq" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-                  <div class="text-center w-4 h-4 mr-2">
-                    <i class="fa-solid fa-circle-question"></i>
-                  </div>
-                  <span>FAQ</span>
-                </a>
-              </li>
-            </ul>
-        <div class="py-2">
-            <a
-                    href="/admin/products/manage-products"
-                    th:if="${isAdmin}"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-                Menu</a>
-            <form action="/api/users/logout" method="post">
-                <input type="hidden" name="username" value="yourUsername"/>
-                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                <button
-                        type="submit"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
-                    Sign out
-                </button>
-            </form>
-        </div>
+        <form action="/logout" method="POST">
+          <input type="hidden" name="username" value="yourUsername" />
+          <input type="hidden" name="_csrf" value="${_csrf.token}" />
+          <button
+            type="submit"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+          >
+            Sign out
+          </button>
+        </form>
+      </div>
     </div>
 
-<!-- Body -->
-<section class="py-8 md:py-16 antialiased">
-    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+    <!-- Body -->
+    <section class="py-8 md:py-16 antialiased">
+      <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-            <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                <img class="object-cover w-96"
-                     th:src="@{'/images/product/' + ${product.image}}"
-                     alt="product image"/>
+          <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+            <img
+              class="object-cover w-96"
+              th:src="@{'/images/product/' + ${product.image}}"
+              alt="product image"
+            />
+          </div>
+
+          <div class="mt-6 sm:mt-8 lg:mt-0">
+            <h1
+              class="text-xl font-semibold text-gray-900 sm:text-2xl"
+              th:text="${product.name}"
+            >
+              Product Name
+            </h1>
+            <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+              <p
+                class="text-2xl font-extrabold text-gray-900 sm:text-3xl"
+                th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}"
+              >
+                Harga
+              </p>
+              <!-- stock -->
+              <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                Stock: <span th:text="${product.stock}"></span>
+              </p>
+              <div class="flex items-center gap-2 mt-2 sm:mt-0">
+                <!--             BINTANG REVIEW           -->
+                <div class="flex items-center gap-1">
+                  <div
+                    th:each="star : ${#numbers.sequence(1, averageRating > 0 ? #numbers.formatDecimal(averageRating, 0, 'NONE', 0, 'NONE') : 1)}"
+                  >
+                    <svg
+                      class="w-4 h-4 text-yellow-300"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <p
+                  class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400"
+                  th:text="'( ' + ${averageRating} + ' )'"
+                >
+                  (4.6)
+                </p>
+              </div>
+            </div>
+            <!--       ADD FAV & ADD TO CART         -->
+            <div
+              class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8 space-y-2 sm:space-y-0"
+            >
+              <form
+                class="flex flex-row gap-4 items-center"
+                method="POST"
+                action="/cart/add"
+              >
+                <input
+                  type="hidden"
+                  name="productId"
+                  th:value="${product.id}"
+                />
+                <input
+                  type="number"
+                  name="quantity"
+                  id="quantity"
+                  class="w-16 text-sm font-medium text-gray-900 border border-gray-200 rounded-lg focus:outline-none"
+                  value="1"
+                  min="0"
+                />
+                <button
+                  type="submit"
+                  class="text-white sm:mt-0 bg-[#e59018] hover:bg-[#AC690B] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none flex items-center justify-center"
+                  role="button"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+                    />
+                  </svg>
+                  Add To Cart
+                </button>
+              </form>
+              <form
+                th:if="${!isInWishlist}"
+                method="POST"
+                th:action="@{'/wishlist/add-to-wishlist'}"
+              >
+                <input type="hidden" name="userId" th:value="${user.id}" />
+                <!-- Replace 1 with the actual user ID -->
+                <input
+                  type="hidden"
+                  name="productId"
+                  th:value="${product.id}"
+                />
+                <button
+                  type="submit"
+                  class="flex items-center justify-center py-2.5 px-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg hover:bg-gray-100 group focus:z-10 focus:ring-4 focus:ring-gray-100"
+                  role="button"
+                >
+                  <svg
+                    th:class="${isInWishlist} ? 'w-5 h-5 fill-red-500  transition-colors duration-200 ease-in-out' : 'w-5 h-5 fill-white group-hover:fill-red-500 transition-colors duration-200 ease-in-out'"
+                    class="w-5 h-5 fill-white group-hover:fill-red-500 transition-colors duration-200 ease-in-out"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+                    />
+                  </svg>
+                </button>
+              </form>
+              <form
+                th:if="${isInWishlist}"
+                method="POST"
+                th:action="@{'/wishlist/delete/' + ${wishlistId}}"
+              >
+                <input type="hidden" name="userId" th:value="${user.id}" />
+                <!-- Replace 1 with the actual user ID -->
+                <input
+                  type="hidden"
+                  name="productId"
+                  th:value="${product.id}"
+                />
+                <button
+                  type="submit"
+                  class="flex items-center justify-center py-2.5 px-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg hover:bg-gray-100 group focus:z-10 focus:ring-4 focus:ring-gray-100"
+                  role="button"
+                >
+                  <svg
+                    th:class="${isInWishlist} ? 'w-5 h-5 fill-red-500  transition-colors duration-200 ease-in-out' : 'w-5 h-5 fill-white group-hover:fill-red-500 transition-colors duration-200 ease-in-out'"
+                    class="w-5 h-5 fill-white group-hover:fill-red-500 transition-colors duration-200 ease-in-out"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+                    />
+                  </svg>
+                </button>
+              </form>
             </div>
 
-            <div class="mt-6 sm:mt-8 lg:mt-0">
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl" th:text="${product.name}">
-                    Product Name
-                </h1>
-                <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
-                    <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl"
-                       th:text="'Rp ' + ${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}">
-                        Harga
-                    </p>
-                    <!-- stock -->
-                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                        Stock: <span th:text="${product.stock}"></span>
-                    </p>
-                    <div class="flex items-center gap-2 mt-2 sm:mt-0">
-                        <!--             BINTANG REVIEW           -->
-                        <div class="flex items-center gap-1">
-                            <div th:each="star : ${#numbers.sequence(1, averageRating > 0 ? #numbers.formatDecimal(averageRating, 0, 'NONE', 0, 'NONE') : 1)}">
-                                <svg
-                                        class="w-4 h-4 text-yellow-300"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        fill="currentColor"
-                                        viewBox="0 0 24 24">
-                                    <path
-                                            d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <p class="text-sm font-medium leading-none text-gray-500 dark:text-gray-400" th:text="'( ' + ${averageRating} + ' )'">
-                            (4.6)
-                        </p>
-                        <a href="#"
-                           class="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white">
-                            345 Reviews
-                        </a>
-                    </div>
-                </div>
-                <!--       ADD FAV & ADD TO CART         -->
-                <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8 space-y-2 sm:space-y-0">
-                    <form class="flex flex-row gap-4 items-center"
-                          method="POST" action="/cart/add">
-                        <input type="hidden" name="productId"
-                               th:value="${product.id}"/>
-                        <input
-                                type="number"
-                                name="quantity"
-                                id="quantity"
-                                class="w-16 text-sm font-medium text-gray-900 border border-gray-200 rounded-lg focus:outline-none"
-                                value="1" min="0"/>
-                        <button type="submit"
-                                class="text-white sm:mt-0 bg-[#e59018] hover:bg-[#AC690B] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none flex items-center justify-center"
-                                role="button">
-                            <svg
-                                    class="w-5 h-5"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    fill="none"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"/>
-                            </svg>
-                            Add To Cart
-                        </button>
-                    </form>
-                    <form th:if="${!isInWishlist}" method="POST" th:action="@{'/wishlist/add-to-wishlist'}">
-                        <input type="hidden" name="userId" th:value="${user.id}"/>
-                        <!-- Replace 1 with the actual user ID -->
-                        <input type="hidden" name="productId" th:value="${product.id}"/>
-                        <button
-                                type="submit"
-                                class="flex items-center justify-center py-2.5 px-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg hover:bg-gray-100 group focus:z-10 focus:ring-4 focus:ring-gray-100"
-                                role="button">
-                            <svg
-                                    th:class="${isInWishlist} ? 'w-5 h-5 fill-red-500  transition-colors duration-200 ease-in-out' : 'w-5 h-5 fill-white group-hover:fill-red-500 transition-colors duration-200 ease-in-out'"
-                                    class="w-5 h-5 fill-white group-hover:fill-red-500 transition-colors duration-200 ease-in-out"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-                            </svg>
-                        </button>
-                    </form>
-                    <form th:if="${isInWishlist}" method="POST" th:action="@{'/wishlist/delete/' + ${wishlistId}}">
-                        <input type="hidden" name="userId" th:value="${user.id}"/>
-                        <!-- Replace 1 with the actual user ID -->
-                        <input type="hidden" name="productId" th:value="${product.id}"/>
-                        <button
-                                type="submit"
-                                class="flex items-center justify-center py-2.5 px-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg hover:bg-gray-100 group focus:z-10 focus:ring-4 focus:ring-gray-100"
-                                role="button">
-                            <svg
-                                    th:class="${isInWishlist} ? 'w-5 h-5 fill-red-500  transition-colors duration-200 ease-in-out' : 'w-5 h-5 fill-white group-hover:fill-red-500 transition-colors duration-200 ease-in-out'"
-                                    class="w-5 h-5 fill-white group-hover:fill-red-500 transition-colors duration-200 ease-in-out"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="24"
-                                    height="24"
-                                    viewBox="0 0 24 24">
-                                <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
-                            </svg>
-                        </button>
-                    </form>
-                </div>
-
-                <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800"/>
-                <div th:utext="${product.description}"></div>
-            </div>
+            <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
+            <div th:utext="${product.description}"></div>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- Rating -->
-<section class="bg-white py-8 antialiased" th:classappend="${reviews == null} ? 'md:py-20' : 'md:py-16'">
-    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+    <!-- Rating -->
+    <section
+      class="bg-white py-8 antialiased"
+      th:classappend="${reviews == null} ? 'md:py-20' : 'md:py-16'"
+    >
+      <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <!-- Reviews (4.65 Out of 5) -->
         <div class="my-6 gap-8 flex-col sm:items-start md:my-8">
-            <div class="shrink-0 space-y-4">
-                <p class="text-2xl font-semibold leading-none text-gray-900" th:text="${averageRating} + ' out of 5'">
-                    4.65 out of 5
-                </p>
-                <div th:if="${reviews == null}">
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">
-                        No reviews yet
-                    </p>
-                </div>
+          <div class="shrink-0 space-y-4">
+            <p
+              class="text-2xl font-semibold leading-none text-gray-900"
+              th:text="${averageRating} + ' out of 5'"
+            >
+              4.65 out of 5
+            </p>
+            <div th:if="${reviews == null}">
+              <p class="text-base font-normal text-gray-500 dark:text-gray-400">
+                No reviews yet
+              </p>
             </div>
+          </div>
 
-            <!-- Tulisan Review nya -->
-            <div class="mt-16 divide-y divide-gray-200 dark:divide-gray-700">
-                <div th:each="review : ${reviews}" class="py-6">
-                    <div class="gap-3 pb-6 sm:flex sm:items-start">
-                        <div class="shrink-0 space-y-2 sm:w-48 md:w-72">
-                            <!-- Bintang -->
-                            <div class="flex items-center gap-0.5">
-                                <div th:each="star:${review.stars}">
-                                    <svg
-                                            class="h-4 w-4 text-yellow-300"
-                                            aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            fill="currentColor"
-                                            viewBox="0 0 24 24">
-                                        <path d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"/>
-                                    </svg>
-                                </div>
-
-
-                            </div>
-                            <div class="space-y-0.5">
-                                <p class="text-base font-semibold text-gray-900" th:text="${review.username}">
-                                    Rapi Ganteng
-                                </p>
-                                <p class="text-sm font-normal text-gray-500 dark:text-gray-400"
-                                   th:text="${#dates.format(review.reviewDate, 'dd, MMMM yyyy')}">
-                                    Tanggal Review
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400"
-                               th:text="${review.comment}">
-                            </p>
-                        </div>
+          <!-- Tulisan Review nya -->
+          <div class="mt-16 divide-y divide-gray-200 dark:divide-gray-700">
+            <div th:each="review : ${reviews}" class="py-6">
+              <div class="gap-3 pb-6 sm:flex sm:items-start">
+                <div class="shrink-0 space-y-2 sm:w-48 md:w-72">
+                  <!-- Bintang -->
+                  <div class="flex items-center gap-0.5">
+                    <div th:each="star:${review.stars}">
+                      <svg
+                        class="h-4 w-4 text-yellow-300"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13.849 4.22c-.684-1.626-3.014-1.626-3.698 0L8.397 8.387l-4.552.361c-1.775.14-2.495 2.331-1.142 3.477l3.468 2.937-1.06 4.392c-.413 1.713 1.472 3.067 2.992 2.149L12 19.35l3.897 2.354c1.52.918 3.405-.436 2.992-2.15l-1.06-4.39 3.468-2.938c1.353-1.146.633-3.336-1.142-3.477l-4.552-.36-1.754-4.17Z"
+                        />
+                      </svg>
                     </div>
+                  </div>
+                  <div class="space-y-0.5">
+                    <p
+                      class="text-base font-semibold text-gray-900"
+                      th:text="${review.username}"
+                    >
+                      Rapi Ganteng
+                    </p>
+                    <p
+                      class="text-sm font-normal text-gray-500 dark:text-gray-400"
+                      th:text="${#dates.format(review.reviewDate, 'dd, MMMM yyyy')}"
+                    >
+                      Tanggal Review
+                    </p>
+                  </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!--Wajib-->
-<script
-        src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<!--Script Dropdowns-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const dropdownToggle = document.getElementById("userDropdownHomeToggle");
-        const dropdownToggleMobile = document.getElementById("userDropdownHomeToggleMobile");
+                <div class="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
+                  <p
+                    class="text-base font-normal text-gray-500 dark:text-gray-400"
+                    th:text="${review.comment}"
+                  ></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Wajib-->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--Script Dropdowns-->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropdownToggle = document.getElementById(
+          "userDropdownHomeToggle"
+        );
+        const dropdownToggleMobile = document.getElementById(
+          "userDropdownHomeToggleMobile"
+        );
         const dropdown = document.getElementById("userDropdownHome");
-        const dropdownMobile = document.getElementById("userDropdownHomeMobile");
+        const dropdownMobile = document.getElementById(
+          "userDropdownHomeMobile"
+        );
 
         dropdownToggle.addEventListener("click", function () {
-            dropdown.classList.toggle("hidden");
+          dropdown.classList.toggle("hidden");
         });
 
         dropdownToggleMobile.addEventListener("click", function () {
-            dropdownMobile.classList.toggle("hidden");
+          dropdownMobile.classList.toggle("hidden");
         });
-    });
-</script>
-</body>
+      });
+    </script>
+  </body>
 </html>

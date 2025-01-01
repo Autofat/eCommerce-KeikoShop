@@ -1,379 +1,531 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--    Tailwind CSS & Other CDN style-->
+    <link th:href="@{/css/tailwind-output.css}" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Add Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!--    Library JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!--    Tailwind CSS & Other CDN style-->
-  <link th:href="@{/css/tailwind-output.css}" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-    integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Add Google Fonts Import -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <!--    Library JS-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!--    Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <!--    Font-->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
-</head>
+  <body class="bg-[#FFFAFA] font-[Poppins]">
+    <div class="w-full bg-black">
+      <h1 class="text-white py-2 justify-center text-center mx-3">
+        Christmas Sale For All Items And Free Express Delivery -
+        <span class="font-bold">OFF 50%!</span> Shop now only at, Keiko Shop!
+      </h1>
+    </div>
 
-<body class="bg-[#FFFAFA] font-[Poppins]">
-  <div class="w-full bg-black">
-    <h1 class="text-white py-2 justify-center text-center mx-3">
-      Christmas Sale For All Items And Free Express Delivery -
-      <span class="font-bold">OFF 50%!</span> Shop now only at, Keiko Shop!
-    </h1>
-  </div>
-
-  <!-- NAVBAR -->
-  <nav class="bg-white border-gray-200 border-b">
-    <div class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5">
-      <!-- LOGO -->
-      <a href="/home" class="flex items-center justify-center rtl:space-x-reverse">
-        <img src="/images/Logo.png" class="h-24" alt="KeikoShop Logo" />
-        <h1 class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
-          Keikoshop
-        </h1>
-      </a>
-      <!-- NAVIGATION LINKS -->
-      <div class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto">
-        <div class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto">
-          <div class="mr-9 flex items-center relative">
-            <a href="/cart/my">
-              <i class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"></i>
-              <div th:if="${cartItems.size() > 0}"
-                class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2">
-                <h1 th:text="${cartItems.size()}"></h1>
-              </div>
-            </a>
-          </div>
-          <div class="h-10 w-px bg-gray-400"></div>
-        </div>
-        <ul class="flex space-x-2 items-center ml-6">
-          <li>
-            <button id="userDropdownHomeToggle"
-              class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 0 flex justify-center items-center"
-              type="button">
-              <span class="me-2">Hi, <span th:text="${user.username}"></span></span>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <!-- Middle Bar -->
-      <div class="col-start-2 col-span-3 p-5">
-        <div
-          class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block">
-          <h1
-            class="text-center text-2xl font-bold"
-            th:text="${cartItems.size() == 0 ? 'FAQ' : 'FAQ (' + FAQItems.size() + ')'}">
-            FAQ
+    <!-- NAVBAR -->
+    <nav class="bg-white border-gray-200 border-b">
+      <div
+        class="min-w-screen-xl px-10 flex flex-wrap items-center justify-between mx-auto p-4 grid grid-cols-5"
+      >
+        <!-- LOGO -->
+        <a
+          href="/home"
+          class="flex items-center justify-center rtl:space-x-reverse"
+        >
+          <img src="/images/Logo.png" class="h-24" alt="KeikoShop Logo" />
+          <h1 class="text-3xl text-[#AC690B] font-semibold hidden lg:block">
+            Keikoshop
           </h1>
-        </div>
-      </div>
-      <!-- HAMBURGER MENU -->
-      <div class="flex justify-end lg:order-2">
-        <button id="userDropdownHomeToggleMobile" type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 ">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M1 1h15M1 7h15M1 13h15" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </nav>
-  <!-- Dropdown menu Desktop -->
-  <div id="userDropdownHome"
-    class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2">
-    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-      <div class="font-medium truncate text-black" th:text="${user.email}">
-        Keikoshop@email.com
-      </div>
-    </div>
-    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownInformationButton">
-      <li>
-        <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-          <div class="text-center w-4 h-4 mr-2">
-            <i class="fa-solid fa-heart"></i>
-          </div>
-          <span>Wishlist</span>
         </a>
-      </li>
-      <li>
-        <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-          <div class="text-center w-4 h-4 mr-2">
-            <i class="fa-solid fa-cart-shopping"></i>
+        <!-- NAVIGATION LINKS -->
+        <div
+          class="hidden lg:flex lg:order-2 lg:mr-auto items-center justify-center mx-auto"
+        >
+          <div
+            class="hidden lg:flex lg:mr-auto items-center justify-center mx-auto"
+          >
+            <div class="mr-9 flex items-center relative">
+              <a href="/cart/my">
+                <i
+                  class="fa-solid fa-cart-shopping text-2xl text-[#e59018] cursor-pointer hover:text-[#AC690B]"
+                ></i>
+                <div
+                  th:if="${cartItems.size() > 0}"
+                  class="absolute inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2"
+                >
+                  <h1 th:text="${cartItems.size()}"></h1>
+                </div>
+              </a>
+            </div>
+            <div class="h-10 w-px bg-gray-400"></div>
           </div>
-          <span>Keranjang Belanja</span>
-        </a>
-      </li>
-      <li>
-        <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-          <div class="text-center w-4 h-4 mr-2">
-            <i class="fa-solid fa-receipt"></i>
+          <ul class="flex space-x-2 items-center ml-6">
+            <li>
+              <button
+                id="userDropdownHomeToggle"
+                class="text-[#e59018] hover:text-white border border-[#e59018] hover:bg-[#e59018] focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 0 flex justify-center items-center"
+                type="button"
+              >
+                <span class="me-2"
+                  >Hi, <span th:text="${user.username}"></span
+                ></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <!-- Middle Bar -->
+        <div class="col-start-2 col-span-3 p-5">
+          <div
+            class="relative w-xl lg:min-w-xl lg:order-1 lg:mx-auto hidden lg:block"
+          >
+            <h1
+              class="text-center text-2xl font-bold"
+              th:text="${cartItems.size() == 0 ? 'FAQ' : 'FAQ (' + FAQItems.size() + ')'}"
+            >
+              FAQ
+            </h1>
           </div>
-          <span>Pesanan Saya</span>
-        </a>
-      </li>
-      <li>
-        <a href="/faq" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-          <div class="text-center w-4 h-4 mr-2">
-            <i class="fa-solid fa-circle-question"></i>
+        </div>
+        <!-- HAMBURGER MENU -->
+        <div class="flex justify-end lg:order-2">
+          <button
+            id="userDropdownHomeToggleMobile"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <!-- Dropdown menu Desktop -->
+    <div
+      id="userDropdownHome"
+      class="absolute hidden right-20 top-32 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-72 mt-2"
+    >
+      <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+        <div class="font-medium truncate text-black" th:text="${user.email}">
+          Keikoshop@email.com
+        </div>
+      </div>
+      <ul
+        class="py-2 text-sm text-gray-700"
+        aria-labelledby="dropdownInformationButton"
+      >
+        <li>
+          <a
+            href="/wishlist/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/cart/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <span>Keranjang Belanja</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/pesanan-saya"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <span>Pesanan Saya</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/faq"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <span>FAQ</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="py-2">
+        <a
+          href="/admin/products/manage-products"
+          th:if="${isAdmin}"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Admin Menu</a
+        >
+        <form action="/logout" method="POST">
+          <input type="hidden" name="username" value="yourUsername" />
+          <input type="hidden" name="_csrf" value="${_csrf.token}" />
+          <button
+            type="submit"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+          >
+            Sign out
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Dropdown menu Mobile -->
+    <div
+      id="userDropdownHomeMobile"
+      class="absolute hidden right-10 top-20 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50"
+    >
+      <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+        <div class="font-medium truncate text-black" th:text="${user.email}">
+          Keikoshop@email.com
+        </div>
+      </div>
+      <ul
+        class="py-2 text-sm text-gray-700"
+        aria-labelledby="dropdownInformationButton"
+      >
+        <li>
+          <a
+            href="/wishlist/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <span>Wishlist</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/cart/my"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <span>Keranjang Belanja</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/pesanan-saya"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <span>Pesanan Saya</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/faq"
+            class="flex flex-row items-center px-4 py-2 hover:bg-gray-100"
+          >
+            <div class="text-center w-4 h-4 mr-2">
+              <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <span>FAQ</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="py-2">
+        <a
+          href="/admin/products/manage-products"
+          th:if="${isAdmin}"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+          >Admin Menu</a
+        >
+        <form action="/logout" method="POST">
+          <input type="hidden" name="username" value="yourUsername" />
+          <input type="hidden" name="_csrf" value="${_csrf.token}" />
+          <button
+            type="submit"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+          >
+            Sign out
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="max-w-4xl mx-auto p-6">
+      <!-- Tabs -->
+      <div class="flex justify-center mb-4 border-b">
+        <button
+          data-tab="produk"
+          class="px-4 py-2 text-gray-700 border-b-2 border-yellow-500"
+        >
+          Produk
+        </button>
+        <button data-tab="pembayaran" class="px-4 py-2 text-gray-700">
+          Pembayaran
+        </button>
+        <button data-tab="pesanan" class="px-4 py-2 text-gray-700">
+          Pesanan & Pengiriman
+        </button>
+        <button data-tab="penawaran" class="px-4 py-2 text-gray-700">
+          Penawaran & Hadiah
+        </button>
+      </div>
+
+      <!-- Panels -->
+      <div data-panel="produk" class="space-y-4">
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Apakah semua produk yang dijual di sini original?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Ya, semua produk yang dijual di sini dijamin original.
           </div>
-          <span>FAQ</span>
-        </a>
-      </li>
-    </ul>
-
-    <div class="py-2">
-      <a href="/admin/products/manage-products" th:if="${isAdmin}"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-        Menu</a>
-      <form action="/api/users/logout" method="post">
-        <input type="hidden" name="username" value="yourUsername" />
-        <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
-          Sign out
-        </button>
-      </form>
-    </div>
-  </div>
-  <!-- Dropdown menu Mobile -->
-  <div id="userDropdownHomeMobile"
-    class="absolute hidden right-10 top-20 bg-[#FFFAFA] divide-y divide-gray-100 rounded-lg shadow-xl w-48 mt-2 z-50">
-    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-      <div class="font-medium truncate text-black" th:text="${user.email}">
-        Keikoshop@email.com
-      </div>
-    </div>
-    <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownInformationButton">
-      <li>
-        <a href="/wishlist/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-          <div class="text-center w-4 h-4 mr-2">
-            <i class="fa-solid fa-heart"></i>
+        </div>
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Apakah produk memiliki garansi?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Beberapa produk memiliki garansi, cek detail produk untuk informasi
+            lebih lanjut.
           </div>
-          <span>Wishlist</span>
-        </a>
-      </li>
-      <li>
-        <a href="/cart/my" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-          <div class="text-center w-4 h-4 mr-2">
-            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Apakah harga produk sudah mencakup harga pengemasan juga?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Ya, harga produk sudah termasuk harga pengemasan, namun harga
+            pengiriman akan tergantung sesuai alamat pembeli.
           </div>
-          <span>Keranjang Belanja</span>
-        </a>
-      </li>
-      <li>
-        <a href="/pesanan-saya" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-          <div class="text-center w-4 h-4 mr-2">
-            <i class="fa-solid fa-receipt"></i>
+        </div>
+      </div>
+
+      <div data-panel="pembayaran" class="space-y-4 hidden">
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Metode pembayaran apa saja yang tersedia?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Kami menerima pembayaran melalui transfer bank, kartu kredit, dan
+            e-wallet.
           </div>
-          <span>Pesanan Saya</span>
-        </a>
-      </li>
-      <li>
-        <a href="/faq" class="flex flex-row items-center px-4 py-2 hover:bg-gray-100">
-          <div class="text-center w-4 h-4 mr-2">
-            <i class="fa-solid fa-circle-question"></i>
+        </div>
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Bagaimana cara mengonfirmasi pembayaran?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Setelah melakukan transfer, silakan unggah bukti transfer di halaman
+            "Konfirmasi Pembayaran" agar sistem kami dapat memverifikasi
+            pembayaran Anda.
           </div>
-          <span>FAQ</span>
-        </a>
-      </li>
-    </ul>
+        </div>
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Berapa lama waktu yang dibutuhkan untuk memverifikasi pembayaran
+            saya?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Verifikasi biasanya memakan waktu 1-2 jam pada jam operasional.
+          </div>
+        </div>
+      </div>
 
-    <div class="py-2">
-      <a href="/admin/products/manage-products" th:if="${isAdmin}"
-        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin
-        Menu</a>
-      <form action="/api/users/logout" method="post">
-        <input type="hidden" name="username" value="yourUsername" />
-        <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full">
-          Sign out
-        </button>
-      </form>
-    </div>
-  </div>
-  <div class="max-w-4xl mx-auto p-6">
-    <!-- Tabs -->
-    <div class="flex justify-center mb-4 border-b">
-      <button data-tab="produk" class="px-4 py-2 text-gray-700 border-b-2 border-yellow-500">Produk</button>
-      <button data-tab="pembayaran" class="px-4 py-2 text-gray-700">Pembayaran</button>
-      <button data-tab="pesanan" class="px-4 py-2 text-gray-700">Pesanan & Pengiriman</button>
-      <button data-tab="penawaran" class="px-4 py-2 text-gray-700">Penawaran & Hadiah</button>
-    </div>
+      <div data-panel="pesanan" class="space-y-4 hidden">
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Berapa lama waktu pengiriman?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Waktu pengiriman tergantung lokasi, biasanya 3-5 hari kerja.
+          </div>
+        </div>
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Bagaimana cara melacak pesanan saya?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Anda dapat melacak pesanan melalui menu "Pesanan Saya" dengan
+            memasukkan nomor pesanan Anda.
+          </div>
+        </div>
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Hari apa saja pengiriman dilakukan?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Pengiriman akan dilakukan dalam lima hari kerja kecuali pada tanggal
+            merah.
+          </div>
+        </div>
+      </div>
 
-    <!-- Panels -->
-    <div data-panel="produk" class="space-y-4">
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Apakah semua produk yang dijual di sini original?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Ya, semua produk yang dijual di sini dijamin original.
+      <div data-panel="penawaran" class="space-y-4 hidden">
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Apakah ada diskon untuk pembelian besar?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Ya, kami memberikan diskon untuk pembelian dalam jumlah besar.
+            Hubungi kami untuk detailnya.
+          </div>
         </div>
-      </div>
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Apakah produk memiliki garansi?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Beberapa produk memiliki garansi, cek detail produk untuk informasi lebih lanjut.
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Bagaimana cara menggunakan kode promo?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Masukkan kode promo Anda di halaman checkout, lalu klik "Gunakan"
+            sebelum menyelesaikan pembayaran.
+          </div>
         </div>
-      </div>
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Apakah harga produk sudah mencakup harga pengemasan juga?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Ya, harga produk sudah termasuk harga pengemasan, namun harga pengiriman akan tergantung sesuai alamat
-          pembeli.
-        </div>
-      </div>
-    </div>
-
-    <div data-panel="pembayaran" class="space-y-4 hidden">
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Metode pembayaran apa saja yang tersedia?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Kami menerima pembayaran melalui transfer bank, kartu kredit, dan e-wallet.
-        </div>
-      </div>
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Bagaimana cara mengonfirmasi pembayaran?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Setelah melakukan transfer, silakan unggah bukti transfer di halaman "Konfirmasi Pembayaran" agar sistem
-          kami dapat memverifikasi pembayaran Anda.
-        </div>
-      </div>
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Berapa lama waktu yang dibutuhkan untuk memverifikasi pembayaran saya?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Verifikasi biasanya memakan waktu 1-2 jam pada jam operasional.
-        </div>
-      </div>
-    </div>
-
-    <div data-panel="pesanan" class="space-y-4 hidden">
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Berapa lama waktu pengiriman?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Waktu pengiriman tergantung lokasi, biasanya 3-5 hari kerja.
-        </div>
-      </div>
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Bagaimana cara melacak pesanan saya?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Anda dapat melacak pesanan melalui menu "Pesanan Saya" dengan memasukkan nomor pesanan Anda. </div>
-      </div>
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Hari apa saja pengiriman dilakukan?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Pengiriman akan dilakukan dalam lima hari kerja kecuali pada tanggal merah.
+        <div>
+          <button
+            data-accordion
+            class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold"
+          >
+            Di mana saya bisa melihat penawaran terbaru?
+          </button>
+          <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
+            Penawaran terbaru dapat dilihat di halaman "Promo" atau melalui
+            banner utama di beranda.
+          </div>
         </div>
       </div>
     </div>
 
-    <div data-panel="penawaran" class="space-y-4 hidden">
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Apakah ada diskon untuk pembelian besar?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Ya, kami memberikan diskon untuk pembelian dalam jumlah besar. Hubungi kami untuk detailnya.
-        </div>
-      </div>
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Bagaimana cara menggunakan kode promo?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Masukkan kode promo Anda di halaman checkout, lalu klik "Gunakan" sebelum menyelesaikan pembayaran.
-        </div>
-      </div>
-      <div>
-        <button data-accordion class="w-full text-left bg-white px-4 py-2 rounded-md shadow font-semibold">
-          Di mana saya bisa melihat penawaran terbaru?
-        </button>
-        <div class="hidden px-4 py-2 bg-gray-50 border rounded-md">
-          Penawaran terbaru dapat dilihat di halaman "Promo" atau melalui banner utama di beranda.
-        </div>
-      </div>
-    </div>
-  </div>
+    <!--Wajib-->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!--Wajib-->
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Tab switching logic
+        const tabs = document.querySelectorAll("[data-tab]");
+        const panels = document.querySelectorAll("[data-panel]");
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Tab switching logic
-      const tabs = document.querySelectorAll('[data-tab]');
-      const panels = document.querySelectorAll('[data-panel]');
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const target = tab.dataset.tab;
 
-      tabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-          const target = tab.dataset.tab;
+            tabs.forEach((t) =>
+              t.classList.remove("border-b-2", "border-yellow-500")
+            );
+            panels.forEach((panel) => panel.classList.add("hidden"));
 
-          tabs.forEach((t) => t.classList.remove('border-b-2', 'border-yellow-500'));
-          panels.forEach((panel) => panel.classList.add('hidden'));
+            tab.classList.add("border-b-2", "border-yellow-500");
+            document
+              .querySelector(`[data-panel="${target}"]`)
+              .classList.remove("hidden");
+          });
+        });
 
-          tab.classList.add('border-b-2', 'border-yellow-500');
-          document.querySelector(`[data-panel="${target}"]`).classList.remove('hidden');
+        // Accordion logic
+        const accordions = document.querySelectorAll("[data-accordion]");
+
+        accordions.forEach((accordion) => {
+          accordion.addEventListener("click", () => {
+            const content = accordion.nextElementSibling;
+            const isOpen = content.classList.contains("hidden");
+
+            content.classList.toggle("hidden", !isOpen);
+          });
         });
       });
 
-      // Accordion logic
-      const accordions = document.querySelectorAll('[data-accordion]');
+      document.addEventListener("DOMContentLoaded", function () {
+        const dropdownToggle = document.getElementById(
+          "userDropdownHomeToggle"
+        );
+        const dropdownToggleMobile = document.getElementById(
+          "userDropdownHomeToggleMobile"
+        );
+        const dropdown = document.getElementById("userDropdownHome");
+        const dropdownMobile = document.getElementById(
+          "userDropdownHomeMobile"
+        );
 
-      accordions.forEach((accordion) => {
-        accordion.addEventListener('click', () => {
-          const content = accordion.nextElementSibling;
-          const isOpen = content.classList.contains('hidden');
+        dropdownToggle.addEventListener("click", function () {
+          dropdown.classList.toggle("hidden");
+        });
 
-          content.classList.toggle('hidden', !isOpen);
+        dropdownToggleMobile.addEventListener("click", function () {
+          dropdownMobile.classList.toggle("hidden");
         });
       });
-    });
- 
-    document.addEventListener("DOMContentLoaded", function () {
-      const dropdownToggle = document.getElementById("userDropdownHomeToggle");
-      const dropdownToggleMobile = document.getElementById("userDropdownHomeToggleMobile");
-      const dropdown = document.getElementById("userDropdownHome");
-      const dropdownMobile = document.getElementById("userDropdownHomeMobile");
-
-      dropdownToggle.addEventListener("click", function () {
-        dropdown.classList.toggle("hidden");
-      });
-
-      dropdownToggleMobile.addEventListener("click", function () {
-        dropdownMobile.classList.toggle("hidden");
-      });
-    });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

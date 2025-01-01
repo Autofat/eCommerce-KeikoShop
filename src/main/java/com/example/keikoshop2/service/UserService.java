@@ -100,11 +100,6 @@ public class UserService implements IUserService {
         return (UserDetails) authentication.getPrincipal();
     }
 
-    @Override
-    public void logout(String username) {
-        SecurityContextHolder.clearContext();
-    }
-
     public User findByEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isPresent()) {

@@ -17,6 +17,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         return userService.register(user);
@@ -25,12 +26,6 @@ public class UserController {
     @PostMapping("/login")
     public UserDetails login(@RequestParam String username, @RequestParam String password) {
         return userService.login(username, password);
-    }
-
-    @PostMapping("/logout")
-    public ModelAndView logout(@RequestParam String username) {
-        userService.logout(username);
-        return new ModelAndView("redirect:/login");
     }
 
     @GetMapping("/findByEmail")
